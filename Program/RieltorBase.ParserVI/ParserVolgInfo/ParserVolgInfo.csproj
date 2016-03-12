@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6E78DB00-D8A3-4C68-90B8-72348100E63E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ParserVolgInfo</RootNamespace>
+    <AssemblyName>ParserVolgInfo</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.1.2\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="xNet, Version=3.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\xNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\DataApartment.cs" />
+    <Compile Include="Core\ParserVI.cs" />
+    <Compile Include="Core\ParserVI_All.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\1.jpg" />
+    <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\10.jpg" />
+    <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\11.jpg" />
+    <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\12.jpg" />
+    <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\13.jpg" />
+    <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\14.jpg" />
+    <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\15.jpg" />
+    <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\16.jpg" />
+    <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\17.jpg" />
+    <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\2.png" />
+    <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\3.jpg" />
+    <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\4.jpg" />
+    <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\5.jpg" />
+    <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\6.jpg" />
+    <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\7.jpg" />
+    <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\8.jpg" />
+    <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\9.jpg" />
+    <Content Include="Docs\список фирм для обзвона.txt" />
+    <Content Include="Docs\функционал волга инфо.txt" />
+    <Content Include="obj\Debug\ParserVolgInfo.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\ParserVolgInfo.exe" />
+    <Content Include="obj\Debug\ParserVolgInfo.pdb" />
+    <None Include="App.config" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Docs\Аналоги для риэлторов.docx" />
+    <None Include="Docs\План реализации.odt" />
+    <None Include="Docs\Требования полные\Требования к БД.doc" />
+    <None Include="Docs\Требования полные\Требования к интерфейсу.doc" />
+    <None Include="Docs\Требования полные\Требования к производительности.doc" />
+    <None Include="Docs\Требования полные\Функциональные требования.doc" />
+    <None Include="Docs\Требования урезанные\Требования к БД урезанные.doc" />
+    <None Include="Docs\Требования урезанные\Требования к интерфейсу урезанные.doc" />
+    <None Include="Docs\Требования урезанные\Требования к производительности урезанные.doc" />
+    <None Include="Docs\Требования урезанные\Функциональные требования урезанные.doc" />
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\ParserVolgInfo.csprojResolveAssemblyReference.cache" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Lib\xNet.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

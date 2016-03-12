@@ -1,0 +1,683 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="VolgInfoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'E:\01_PROJECT\001_PROD\VI_SQL_ADO\VI_SQL_ADO\VOLGINFODB.MDF.dbo.Action' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="Id_action" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Id_action" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="Id_agent" />
+          </Key>
+          <Property Name="Id_agent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Addres" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_firm" Type="int" Nullable="false" />
+          <Property Name="FirmAdmin" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Apartment">
+          <Key>
+            <PropertyRef Name="Id_apartment" />
+          </Key>
+          <Property Name="Id_apartment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_typeApartment" Type="int" Nullable="false" />
+          <Property Name="Id_agent" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'E:\01_PROJECT\001_PROD\VI_SQL_ADO\VI_SQL_ADO\VOLGINFODB.MDF.dbo.Apartment_PropertiesApartment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Apartment_PropertiesApartment">
+          <Key>
+            <PropertyRef Name="Id_apartment" />
+            <PropertyRef Name="Id_propertiesApartment" />
+            <PropertyRef Name="ValueProperties" />
+          </Key>
+          <Property Name="Id_apartment" Type="int" Nullable="false" />
+          <Property Name="Id_propertiesApartment" Type="int" Nullable="false" />
+          <Property Name="ValueProperties" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Changelog">
+          <Key>
+            <PropertyRef Name="Id_changelog" />
+          </Key>
+          <Property Name="Id_changelog" Type="int" Nullable="false" />
+          <Property Name="DateChange" Type="date" Nullable="false" />
+          <Property Name="Description" Type="text" Nullable="false" />
+          <Property Name="Action" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AgentWhoChanges" Type="xml" Nullable="false" />
+          <Property Name="ApartmentInfo" Type="xml" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ChangelogAgent">
+          <Key>
+            <PropertyRef Name="Id_agentCangelog" />
+          </Key>
+          <Property Name="Id_agentCangelog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateChange" Type="date" Nullable="false" />
+          <Property Name="Description" Type="text" Nullable="false" />
+          <Property Name="Action" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AgentWhoChanges" Type="xml" Nullable="false" />
+          <Property Name="AgentInfo" Type="xml" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Firm">
+          <Key>
+            <PropertyRef Name="Id_firm" />
+          </Key>
+          <Property Name="Id_firm" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PhotoApartment">
+          <Key>
+            <PropertyRef Name="Id_photo" />
+          </Key>
+          <Property Name="Id_photo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="image" Nullable="false" />
+          <Property Name="Id_apartment" Type="int" Nullable="false" />
+          <Property Name="Id_firm" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertiesApartment">
+          <Key>
+            <PropertyRef Name="Id_propertiesApartment" />
+          </Key>
+          <Property Name="Id_propertiesApartment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameProperties" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeProperties" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeApartment">
+          <Key>
+            <PropertyRef Name="id_typeApartment" />
+          </Key>
+          <Property Name="id_typeApartment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'E:\01_PROJECT\001_PROD\VI_SQL_ADO\VI_SQL_ADO\VOLGINFODB.MDF.dbo.TypeApartment_PropertiesApartment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TypeApartment_PropertiesApartment">
+          <Key>
+            <PropertyRef Name="id_typeApartment" />
+            <PropertyRef Name="Id_propertiesApartment" />
+          </Key>
+          <Property Name="id_typeApartment" Type="int" Nullable="false" />
+          <Property Name="Id_propertiesApartment" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Agent_Firm">
+          <End Role="Firm" Type="Self.Firm" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Agent" Type="Self.Agent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firm">
+              <PropertyRef Name="Id_firm" />
+            </Principal>
+            <Dependent Role="Agent">
+              <PropertyRef Name="Id_firm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apartament_Agent">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Apartment" Type="Self.Apartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="Id_agent" />
+            </Principal>
+            <Dependent Role="Apartment">
+              <PropertyRef Name="Id_agent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apartament_PropertiesApartment_Apartament1">
+          <End Role="Apartment" Type="Self.Apartment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Apartment_PropertiesApartment" Type="Self.Apartment_PropertiesApartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartment">
+              <PropertyRef Name="Id_apartment" />
+            </Principal>
+            <Dependent Role="Apartment_PropertiesApartment">
+              <PropertyRef Name="Id_apartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apartament_PropertiesApartment_PropertiesApartment1">
+          <End Role="PropertiesApartment" Type="Self.PropertiesApartment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Apartment_PropertiesApartment" Type="Self.Apartment_PropertiesApartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertiesApartment">
+              <PropertyRef Name="Id_propertiesApartment" />
+            </Principal>
+            <Dependent Role="Apartment_PropertiesApartment">
+              <PropertyRef Name="Id_propertiesApartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apartament_TypeApartament">
+          <End Role="TypeApartment" Type="Self.TypeApartment" Multiplicity="1" />
+          <End Role="Apartment" Type="Self.Apartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeApartment">
+              <PropertyRef Name="id_typeApartment" />
+            </Principal>
+            <Dependent Role="Apartment">
+              <PropertyRef Name="Id_typeApartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Photo_Apartament">
+          <End Role="Apartment" Type="Self.Apartment" Multiplicity="1" />
+          <End Role="PhotoApartment" Type="Self.PhotoApartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartment">
+              <PropertyRef Name="Id_apartment" />
+            </Principal>
+            <Dependent Role="PhotoApartment">
+              <PropertyRef Name="Id_apartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhotoApartment_Firm">
+          <End Role="Firm" Type="Self.Firm" Multiplicity="1" />
+          <End Role="PhotoApartment" Type="Self.PhotoApartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firm">
+              <PropertyRef Name="Id_firm" />
+            </Principal>
+            <Dependent Role="PhotoApartment">
+              <PropertyRef Name="Id_firm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeApartament_PropertiesApartment_PropertiesApartment1">
+          <End Role="PropertiesApartment" Type="Self.PropertiesApartment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TypeApartment_PropertiesApartment" Type="Self.TypeApartment_PropertiesApartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertiesApartment">
+              <PropertyRef Name="Id_propertiesApartment" />
+            </Principal>
+            <Dependent Role="TypeApartment_PropertiesApartment">
+              <PropertyRef Name="Id_propertiesApartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeApartament_PropertiesApartment_TypeApartament1">
+          <End Role="TypeApartment" Type="Self.TypeApartment" Multiplicity="1" />
+          <End Role="TypeApartment_PropertiesApartment" Type="Self.TypeApartment_PropertiesApartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeApartment">
+              <PropertyRef Name="id_typeApartment" />
+            </Principal>
+            <Dependent Role="TypeApartment_PropertiesApartment">
+              <PropertyRef Name="id_typeApartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VolgInfoDBModelStoreContainer">
+          <EntitySet Name="Agent" EntityType="Self.Agent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Apartment" EntityType="Self.Apartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Changelog" EntityType="Self.Changelog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChangelogAgent" EntityType="Self.ChangelogAgent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Firm" EntityType="Self.Firm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhotoApartment" EntityType="Self.PhotoApartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertiesApartment" EntityType="Self.PropertiesApartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeApartment" EntityType="Self.TypeApartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Action" EntityType="Self.Action" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Action].[Id_action] AS [Id_action], 
+    [Action].[Name] AS [Name]
+    FROM [dbo].[Action] AS [Action]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Apartment_PropertiesApartment" EntityType="Self.Apartment_PropertiesApartment" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Apartment_PropertiesApartment].[Id_apartment] AS [Id_apartment], 
+    [Apartment_PropertiesApartment].[Id_propertiesApartment] AS [Id_propertiesApartment], 
+    [Apartment_PropertiesApartment].[ValueProperties] AS [ValueProperties]
+    FROM [dbo].[Apartment_PropertiesApartment] AS [Apartment_PropertiesApartment]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TypeApartment_PropertiesApartment" EntityType="Self.TypeApartment_PropertiesApartment" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TypeApartment_PropertiesApartment].[id_typeApartment] AS [id_typeApartment], 
+    [TypeApartment_PropertiesApartment].[Id_propertiesApartment] AS [Id_propertiesApartment]
+    FROM [dbo].[TypeApartment_PropertiesApartment] AS [TypeApartment_PropertiesApartment]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Agent_Firm" Association="Self.FK_Agent_Firm">
+            <End Role="Firm" EntitySet="Firm" />
+            <End Role="Agent" EntitySet="Agent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apartament_Agent" Association="Self.FK_Apartament_Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="Apartment" EntitySet="Apartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apartament_PropertiesApartment_Apartament1" Association="Self.FK_Apartament_PropertiesApartment_Apartament1">
+            <End Role="Apartment" EntitySet="Apartment" />
+            <End Role="Apartment_PropertiesApartment" EntitySet="Apartment_PropertiesApartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apartament_PropertiesApartment_PropertiesApartment1" Association="Self.FK_Apartament_PropertiesApartment_PropertiesApartment1">
+            <End Role="PropertiesApartment" EntitySet="PropertiesApartment" />
+            <End Role="Apartment_PropertiesApartment" EntitySet="Apartment_PropertiesApartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apartament_TypeApartament" Association="Self.FK_Apartament_TypeApartament">
+            <End Role="TypeApartment" EntitySet="TypeApartment" />
+            <End Role="Apartment" EntitySet="Apartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Photo_Apartament" Association="Self.FK_Photo_Apartament">
+            <End Role="Apartment" EntitySet="Apartment" />
+            <End Role="PhotoApartment" EntitySet="PhotoApartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhotoApartment_Firm" Association="Self.FK_PhotoApartment_Firm">
+            <End Role="Firm" EntitySet="Firm" />
+            <End Role="PhotoApartment" EntitySet="PhotoApartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeApartament_PropertiesApartment_PropertiesApartment1" Association="Self.FK_TypeApartament_PropertiesApartment_PropertiesApartment1">
+            <End Role="PropertiesApartment" EntitySet="PropertiesApartment" />
+            <End Role="TypeApartment_PropertiesApartment" EntitySet="TypeApartment_PropertiesApartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeApartament_PropertiesApartment_TypeApartament1" Association="Self.FK_TypeApartament_PropertiesApartment_TypeApartament1">
+            <End Role="TypeApartment" EntitySet="TypeApartment" />
+            <End Role="TypeApartment_PropertiesApartment" EntitySet="TypeApartment_PropertiesApartment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VolgInfoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="Id_agent" />
+          </Key>
+          <Property Name="Id_agent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Addres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id_firm" Type="Int32" Nullable="false" />
+          <Property Name="FirmAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Firm" Relationship="Self.FK_Agent_Firm" FromRole="Agent" ToRole="Firm" />
+          <NavigationProperty Name="Apartments" Relationship="Self.FK_Apartament_Agent" FromRole="Agent" ToRole="Apartment" />
+        </EntityType>
+        <EntityType Name="Apartment">
+          <Key>
+            <PropertyRef Name="Id_apartment" />
+          </Key>
+          <Property Name="Id_apartment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_typeApartment" Type="Int32" Nullable="false" />
+          <Property Name="Id_agent" Type="Int32" />
+          <NavigationProperty Name="Agent" Relationship="Self.FK_Apartament_Agent" FromRole="Apartment" ToRole="Agent" />
+          <NavigationProperty Name="Apartment_PropertiesApartment" Relationship="Self.FK_Apartament_PropertiesApartment_Apartament1" FromRole="Apartment" ToRole="Apartment_PropertiesApartment" />
+          <NavigationProperty Name="TypeApartment" Relationship="Self.FK_Apartament_TypeApartament" FromRole="Apartment" ToRole="TypeApartment" />
+          <NavigationProperty Name="PhotoApartments" Relationship="Self.FK_Photo_Apartament" FromRole="Apartment" ToRole="PhotoApartment" />
+        </EntityType>
+        <EntityType Name="Changelog">
+          <Key>
+            <PropertyRef Name="Id_changelog" />
+          </Key>
+          <Property Name="Id_changelog" Type="Int32" Nullable="false" />
+          <Property Name="DateChange" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AgentWhoChanges" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApartmentInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ChangelogAgent">
+          <Key>
+            <PropertyRef Name="Id_agentCangelog" />
+          </Key>
+          <Property Name="Id_agentCangelog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateChange" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AgentWhoChanges" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AgentInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Firm">
+          <Key>
+            <PropertyRef Name="Id_firm" />
+          </Key>
+          <Property Name="Id_firm" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Agents" Relationship="Self.FK_Agent_Firm" FromRole="Firm" ToRole="Agent" />
+          <NavigationProperty Name="PhotoApartments" Relationship="Self.FK_PhotoApartment_Firm" FromRole="Firm" ToRole="PhotoApartment" />
+        </EntityType>
+        <EntityType Name="PhotoApartment">
+          <Key>
+            <PropertyRef Name="Id_photo" />
+          </Key>
+          <Property Name="Id_photo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="Id_apartment" Type="Int32" Nullable="false" />
+          <Property Name="Id_firm" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Apartment" Relationship="Self.FK_Photo_Apartament" FromRole="PhotoApartment" ToRole="Apartment" />
+          <NavigationProperty Name="Firm" Relationship="Self.FK_PhotoApartment_Firm" FromRole="PhotoApartment" ToRole="Firm" />
+        </EntityType>
+        <EntityType Name="PropertiesApartment">
+          <Key>
+            <PropertyRef Name="Id_propertiesApartment" />
+          </Key>
+          <Property Name="Id_propertiesApartment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameProperties" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypeProperties" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Apartment_PropertiesApartment" Relationship="Self.FK_Apartament_PropertiesApartment_PropertiesApartment1" FromRole="PropertiesApartment" ToRole="Apartment_PropertiesApartment" />
+          <NavigationProperty Name="TypeApartments" Relationship="Self.TypeApartment_PropertiesApartment" FromRole="PropertiesApartment" ToRole="TypeApartment" />
+        </EntityType>
+        <EntityType Name="TypeApartment">
+          <Key>
+            <PropertyRef Name="id_typeApartment" />
+          </Key>
+          <Property Name="id_typeApartment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Apartments" Relationship="Self.FK_Apartament_TypeApartament" FromRole="TypeApartment" ToRole="Apartment" />
+          <NavigationProperty Name="PropertiesApartments" Relationship="Self.TypeApartment_PropertiesApartment" FromRole="TypeApartment" ToRole="PropertiesApartment" />
+        </EntityType>
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="Id_action" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Id_action" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Apartment_PropertiesApartment">
+          <Key>
+            <PropertyRef Name="Id_apartment" />
+            <PropertyRef Name="Id_propertiesApartment" />
+            <PropertyRef Name="ValueProperties" />
+          </Key>
+          <Property Name="Id_apartment" Type="Int32" Nullable="false" />
+          <Property Name="Id_propertiesApartment" Type="Int32" Nullable="false" />
+          <Property Name="ValueProperties" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Apartment" Relationship="Self.FK_Apartament_PropertiesApartment_Apartament1" FromRole="Apartment_PropertiesApartment" ToRole="Apartment" />
+          <NavigationProperty Name="PropertiesApartment" Relationship="Self.FK_Apartament_PropertiesApartment_PropertiesApartment1" FromRole="Apartment_PropertiesApartment" ToRole="PropertiesApartment" />
+        </EntityType>
+        <Association Name="FK_Agent_Firm">
+          <End Role="Firm" Type="Self.Firm" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Agent" Type="Self.Agent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firm">
+              <PropertyRef Name="Id_firm" />
+            </Principal>
+            <Dependent Role="Agent">
+              <PropertyRef Name="Id_firm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apartament_Agent">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Apartment" Type="Self.Apartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="Id_agent" />
+            </Principal>
+            <Dependent Role="Apartment">
+              <PropertyRef Name="Id_agent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apartament_PropertiesApartment_Apartament1">
+          <End Role="Apartment" Type="Self.Apartment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Apartment_PropertiesApartment" Type="Self.Apartment_PropertiesApartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartment">
+              <PropertyRef Name="Id_apartment" />
+            </Principal>
+            <Dependent Role="Apartment_PropertiesApartment">
+              <PropertyRef Name="Id_apartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apartament_TypeApartament">
+          <End Role="TypeApartment" Type="Self.TypeApartment" Multiplicity="1" />
+          <End Role="Apartment" Type="Self.Apartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeApartment">
+              <PropertyRef Name="id_typeApartment" />
+            </Principal>
+            <Dependent Role="Apartment">
+              <PropertyRef Name="Id_typeApartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Photo_Apartament">
+          <End Role="Apartment" Type="Self.Apartment" Multiplicity="1" />
+          <End Role="PhotoApartment" Type="Self.PhotoApartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartment">
+              <PropertyRef Name="Id_apartment" />
+            </Principal>
+            <Dependent Role="PhotoApartment">
+              <PropertyRef Name="Id_apartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhotoApartment_Firm">
+          <End Role="Firm" Type="Self.Firm" Multiplicity="1" />
+          <End Role="PhotoApartment" Type="Self.PhotoApartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firm">
+              <PropertyRef Name="Id_firm" />
+            </Principal>
+            <Dependent Role="PhotoApartment">
+              <PropertyRef Name="Id_firm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apartament_PropertiesApartment_PropertiesApartment1">
+          <End Role="PropertiesApartment" Type="Self.PropertiesApartment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Apartment_PropertiesApartment" Type="Self.Apartment_PropertiesApartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertiesApartment">
+              <PropertyRef Name="Id_propertiesApartment" />
+            </Principal>
+            <Dependent Role="Apartment_PropertiesApartment">
+              <PropertyRef Name="Id_propertiesApartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TypeApartment_PropertiesApartment">
+          <End Role="PropertiesApartment" Type="Self.PropertiesApartment" Multiplicity="*" />
+          <End Role="TypeApartment" Type="Self.TypeApartment" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="VolgInfoDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Agents" EntityType="Self.Agent" />
+          <EntitySet Name="Apartments" EntityType="Self.Apartment" />
+          <EntitySet Name="Changelogs" EntityType="Self.Changelog" />
+          <EntitySet Name="ChangelogAgents" EntityType="Self.ChangelogAgent" />
+          <EntitySet Name="Firms" EntityType="Self.Firm" />
+          <EntitySet Name="PhotoApartments" EntityType="Self.PhotoApartment" />
+          <EntitySet Name="PropertiesApartments" EntityType="Self.PropertiesApartment" />
+          <EntitySet Name="TypeApartments" EntityType="Self.TypeApartment" />
+          <EntitySet Name="Actions" EntityType="Self.Action" />
+          <EntitySet Name="Apartment_PropertiesApartment" EntityType="Self.Apartment_PropertiesApartment" />
+          <AssociationSet Name="FK_Agent_Firm" Association="Self.FK_Agent_Firm">
+            <End Role="Firm" EntitySet="Firms" />
+            <End Role="Agent" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apartament_Agent" Association="Self.FK_Apartament_Agent">
+            <End Role="Agent" EntitySet="Agents" />
+            <End Role="Apartment" EntitySet="Apartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apartament_PropertiesApartment_Apartament1" Association="Self.FK_Apartament_PropertiesApartment_Apartament1">
+            <End Role="Apartment" EntitySet="Apartments" />
+            <End Role="Apartment_PropertiesApartment" EntitySet="Apartment_PropertiesApartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apartament_TypeApartament" Association="Self.FK_Apartament_TypeApartament">
+            <End Role="TypeApartment" EntitySet="TypeApartments" />
+            <End Role="Apartment" EntitySet="Apartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Photo_Apartament" Association="Self.FK_Photo_Apartament">
+            <End Role="Apartment" EntitySet="Apartments" />
+            <End Role="PhotoApartment" EntitySet="PhotoApartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhotoApartment_Firm" Association="Self.FK_PhotoApartment_Firm">
+            <End Role="Firm" EntitySet="Firms" />
+            <End Role="PhotoApartment" EntitySet="PhotoApartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apartament_PropertiesApartment_PropertiesApartment1" Association="Self.FK_Apartament_PropertiesApartment_PropertiesApartment1">
+            <End Role="PropertiesApartment" EntitySet="PropertiesApartments" />
+            <End Role="Apartment_PropertiesApartment" EntitySet="Apartment_PropertiesApartment" />
+          </AssociationSet>
+          <AssociationSet Name="TypeApartment_PropertiesApartment" Association="Self.TypeApartment_PropertiesApartment">
+            <End Role="PropertiesApartment" EntitySet="PropertiesApartments" />
+            <End Role="TypeApartment" EntitySet="TypeApartments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VolgInfoDBModelStoreContainer" CdmEntityContainer="VolgInfoDBEntities">
+          <EntitySetMapping Name="Agents">
+            <EntityTypeMapping TypeName="VolgInfoDBModel.Agent">
+              <MappingFragment StoreEntitySet="Agent">
+                <ScalarProperty Name="Id_agent" ColumnName="Id_agent" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Addres" ColumnName="Addres" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Id_firm" ColumnName="Id_firm" />
+                <ScalarProperty Name="FirmAdmin" ColumnName="FirmAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Apartments">
+            <EntityTypeMapping TypeName="VolgInfoDBModel.Apartment">
+              <MappingFragment StoreEntitySet="Apartment">
+                <ScalarProperty Name="Id_apartment" ColumnName="Id_apartment" />
+                <ScalarProperty Name="Id_typeApartment" ColumnName="Id_typeApartment" />
+                <ScalarProperty Name="Id_agent" ColumnName="Id_agent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Changelogs">
+            <EntityTypeMapping TypeName="VolgInfoDBModel.Changelog">
+              <MappingFragment StoreEntitySet="Changelog">
+                <ScalarProperty Name="Id_changelog" ColumnName="Id_changelog" />
+                <ScalarProperty Name="DateChange" ColumnName="DateChange" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="AgentWhoChanges" ColumnName="AgentWhoChanges" />
+                <ScalarProperty Name="ApartmentInfo" ColumnName="ApartmentInfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChangelogAgents">
+            <EntityTypeMapping TypeName="VolgInfoDBModel.ChangelogAgent">
+              <MappingFragment StoreEntitySet="ChangelogAgent">
+                <ScalarProperty Name="Id_agentCangelog" ColumnName="Id_agentCangelog" />
+                <ScalarProperty Name="DateChange" ColumnName="DateChange" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="AgentWhoChanges" ColumnName="AgentWhoChanges" />
+                <ScalarProperty Name="AgentInfo" ColumnName="AgentInfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Firms">
+            <EntityTypeMapping TypeName="VolgInfoDBModel.Firm">
+              <MappingFragment StoreEntitySet="Firm">
+                <ScalarProperty Name="Id_firm" ColumnName="Id_firm" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhotoApartments">
+            <EntityTypeMapping TypeName="VolgInfoDBModel.PhotoApartment">
+              <MappingFragment StoreEntitySet="PhotoApartment">
+                <ScalarProperty Name="Id_photo" ColumnName="Id_photo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id_apartment" ColumnName="Id_apartment" />
+                <ScalarProperty Name="Id_firm" ColumnName="Id_firm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertiesApartments">
+            <EntityTypeMapping TypeName="VolgInfoDBModel.PropertiesApartment">
+              <MappingFragment StoreEntitySet="PropertiesApartment">
+                <ScalarProperty Name="Id_propertiesApartment" ColumnName="Id_propertiesApartment" />
+                <ScalarProperty Name="NameProperties" ColumnName="NameProperties" />
+                <ScalarProperty Name="TypeProperties" ColumnName="TypeProperties" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeApartments">
+            <EntityTypeMapping TypeName="VolgInfoDBModel.TypeApartment">
+              <MappingFragment StoreEntitySet="TypeApartment">
+                <ScalarProperty Name="id_typeApartment" ColumnName="id_typeApartment" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Actions">
+            <EntityTypeMapping TypeName="VolgInfoDBModel.Action">
+              <MappingFragment StoreEntitySet="Action">
+                <ScalarProperty Name="Id_action" ColumnName="Id_action" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Apartment_PropertiesApartment">
+            <EntityTypeMapping TypeName="VolgInfoDBModel.Apartment_PropertiesApartment">
+              <MappingFragment StoreEntitySet="Apartment_PropertiesApartment">
+                <ScalarProperty Name="Id_apartment" ColumnName="Id_apartment" />
+                <ScalarProperty Name="Id_propertiesApartment" ColumnName="Id_propertiesApartment" />
+                <ScalarProperty Name="ValueProperties" ColumnName="ValueProperties" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="TypeApartment_PropertiesApartment" TypeName="VolgInfoDBModel.TypeApartment_PropertiesApartment" StoreEntitySet="TypeApartment_PropertiesApartment">
+            <EndProperty Name="PropertiesApartment">
+              <ScalarProperty Name="Id_propertiesApartment" ColumnName="Id_propertiesApartment" />
+            </EndProperty>
+            <EndProperty Name="TypeApartment">
+              <ScalarProperty Name="id_typeApartment" ColumnName="id_typeApartment" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

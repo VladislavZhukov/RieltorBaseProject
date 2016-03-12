@@ -1,0 +1,15 @@
+# папка с фото
+
+ParserVolgInfo/bin/Debug/image/
+
+
+
+# папка для log файлов
+
+ParserVolgInfo/bin/Debug/log/
+
+
+
+# файл с данными
+
+bin/Debug/apartment.xml
