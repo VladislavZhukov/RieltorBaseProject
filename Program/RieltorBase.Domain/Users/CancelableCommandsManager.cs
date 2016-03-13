@@ -59,7 +59,7 @@
         {
             action();
             this.cancelableCommands.Insert(
-                this.cancelableCommands.Count - 1,
+                this.cancelableCommands.Count,
                 new UserCommand(cancelAction, repeatAction));
             this.repeatableCommands.Clear();
         }
@@ -84,7 +84,7 @@
 
             this.cancelableCommands.Last().Cancel();
             this.repeatableCommands.Insert(
-                this.repeatableCommands.Count - 1,
+                this.repeatableCommands.Count,
                 this.cancelableCommands.Last());
             this.cancelableCommands.Remove(
                 this.cancelableCommands.Last());
@@ -107,7 +107,7 @@
 
             this.repeatableCommands.Last().Repeat();
             this.cancelableCommands.Insert(
-                this.cancelableCommands.Count - 1,
+                this.cancelableCommands.Count,
                 this.repeatableCommands.Last());
             this.repeatableCommands.Remove(
                 this.repeatableCommands.Last());
