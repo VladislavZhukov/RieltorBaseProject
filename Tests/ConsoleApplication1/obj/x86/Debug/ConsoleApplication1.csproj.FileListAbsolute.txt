@@ -1,0 +1,4 @@
+C:\Users\Полина\Desktop\холодильники\RieltorBase shared\Tests\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Полина\Desktop\холодильники\RieltorBase shared\Tests\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Полина\Desktop\холодильники\RieltorBase shared\Tests\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+C:\Users\Полина\Desktop\холодильники\RieltorBase shared\Tests\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
