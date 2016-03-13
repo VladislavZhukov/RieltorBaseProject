@@ -1,17 +1,14 @@
 ﻿namespace RieltorBase.Domain.Users
 {
+    using System.Collections.Generic;
+
     public class Agent
     {
-        private object[] currentAppartments;
+        private readonly List<UserCommand> cancelableCommands
+            = new List<UserCommand>();
 
-        /// <summary>
-        /// Создать агента.
-        /// </summary>
-        internal Agent()
-        {
-            // получить собственные квартиры агента.
-            this.currentAppartments = null; 
-        }
+        private readonly List<UserCommand> repeatableCommands
+            = new List<UserCommand>();
 
         /// <summary>
         /// Отменить последнее действие.
@@ -30,25 +27,36 @@
         }
 
         /// <summary>
-        /// Получить 
+        /// Получить объекты недвижимости агента.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Набор объектов недвижимости агента.</returns>
         public object[] GetOwnAppartments()
         {
-            // получить свои квартиры
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// Добавить новый объект недвижимости.
+        /// </summary>
+        /// <returns>Созданный пустой объект недвижимости.</returns>
+        private object AddAppartment()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
+        /// Обновить данные объекта недвижимости.
+        /// </summary>
+        /// <param name="appartment">Объект недвижимости.</param>
         private void UpdateAppartment(object appartment)
         {
             throw new System.NotImplementedException();
         }
 
-        private void AddAppartment(object appartment)
-        {
-            throw new System.NotImplementedException();
-        }
-
+        /// <summary>
+        /// Удалить объект недвижимости.
+        /// </summary>
+        /// <param name="appartment">Объект недвижимости.</param>
         private void RemoveAppartment(object appartment)
         {
             throw new System.NotImplementedException();
