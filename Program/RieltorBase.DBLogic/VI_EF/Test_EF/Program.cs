@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace VI_EF
 {
+    /// <summary>
+    /// Для использования тип проекта должен быть ConsoleApplication
+    /// </summary>
     class Program
     {
         static void Main(string[] args)
@@ -29,7 +32,9 @@ namespace VI_EF
 
                 //SamplingOfIfFirm(context, 3);
 
-                //SearchBySurname(context, "Севконов", 2);               
+                //SearchBySurname(context, "Севконов", 2);    
+
+                
 
             }
 

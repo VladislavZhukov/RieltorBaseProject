@@ -1,0 +1,224 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="testApp">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/TopDropdownMenu.css" rel="stylesheet" />
+    <title>MainMenu</title>
+    <meta charset="utf-8">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+    <script src="~/Scripts/controllers.js"></script>
+</head>
+<body>
+
+    
+
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+
+
+    <nav>
+        <ul id="menu">
+            <li>
+                <a href="#">Файл</a>
+                <ul>
+                    <li><a href="#">Сохранить</a></li>
+                    <li><a href="#">Сохранить как</a></li>
+                    <li><a href="#">Печатать</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Вид</a>
+                <ul>
+                    <li><a href="#">...</a></li>
+                    <li><a href="#">...</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Связь</a>
+                <ul>
+                    <li><a href="#">...</a></li>
+                    <li><a href="#">...</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Прайс-листы</a>
+                <ul>
+                    <li><a href="#">...</a></li>
+                    <li><a href="#">...</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Дополнительная информация</a>
+                <ul>
+                    <li><a href="#">...</a></li>
+                    <li><a href="#">...</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Реклама</a>
+                <ul>
+                    <li><a href="#">...</a></li>
+                    <li><a href="#">...</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Настройки</a>
+                <ul>
+                    <li><a href="#">...</a></li>
+                    <li><a href="#">...</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Справка</a>
+                <ul>
+                    <li><a href="#">...</a></li>
+                    <li><a href="#">...</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div>
+        <table style="width:100%">
+            <tr>
+                <td>
+                    <br />
+                    <div style="clear:both; text-align:right">
+                        <label>Фирма: FirmName</label>
+                        <button>
+                            Личный кабинет
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br />
+                    <div style="clear:both">
+                        <br />
+                        <button>
+                            <img src="~/Images/ButtonImages/old-edit-find_7749.png" alt=""
+                                 style="vertical-align: middle">
+                        </button>
+                        <button>
+                            <img src="~/Images/ButtonImages/core_8235.png" alt=""
+                                 style="vertical-align: middle">
+                        </button>
+                        <button>
+                            <img src="~/Images/ButtonImages/document-save_4199.png" alt=""
+                                 style="vertical-align: middle">
+                        </button>
+                        <button>
+                            <img src="~/Images/ButtonImages/entry_add_8250.png" alt=""
+                                 style="vertical-align: middle">
+                        </button>
+                        <button>
+                            <img src="~/Images/ButtonImages/add-files-to-archive_6695.png" alt=""
+                                 style="vertical-align: middle">
+                        </button>
+                        <button>
+                            <img src="~/Images/ButtonImages/document-print_3089.png" alt=""
+                                 style="vertical-align: middle">
+                        </button>
+                        <span style="float:right">
+                            <label>Быстрый поиск: </label>
+                            <input id="Text1" type="text" />
+                        </span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <br />
+                        <label>Тип:</label>
+                        <select id="Select1">
+                            <option>Test 1</option>
+                            <option>Test 2</option>
+                            <option>Test 3</option>
+                        </select>
+                        <label>Цена: от</label>
+                        <input id="Text1" type="text" />
+                        <label>до</label>
+                        <input id="Text2" type="text" />
+                        <span style="float:right">
+                            <button>
+                                Разширенный поиск
+                            </button>
+                        </span>
+                    </div>
+
+                    <div style="clear:both">
+                        <br />
+                        <label>За последний:</label>
+                        <input type="radio" name="browser">1 день
+                        <input type="radio" name="browser">1 неделю
+                        <input type="radio" name="browser">1 месяц
+                        <label>С</label>
+                        <input type="date" name="minDateCalendar" />
+                        <label> по </label>
+                        <input type="date" name="maxDateCalendar" />
+                        <span style="float:right">
+                            <label>Тип:</label>
+                            <select id="Select2">
+                                <option>Test 1</option>
+                                <option>Test 2</option>
+                                <option>Test 3</option>
+                            </select>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+
+    <div class="panel panel-default">
+        <h3 class="panel-heading">Header</h3>
+
+        <div class="panel-body" ng-controller="test1Ctrl">
+            <header>
+                <nav class="navbar navbar-default">
+                    <div class="container">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#/"><i class="fa fa-home"></i> Home</a></li>
+                            <li><a href="#/about"><i class="fa fa-shield"></i> About</a></li>
+                            <li><a href="#/contact"><i class="fa fa-comment"></i> Contact</a></li>
+                        </ul>
+                        <div class="navbar-header navbar-right">
+                            <a class="navbar-brand" href="/">Angular Routing Example</a>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+            <ng-view></ng-view>
+        </div>
+    </div>
+
+    
+</body>
+
+</html>
+

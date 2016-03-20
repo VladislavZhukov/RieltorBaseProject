@@ -1,0 +1,27 @@
+﻿@using RieltorBase.Domain;
+@model IEnumerable<AppartmentInfo>
+
+@{
+    ViewBag.Title = "Find";
+}
+
+<h2>Find results</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Адрес</td>
+            <td>Цена</td>
+        </tr>
+    </thead>
+
+    @foreach(AppartmentInfo appInfo in this.Model)
+    {
+        <tr>
+            <td>@appInfo.Id</td>
+            <td>@appInfo.Address</td>
+            <td>@appInfo.Cost</td>
+        </tr>
+    }
+</table>

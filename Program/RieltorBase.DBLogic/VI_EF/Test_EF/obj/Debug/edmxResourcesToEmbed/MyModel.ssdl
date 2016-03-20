@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="VolgInfoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="VolgInfoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Action">
     <Key>
       <PropertyRef Name="Id_action" />
@@ -28,7 +28,7 @@
     <Property Name="Id_agent" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VolgInfoDB.dbo.Apartment_PropertiesApartment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VolgaInfoDB.dbo.Apartment_PropertiesApartment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Apartment_PropertiesApartment">
     <Key>
       <PropertyRef Name="Id_apartment" />
@@ -93,7 +93,7 @@ warning 6002: The table/view 'VolgInfoDB.dbo.Apartment_PropertiesApartment' does
     <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VolgInfoDB.dbo.TypeApartment_PropertiesApartment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VolgaInfoDB.dbo.TypeApartment_PropertiesApartment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="TypeApartment_PropertiesApartment">
     <Key>
       <PropertyRef Name="id_typeApartment" />

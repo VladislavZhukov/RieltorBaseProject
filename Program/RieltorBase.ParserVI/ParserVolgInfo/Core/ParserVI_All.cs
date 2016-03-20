@@ -131,7 +131,7 @@ namespace ParserVolgInfo.Core
                                 {
                                     sourcePage = request.Get(urlApartment).ToString();
                                 }
-                                catch (Exception ex)
+                                catch (Exception)
                                 {
                                     Logger logger = LogManager.GetCurrentClassLogger();
                                     logger.Info("не удалось загрузить квартиру" + " " + urlApartment);

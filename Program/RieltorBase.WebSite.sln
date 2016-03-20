@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RieltorBase.WebSite", "RieltorBase.WebSite\RieltorBase.WebSite.csproj", "{D79959C6-AA9C-4681-ADDE-932F0E19B4D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{A0065545-AAF9-4028-9EC1-8FA43484B0B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VI_EF", "RieltorBase.DBLogic\VI_EF\Test_EF\VI_EF.csproj", "{E319DB0C-F618-4740-802E-5A7B5FF56D0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RieltorBase.Domain", "RieltorBase.Domain\RieltorBase.Domain.csproj", "{5272E49A-C7FA-49C9-9BEE-C1BACFD4BC6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserVolgInfo", "RieltorBase.ParserVI\ParserVolgInfo\ParserVolgInfo.csproj", "{6E78DB00-D8A3-4C68-90B8-72348100E63E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D79959C6-AA9C-4681-ADDE-932F0E19B4D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D79959C6-AA9C-4681-ADDE-932F0E19B4D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D79959C6-AA9C-4681-ADDE-932F0E19B4D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D79959C6-AA9C-4681-ADDE-932F0E19B4D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E319DB0C-F618-4740-802E-5A7B5FF56D0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E319DB0C-F618-4740-802E-5A7B5FF56D0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E319DB0C-F618-4740-802E-5A7B5FF56D0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E319DB0C-F618-4740-802E-5A7B5FF56D0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5272E49A-C7FA-49C9-9BEE-C1BACFD4BC6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5272E49A-C7FA-49C9-9BEE-C1BACFD4BC6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5272E49A-C7FA-49C9-9BEE-C1BACFD4BC6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5272E49A-C7FA-49C9-9BEE-C1BACFD4BC6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E78DB00-D8A3-4C68-90B8-72348100E63E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E78DB00-D8A3-4C68-90B8-72348100E63E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E78DB00-D8A3-4C68-90B8-72348100E63E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E78DB00-D8A3-4C68-90B8-72348100E63E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E319DB0C-F618-4740-802E-5A7B5FF56D0D} = {A0065545-AAF9-4028-9EC1-8FA43484B0B1}
+		{5272E49A-C7FA-49C9-9BEE-C1BACFD4BC6C} = {A0065545-AAF9-4028-9EC1-8FA43484B0B1}
+		{6E78DB00-D8A3-4C68-90B8-72348100E63E} = {A0065545-AAF9-4028-9EC1-8FA43484B0B1}
+	EndGlobalSection
+EndGlobal

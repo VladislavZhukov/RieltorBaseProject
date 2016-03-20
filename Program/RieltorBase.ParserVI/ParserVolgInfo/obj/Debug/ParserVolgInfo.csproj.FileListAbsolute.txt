@@ -70,3 +70,13 @@ E:\01_project\001_prod\ParserVI\ParserVolgInfo\bin\Debug\ParserVolgInfo.pdb
 E:\01_project\001_prod\ParserVI\ParserVolgInfo\bin\Debug\NLog.dll
 E:\01_project\001_prod\ParserVI\ParserVolgInfo\bin\Debug\xNet.dll
 E:\01_project\001_prod\ParserVI\ParserVolgInfo\bin\Debug\NLog.xml
+C:\Users\Александр\Desktop\LEARNING home\RieltorBase shared\Program\RieltorBase.ParserVI\ParserVolgInfo\bin\Debug\NLog.config
+C:\Users\Александр\Desktop\LEARNING home\RieltorBase shared\Program\RieltorBase.ParserVI\ParserVolgInfo\bin\Debug\ParserVolgInfo.exe.config
+C:\Users\Александр\Desktop\LEARNING home\RieltorBase shared\Program\RieltorBase.ParserVI\ParserVolgInfo\bin\Debug\ParserVolgInfo.exe
+C:\Users\Александр\Desktop\LEARNING home\RieltorBase shared\Program\RieltorBase.ParserVI\ParserVolgInfo\bin\Debug\ParserVolgInfo.pdb
+C:\Users\Александр\Desktop\LEARNING home\RieltorBase shared\Program\RieltorBase.ParserVI\ParserVolgInfo\bin\Debug\NLog.dll
+C:\Users\Александр\Desktop\LEARNING home\RieltorBase shared\Program\RieltorBase.ParserVI\ParserVolgInfo\bin\Debug\xNet.dll
+C:\Users\Александр\Desktop\LEARNING home\RieltorBase shared\Program\RieltorBase.ParserVI\ParserVolgInfo\bin\Debug\NLog.xml
+C:\Users\Александр\Desktop\LEARNING home\RieltorBase shared\Program\RieltorBase.ParserVI\ParserVolgInfo\obj\Debug\ParserVolgInfo.csprojResolveAssemblyReference.cache
+C:\Users\Александр\Desktop\LEARNING home\RieltorBase shared\Program\RieltorBase.ParserVI\ParserVolgInfo\obj\Debug\ParserVolgInfo.exe
+C:\Users\Александр\Desktop\LEARNING home\RieltorBase shared\Program\RieltorBase.ParserVI\ParserVolgInfo\obj\Debug\ParserVolgInfo.pdb

@@ -1,0 +1,80 @@
+<h1>Home</h1>
+
+<!-- Тестовая html-таблица "Квартиры" с привязкой к локальным данным -->
+            <div class="well">
+              <h1 class="panel-heading">Квартиры</h1>
+
+              <table class="table table-striped table-hover">
+                <tr>
+                  <th ng-click="sort('rooms')">
+                    <a href="">
+                      Ком.
+                      <i class="glyphicon" ng-class="{'glyphicon-chevron-up' : isSortUp('rooms'),
+                                                    'glyphicon-chevron-down' : isSortDown('rooms')}"></i></a>
+                  </th>
+                  <th ng-click="sort('address')">
+                    <a href="">
+                      Адрес
+                      <i class="glyphicon" ng-class="{'glyphicon-chevron-up' : isSortUp('address'),
+                                                    'glyphicon-chevron-down' : isSortDown('address')}"></i></a>
+                  </th>
+                  <th ng-click="sort('numberOfFloors')">
+                    <a href="">
+                      Этажность
+                      <i class="glyphicon" ng-class="{'glyphicon-chevron-up' : isSortUp('numberOfFloors'),
+                                                    'glyphicon-chevron-down' : isSortDown('numberOfFloors')}"></i></a>
+                  </th>
+                  <th ng-click="sort('area')">
+                    <a href="">
+                      Площадь
+                      <i class="glyphicon" ng-class="{'glyphicon-chevron-up' : isSortUp('area'),
+                                                    'glyphicon-chevron-down' : isSortDown('area')}"></i></a>
+                  </th>
+                  <th ng-click="sort('price')">
+                    <a href="">
+                      Цена
+                      <i class="glyphicon" ng-class="{'glyphicon-chevron-up' : isSortUp('price'),
+                                                    'glyphicon-chevron-down' : isSortDown('price')}"></i></a>
+                  </th>
+                  <th ng-click="sort('firm')">
+                    <a href="">
+                      Фирма
+                      <i class="glyphicon" ng-class="{'glyphicon-chevron-up' : isSortUp('firm'),
+                                                    'glyphicon-chevron-down' : isSortDown('firm')}"></i></a>
+                  </th>
+                </tr>
+
+                <tr ng-repeat="app in appts | orderBy:sortField:reverse">
+                  <td>{{ app.rooms }}</td>
+                  <td>{{ app.address }}</td>
+                  <td>{{ app.numberOfFloors }}</td>
+                  <td>{{ app.area }}</td>
+                  <td>{{ app.price }}</td>
+                  <td>{{ app.firm }}</td>
+                </tr>
+              </table>
+            </div>
+
+            <!-- Вторая тестовая таблица -->
+            <div class="well">
+              <h1 class="panel-heading">Квартиры, маленькая таблица</h1>
+
+              <table class="table table-striped table-bordered table-hover table-condensed">
+                <!-- Выводим динамически названия столбцов -->
+                <tr>
+                  <th ng-repeat="col in apptsColumns" ng-click="sort(col['column'])">
+                    <a href="">
+                      {{ col.readableName }}
+                      <i class="glyphicon" ng-class="{'glyphicon-chevron-up' : isSortUp(col['column']),
+                                                    'glyphicon-chevron-down' : isSortDown(col['column'])}"></i></a>
+                  </th>
+                </tr>
+
+                <!-- Выводим динамически ячейки строк -->
+                <tr ng-repeat="app in appts | orderBy:sortField:reverse">
+                  <td ng-repeat="column in apptsColumns">{{app[column.column]}}</td>
+                </tr>
+              </table>
+            </div>
+
+

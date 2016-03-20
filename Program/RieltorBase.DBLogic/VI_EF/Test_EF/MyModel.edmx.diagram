@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="VolgInfoDBModel.PropertiesApartment" Width="2" PointX="0.5" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="VolgInfoDBModel.TypeApartment" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="VolgInfoDBModel.Action" Width="1.5" PointX="5.75" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolgInfoDBModel.Apartment_PropertiesApartment" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolgInfoDBModel.Apartment_PropertiesApartment" Width="1.5" PointX="1.25" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="VolgInfoDBModel.FK_Agent_Firm" ManuallyRouted="false" />
         <AssociationConnector Association="VolgInfoDBModel.FK_Apartament_Agent" ManuallyRouted="false" />
         <AssociationConnector Association="VolgInfoDBModel.FK_Apartament_PropertiesApartment_Apartament1" ManuallyRouted="false" />
