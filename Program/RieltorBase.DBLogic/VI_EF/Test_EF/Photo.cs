@@ -12,13 +12,14 @@ namespace VI_EF
     using System;
     using System.Collections.Generic;
     
-    public partial class ChangelogAgent
+    public partial class Photo
     {
-        public int ChangelogAgentId { get; set; }
-        public System.DateTime ChangeDate { get; set; }
-        public string Description { get; set; }
-        public string Action { get; set; }
-        public string AgentWhoChanges { get; set; }
-        public string AgentInfo { get; set; }
+        public int PhotoId { get; set; }
+        public int RealtyObjectId { get; set; }
+        public int FirmId { get; set; }
+        public string RelativeSource { get; set; }
+    
+        public virtual Firm Firm { get; set; }
+        public virtual RealtyObject RealtyObject { get; set; }
     }
 }

@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RieltorBaseDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Action">
+    <Key>
+      <PropertyRef Name="Id_action" />
+    </Key>
+    <Property Name="Id_action" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Agent">
+    <Key>
+      <PropertyRef Name="Id_agent" />
+    </Key>
+    <Property Name="Id_agent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Addres" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Id_firm" Type="int" Nullable="false" />
+    <Property Name="IsFirmAdmin" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Changelog">
+    <Key>
+      <PropertyRef Name="ChangeLogId" />
+    </Key>
+    <Property Name="ChangeLogId" Type="int" Nullable="false" />
+    <Property Name="ChangeDate" Type="date" Nullable="false" />
+    <Property Name="Description" Type="text" Nullable="false" />
+    <Property Name="Action" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AgentWhoChanges" Type="xml" Nullable="false" />
+    <Property Name="RealtyObjectInfo" Type="xml" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ChangelogAgent">
+    <Key>
+      <PropertyRef Name="ChangelogAgentId" />
+    </Key>
+    <Property Name="ChangelogAgentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChangeDate" Type="date" Nullable="false" />
+    <Property Name="Description" Type="text" Nullable="false" />
+    <Property Name="Action" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AgentWhoChanges" Type="xml" Nullable="false" />
+    <Property Name="AgentInfo" Type="xml" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Firm">
+    <Key>
+      <PropertyRef Name="FirmId" />
+    </Key>
+    <Property Name="FirmId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Photo">
+    <Key>
+      <PropertyRef Name="PhotoId" />
+    </Key>
+    <Property Name="PhotoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RealtyObjectId" Type="int" Nullable="false" />
+    <Property Name="FirmId" Type="int" Nullable="false" />
+    <Property Name="RelativeSource" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="PropertyType">
+    <Key>
+      <PropertyRef Name="PropertyTypeId" />
+    </Key>
+    <Property Name="PropertyTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PropertyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PropertyValueType" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PropertyValue">
+    <Key>
+      <PropertyRef Name="RealtyObjectId" />
+      <PropertyRef Name="PropertyTypeId" />
+    </Key>
+    <Property Name="RealtyObjectId" Type="int" Nullable="false" />
+    <Property Name="PropertyTypeId" Type="int" Nullable="false" />
+    <Property Name="StringValue" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RealtyObject">
+    <Key>
+      <PropertyRef Name="RealtyObjectId" />
+    </Key>
+    <Property Name="RealtyObjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RealtyObjectTypeId" Type="int" Nullable="false" />
+    <Property Name="AgentId" Type="int" />
+  </EntityType>
+  <EntityType Name="RealtyObjectType">
+    <Key>
+      <PropertyRef Name="RealtyObjectTypeId" />
+    </Key>
+    <Property Name="RealtyObjectTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RealtyObjectType_PropertyType">
+    <Key>
+      <PropertyRef Name="RealtyObjectTypeId" />
+      <PropertyRef Name="PropertyTypeId" />
+    </Key>
+    <Property Name="RealtyObjectTypeId" Type="int" Nullable="false" />
+    <Property Name="PropertyTypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Agent_Firm">
+    <End Role="Firm" Type="Self.Firm" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Agent" Type="Self.Agent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Firm">
+        <PropertyRef Name="FirmId" />
+      </Principal>
+      <Dependent Role="Agent">
+        <PropertyRef Name="Id_firm" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Apartament_Agent">
+    <End Role="Agent" Type="Self.Agent" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RealtyObject" Type="Self.RealtyObject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agent">
+        <PropertyRef Name="Id_agent" />
+      </Principal>
+      <Dependent Role="RealtyObject">
+        <PropertyRef Name="AgentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Apartament_PropertiesApartment_Apartament1">
+    <End Role="RealtyObject" Type="Self.RealtyObject" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PropertyValue" Type="Self.PropertyValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RealtyObject">
+        <PropertyRef Name="RealtyObjectId" />
+      </Principal>
+      <Dependent Role="PropertyValue">
+        <PropertyRef Name="RealtyObjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Apartament_PropertiesApartment_PropertiesApartment1">
+    <End Role="PropertyType" Type="Self.PropertyType" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PropertyValue" Type="Self.PropertyValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PropertyType">
+        <PropertyRef Name="PropertyTypeId" />
+      </Principal>
+      <Dependent Role="PropertyValue">
+        <PropertyRef Name="PropertyTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Apartament_TypeApartament">
+    <End Role="RealtyObjectType" Type="Self.RealtyObjectType" Multiplicity="1" />
+    <End Role="RealtyObject" Type="Self.RealtyObject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RealtyObjectType">
+        <PropertyRef Name="RealtyObjectTypeId" />
+      </Principal>
+      <Dependent Role="RealtyObject">
+        <PropertyRef Name="RealtyObjectTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Photo_Apartament">
+    <End Role="RealtyObject" Type="Self.RealtyObject" Multiplicity="1" />
+    <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RealtyObject">
+        <PropertyRef Name="RealtyObjectId" />
+      </Principal>
+      <Dependent Role="Photo">
+        <PropertyRef Name="RealtyObjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhotoApartment_Firm">
+    <End Role="Firm" Type="Self.Firm" Multiplicity="1" />
+    <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Firm">
+        <PropertyRef Name="FirmId" />
+      </Principal>
+      <Dependent Role="Photo">
+        <PropertyRef Name="FirmId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TypeApartament_PropertiesApartment_PropertiesApartment1">
+    <End Role="PropertyType" Type="Self.PropertyType" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RealtyObjectType_PropertyType" Type="Self.RealtyObjectType_PropertyType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PropertyType">
+        <PropertyRef Name="PropertyTypeId" />
+      </Principal>
+      <Dependent Role="RealtyObjectType_PropertyType">
+        <PropertyRef Name="PropertyTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TypeApartament_PropertiesApartment_TypeApartament1">
+    <End Role="RealtyObjectType" Type="Self.RealtyObjectType" Multiplicity="1" />
+    <End Role="RealtyObjectType_PropertyType" Type="Self.RealtyObjectType_PropertyType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RealtyObjectType">
+        <PropertyRef Name="RealtyObjectTypeId" />
+      </Principal>
+      <Dependent Role="RealtyObjectType_PropertyType">
+        <PropertyRef Name="RealtyObjectTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RieltorBaseDBModelStoreContainer">
+    <EntitySet Name="Action" EntityType="Self.Action" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Agent" EntityType="Self.Agent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Changelog" EntityType="Self.Changelog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChangelogAgent" EntityType="Self.ChangelogAgent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Firm" EntityType="Self.Firm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PropertyType" EntityType="Self.PropertyType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PropertyValue" EntityType="Self.PropertyValue" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RealtyObject" EntityType="Self.RealtyObject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RealtyObjectType" EntityType="Self.RealtyObjectType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RealtyObjectType_PropertyType" EntityType="Self.RealtyObjectType_PropertyType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Agent_Firm" Association="Self.FK_Agent_Firm">
+      <End Role="Firm" EntitySet="Firm" />
+      <End Role="Agent" EntitySet="Agent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Apartament_Agent" Association="Self.FK_Apartament_Agent">
+      <End Role="Agent" EntitySet="Agent" />
+      <End Role="RealtyObject" EntitySet="RealtyObject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Apartament_PropertiesApartment_Apartament1" Association="Self.FK_Apartament_PropertiesApartment_Apartament1">
+      <End Role="RealtyObject" EntitySet="RealtyObject" />
+      <End Role="PropertyValue" EntitySet="PropertyValue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Apartament_PropertiesApartment_PropertiesApartment1" Association="Self.FK_Apartament_PropertiesApartment_PropertiesApartment1">
+      <End Role="PropertyType" EntitySet="PropertyType" />
+      <End Role="PropertyValue" EntitySet="PropertyValue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Apartament_TypeApartament" Association="Self.FK_Apartament_TypeApartament">
+      <End Role="RealtyObjectType" EntitySet="RealtyObjectType" />
+      <End Role="RealtyObject" EntitySet="RealtyObject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Photo_Apartament" Association="Self.FK_Photo_Apartament">
+      <End Role="RealtyObject" EntitySet="RealtyObject" />
+      <End Role="Photo" EntitySet="Photo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhotoApartment_Firm" Association="Self.FK_PhotoApartment_Firm">
+      <End Role="Firm" EntitySet="Firm" />
+      <End Role="Photo" EntitySet="Photo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TypeApartament_PropertiesApartment_PropertiesApartment1" Association="Self.FK_TypeApartament_PropertiesApartment_PropertiesApartment1">
+      <End Role="PropertyType" EntitySet="PropertyType" />
+      <End Role="RealtyObjectType_PropertyType" EntitySet="RealtyObjectType_PropertyType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TypeApartament_PropertiesApartment_TypeApartament1" Association="Self.FK_TypeApartament_PropertiesApartment_TypeApartament1">
+      <End Role="RealtyObjectType" EntitySet="RealtyObjectType" />
+      <End Role="RealtyObjectType_PropertyType" EntitySet="RealtyObjectType_PropertyType" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

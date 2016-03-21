@@ -59,74 +59,74 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Action.cs">
-      <DependentUpon>MyModel.tt</DependentUpon>
+      <DependentUpon>RealtyBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Agent.cs">
-      <DependentUpon>MyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Apartment.cs">
-      <DependentUpon>MyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Apartment_PropertiesApartment.cs">
-      <DependentUpon>MyModel.tt</DependentUpon>
+      <DependentUpon>RealtyBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Changelog.cs">
-      <DependentUpon>MyModel.tt</DependentUpon>
+      <DependentUpon>RealtyBase.tt</DependentUpon>
     </Compile>
     <Compile Include="ChangelogAgent.cs">
-      <DependentUpon>MyModel.tt</DependentUpon>
+      <DependentUpon>RealtyBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Firm.cs">
-      <DependentUpon>MyModel.tt</DependentUpon>
+      <DependentUpon>RealtyBase.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MyModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MyModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="PhotoApartment.cs">
-      <DependentUpon>MyModel.tt</DependentUpon>
+    <Compile Include="Photo.cs">
+      <DependentUpon>RealtyBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="PropertiesApartment.cs">
-      <DependentUpon>MyModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TypeApartment.cs">
-      <DependentUpon>MyModel.tt</DependentUpon>
+    <Compile Include="PropertyType.cs">
+      <DependentUpon>RealtyBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PropertyValue.cs">
+      <DependentUpon>RealtyBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RealtyBase.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RealtyBase.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RealtyBase.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RealtyBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RealtyBase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RealtyBase.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="RealtyObject.cs">
+      <DependentUpon>RealtyBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RealtyObjectType.cs">
+      <DependentUpon>RealtyBase.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="MyModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MyModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="MyModel.edmx.diagram">
-      <DependentUpon>MyModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
+    <EntityDeploy Include="RealtyBase.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RealtyBase.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="RealtyBase.edmx.diagram">
+      <DependentUpon>RealtyBase.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MyModel.Context.tt">
+    <Content Include="RealtyBase.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MyModel.edmx</DependentUpon>
-      <LastGenOutput>MyModel.Context.cs</LastGenOutput>
+      <DependentUpon>RealtyBase.edmx</DependentUpon>
+      <LastGenOutput>RealtyBase.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="MyModel.tt">
+    <Content Include="RealtyBase.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MyModel.edmx</DependentUpon>
-      <LastGenOutput>MyModel.cs</LastGenOutput>
+      <DependentUpon>RealtyBase.edmx</DependentUpon>
+      <LastGenOutput>RealtyBase.cs</LastGenOutput>
     </Content>
     <Content Include="scripts\script.sql" />
   </ItemGroup>

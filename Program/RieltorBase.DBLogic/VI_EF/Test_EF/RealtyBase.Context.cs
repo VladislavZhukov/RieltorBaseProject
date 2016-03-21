@@ -13,10 +13,10 @@ namespace VI_EF
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class VolgInfoDBEntities : DbContext
+    public partial class VolgaInfoDBEntities : DbContext
     {
-        public VolgInfoDBEntities()
-            : base("name=VolgInfoDBEntities")
+        public VolgaInfoDBEntities()
+            : base("name=VolgaInfoDBEntities")
         {
         }
     
@@ -25,15 +25,15 @@ namespace VI_EF
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Action> Actions { get; set; }
         public virtual DbSet<Agent> Agents { get; set; }
-        public virtual DbSet<Apartment> Apartments { get; set; }
         public virtual DbSet<Changelog> Changelogs { get; set; }
         public virtual DbSet<ChangelogAgent> ChangelogAgents { get; set; }
         public virtual DbSet<Firm> Firms { get; set; }
-        public virtual DbSet<PhotoApartment> PhotoApartments { get; set; }
-        public virtual DbSet<PropertiesApartment> PropertiesApartments { get; set; }
-        public virtual DbSet<TypeApartment> TypeApartments { get; set; }
-        public virtual DbSet<Action> Actions { get; set; }
-        public virtual DbSet<Apartment_PropertiesApartment> Apartment_PropertiesApartment { get; set; }
+        public virtual DbSet<Photo> Photos { get; set; }
+        public virtual DbSet<PropertyType> PropertyTypes { get; set; }
+        public virtual DbSet<PropertyValue> PropertyValues { get; set; }
+        public virtual DbSet<RealtyObject> RealtyObjects { get; set; }
+        public virtual DbSet<RealtyObjectType> RealtyObjectTypes { get; set; }
     }
 }

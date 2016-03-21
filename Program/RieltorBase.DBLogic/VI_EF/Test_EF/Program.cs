@@ -13,7 +13,7 @@ namespace VI_EF
     {
         static void Main(string[] args)
         {
-            using (VolgInfoDBEntities context = new VolgInfoDBEntities())
+            using (VolgaInfoDBEntities context = new VolgaInfoDBEntities())
             {
                 //var action = context.Actions.ToList();
 
@@ -41,7 +41,7 @@ namespace VI_EF
             Console.ReadLine();
         }
 
-        private static void SearchBySurname(VolgInfoDBEntities context, string lastName, int idFirm)
+        private static void SearchBySurname(VolgaInfoDBEntities context, string lastName, int idFirm)
         {
             IEnumerable<Agent> myAgentIEnumerable = context.Agents.ToList();
             Console.WriteLine(myAgentIEnumerable);
@@ -71,7 +71,7 @@ namespace VI_EF
 
         }
 
-        private static void SamplingOfIfFirm(VolgInfoDBEntities context, int firmId)
+        private static void SamplingOfIfFirm(VolgaInfoDBEntities context, int firmId)
         {
             var agents = context.Agents.ToList();
 
@@ -85,7 +85,7 @@ namespace VI_EF
             }
         }
 
-        private static void AddAction(VolgInfoDBEntities context, string nameAction)
+        private static void AddAction(VolgaInfoDBEntities context, string nameAction)
         {
             Action a1 = new Action { Name = nameAction };
 
@@ -101,9 +101,9 @@ namespace VI_EF
             }
         }
 
-        private static void AddAgent(VolgInfoDBEntities context, string name, string lastName, string addres, string phoneNumber, int idFirm, bool firmAdmin)
+        private static void AddAgent(VolgaInfoDBEntities context, string name, string lastName, string addres, string phoneNumber, int idFirm, bool firmAdmin)
         {
-            Agent a1 = new Agent { Name = name, LastName = lastName, Addres = addres, PhoneNumber = phoneNumber, Id_firm = idFirm, FirmAdmin = firmAdmin };
+            Agent a1 = new Agent { Name = name, LastName = lastName, Addres = addres, PhoneNumber = phoneNumber, Id_firm = idFirm, IsFirmAdmin = firmAdmin };
 
             context.Agents.Add(a1);
 

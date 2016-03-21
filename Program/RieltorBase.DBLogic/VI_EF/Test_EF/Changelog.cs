@@ -14,11 +14,11 @@ namespace VI_EF
     
     public partial class Changelog
     {
-        public int Id_changelog { get; set; }
-        public System.DateTime DateChange { get; set; }
+        public int ChangeLogId { get; set; }
+        public System.DateTime ChangeDate { get; set; }
         public string Description { get; set; }
         public string Action { get; set; }
         public string AgentWhoChanges { get; set; }
-        public string ApartmentInfo { get; set; }
+        public string RealtyObjectInfo { get; set; }
     }
 }

@@ -12,14 +12,18 @@ namespace VI_EF
     using System;
     using System.Collections.Generic;
     
-    public partial class PhotoApartment
+    public partial class RealtyObjectType
     {
-        public int Id_photo { get; set; }
-        public byte[] Name { get; set; }
-        public int Id_apartment { get; set; }
-        public int Id_firm { get; set; }
+        public RealtyObjectType()
+        {
+            this.RealtyObjects = new HashSet<RealtyObject>();
+            this.PropertyTypes = new HashSet<PropertyType>();
+        }
     
-        public virtual Apartment Apartment { get; set; }
-        public virtual Firm Firm { get; set; }
+        public int RealtyObjectTypeId { get; set; }
+        public string TypeName { get; set; }
+    
+        public virtual ICollection<RealtyObject> RealtyObjects { get; set; }
+        public virtual ICollection<PropertyType> PropertyTypes { get; set; }
     }
 }

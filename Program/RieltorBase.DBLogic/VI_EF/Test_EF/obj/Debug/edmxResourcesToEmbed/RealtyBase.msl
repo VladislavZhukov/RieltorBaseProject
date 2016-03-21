@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RieltorBaseDBModelStoreContainer" CdmEntityContainer="VolgaInfoDBEntities">
+    <EntitySetMapping Name="Actions">
+      <EntityTypeMapping TypeName="RieltorBaseDBModel.Action">
+        <MappingFragment StoreEntitySet="Action">
+          <ScalarProperty Name="Id_action" ColumnName="Id_action" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Agents">
+      <EntityTypeMapping TypeName="RieltorBaseDBModel.Agent">
+        <MappingFragment StoreEntitySet="Agent">
+          <ScalarProperty Name="Id_agent" ColumnName="Id_agent" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Addres" ColumnName="Addres" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Id_firm" ColumnName="Id_firm" />
+          <ScalarProperty Name="IsFirmAdmin" ColumnName="IsFirmAdmin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Changelogs">
+      <EntityTypeMapping TypeName="RieltorBaseDBModel.Changelog">
+        <MappingFragment StoreEntitySet="Changelog">
+          <ScalarProperty Name="ChangeLogId" ColumnName="ChangeLogId" />
+          <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="AgentWhoChanges" ColumnName="AgentWhoChanges" />
+          <ScalarProperty Name="RealtyObjectInfo" ColumnName="RealtyObjectInfo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChangelogAgents">
+      <EntityTypeMapping TypeName="RieltorBaseDBModel.ChangelogAgent">
+        <MappingFragment StoreEntitySet="ChangelogAgent">
+          <ScalarProperty Name="ChangelogAgentId" ColumnName="ChangelogAgentId" />
+          <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="AgentWhoChanges" ColumnName="AgentWhoChanges" />
+          <ScalarProperty Name="AgentInfo" ColumnName="AgentInfo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Firms">
+      <EntityTypeMapping TypeName="RieltorBaseDBModel.Firm">
+        <MappingFragment StoreEntitySet="Firm">
+          <ScalarProperty Name="FirmId" ColumnName="FirmId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Photos">
+      <EntityTypeMapping TypeName="RieltorBaseDBModel.Photo">
+        <MappingFragment StoreEntitySet="Photo">
+          <ScalarProperty Name="PhotoId" ColumnName="PhotoId" />
+          <ScalarProperty Name="RealtyObjectId" ColumnName="RealtyObjectId" />
+          <ScalarProperty Name="FirmId" ColumnName="FirmId" />
+          <ScalarProperty Name="RelativeSource" ColumnName="RelativeSource" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PropertyTypes">
+      <EntityTypeMapping TypeName="RieltorBaseDBModel.PropertyType">
+        <MappingFragment StoreEntitySet="PropertyType">
+          <ScalarProperty Name="PropertyTypeId" ColumnName="PropertyTypeId" />
+          <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+          <ScalarProperty Name="PropertyValueType" ColumnName="PropertyValueType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PropertyValues">
+      <EntityTypeMapping TypeName="RieltorBaseDBModel.PropertyValue">
+        <MappingFragment StoreEntitySet="PropertyValue">
+          <ScalarProperty Name="RealtyObjectId" ColumnName="RealtyObjectId" />
+          <ScalarProperty Name="PropertyTypeId" ColumnName="PropertyTypeId" />
+          <ScalarProperty Name="StringValue" ColumnName="StringValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RealtyObjects">
+      <EntityTypeMapping TypeName="RieltorBaseDBModel.RealtyObject">
+        <MappingFragment StoreEntitySet="RealtyObject">
+          <ScalarProperty Name="RealtyObjectId" ColumnName="RealtyObjectId" />
+          <ScalarProperty Name="RealtyObjectTypeId" ColumnName="RealtyObjectTypeId" />
+          <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RealtyObjectTypes">
+      <EntityTypeMapping TypeName="RieltorBaseDBModel.RealtyObjectType">
+        <MappingFragment StoreEntitySet="RealtyObjectType">
+          <ScalarProperty Name="RealtyObjectTypeId" ColumnName="RealtyObjectTypeId" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="RealtyObjectType_PropertyType" TypeName="RieltorBaseDBModel.RealtyObjectType_PropertyType" StoreEntitySet="RealtyObjectType_PropertyType">
+      <EndProperty Name="PropertyType">
+        <ScalarProperty Name="PropertyTypeId" ColumnName="PropertyTypeId" />
+      </EndProperty>
+      <EndProperty Name="RealtyObjectType">
+        <ScalarProperty Name="RealtyObjectTypeId" ColumnName="RealtyObjectTypeId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -12,18 +12,21 @@ namespace VI_EF
     using System;
     using System.Collections.Generic;
     
-    public partial class Firm
+    public partial class RealtyObject
     {
-        public Firm()
+        public RealtyObject()
         {
-            this.Agents = new HashSet<Agent>();
             this.Photos = new HashSet<Photo>();
+            this.PropertyValues = new HashSet<PropertyValue>();
         }
     
-        public int FirmId { get; set; }
-        public string Name { get; set; }
+        public int RealtyObjectId { get; set; }
+        public int RealtyObjectTypeId { get; set; }
+        public Nullable<int> AgentId { get; set; }
     
-        public virtual ICollection<Agent> Agents { get; set; }
+        public virtual Agent Agent { get; set; }
         public virtual ICollection<Photo> Photos { get; set; }
+        public virtual ICollection<PropertyValue> PropertyValues { get; set; }
+        public virtual RealtyObjectType RealtyObjectType { get; set; }
     }
 }

@@ -12,13 +12,13 @@ namespace VI_EF
     using System;
     using System.Collections.Generic;
     
-    public partial class Apartment_PropertiesApartment
+    public partial class PropertyValue
     {
-        public int Id_apartment { get; set; }
-        public int Id_propertiesApartment { get; set; }
-        public string ValueProperties { get; set; }
+        public int RealtyObjectId { get; set; }
+        public int PropertyTypeId { get; set; }
+        public string StringValue { get; set; }
     
-        public virtual Apartment Apartment { get; set; }
-        public virtual PropertiesApartment PropertiesApartment { get; set; }
+        public virtual PropertyType PropertyType { get; set; }
+        public virtual RealtyObject RealtyObject { get; set; }
     }
 }

@@ -12,22 +12,19 @@ namespace VI_EF
     using System;
     using System.Collections.Generic;
     
-    public partial class Agent
+    public partial class PropertyType
     {
-        public Agent()
+        public PropertyType()
         {
-            this.RealtyObjects = new HashSet<RealtyObject>();
+            this.PropertyValues = new HashSet<PropertyValue>();
+            this.RealtyObjectTypes = new HashSet<RealtyObjectType>();
         }
     
-        public int Id_agent { get; set; }
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public string Addres { get; set; }
-        public string PhoneNumber { get; set; }
-        public int Id_firm { get; set; }
-        public bool IsFirmAdmin { get; set; }
+        public int PropertyTypeId { get; set; }
+        public string PropertyName { get; set; }
+        public string PropertyValueType { get; set; }
     
-        public virtual Firm Firm { get; set; }
-        public virtual ICollection<RealtyObject> RealtyObjects { get; set; }
+        public virtual ICollection<PropertyValue> PropertyValues { get; set; }
+        public virtual ICollection<RealtyObjectType> RealtyObjectTypes { get; set; }
     }
 }

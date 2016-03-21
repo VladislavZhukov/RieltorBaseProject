@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a80ebd6d39d747b5a0a843bba2295fe8" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="RieltorBaseDBModel.Action" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="RieltorBaseDBModel.Agent" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RieltorBaseDBModel.Changelog" Width="1.5" PointX="7.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="RieltorBaseDBModel.ChangelogAgent" Width="1.5" PointX="5.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="RieltorBaseDBModel.Firm" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RieltorBaseDBModel.Photo" Width="1.5" PointX="7.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RieltorBaseDBModel.PropertyType" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RieltorBaseDBModel.PropertyValue" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RieltorBaseDBModel.RealtyObject" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RieltorBaseDBModel.RealtyObjectType" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <AssociationConnector Association="RieltorBaseDBModel.FK_Agent_Firm" ManuallyRouted="false" />
+        <AssociationConnector Association="RieltorBaseDBModel.FK_Apartament_Agent" ManuallyRouted="false" />
+        <AssociationConnector Association="RieltorBaseDBModel.FK_PhotoApartment_Firm" ManuallyRouted="false" />
+        <AssociationConnector Association="RieltorBaseDBModel.FK_Photo_Apartament" ManuallyRouted="false" />
+        <AssociationConnector Association="RieltorBaseDBModel.FK_Apartament_PropertiesApartment_PropertiesApartment1" ManuallyRouted="false" />
+        <AssociationConnector Association="RieltorBaseDBModel.FK_Apartament_PropertiesApartment_Apartament1" ManuallyRouted="false" />
+        <AssociationConnector Association="RieltorBaseDBModel.FK_Apartament_TypeApartament" ManuallyRouted="false" />
+        <AssociationConnector Association="RieltorBaseDBModel.RealtyObjectType_PropertyType" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
