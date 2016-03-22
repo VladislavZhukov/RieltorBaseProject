@@ -1,3 +1,6 @@
 Program/RieltorBase.Domain/bin/Debug/*.*
 Program/RieltorBase.Domain/obj/Debug/*.*
 Program/RieltorBase.Domain/obj/Debug/*.*
+Program/RieltorBase.DBLogic/VI_EF/Test_EF/obj/
+Program/RiletorBase.DBLogic/VI_EF/Test_EF/bin/
+Program/RieltorBase.DBLogic/VI_EF/Test_EF/obj/Debug/*.*
