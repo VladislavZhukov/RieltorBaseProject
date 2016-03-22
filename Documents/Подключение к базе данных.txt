@@ -1,0 +1,13 @@
+SOMEE.COM
+
+somee.com - бесплатный (очень ограниченный) хостинг asp.net + ms sql server.
+
+пароль от somee.com - login: AlexandrIvanov, password - 12345Abc
+Там можно посмотреть базу данных (строку подключения, имя сервера и т.д.), и можно также редактировать много чего.
+
+строка подключения, которую сгенерировала студия:
+Data Source=VolgaInfoDB.mssql.somee.com;Persist Security Info=True;User ID=AlexandrIvanov_SQLLogin_1;Password=*********** 
+(в студии пароль как-то зашифрован, а вообще - ycgjjbhqad - пароль, AlexandrIvanov_SQLLogin_1 - логин) 
+
+строка подключения, которую сгенерировал сайт somee.com:
+workstation id=VolgaInfoDB.mssql.somee.com;packet size=4096;user id=AlexandrIvanov_SQLLogin_1;pwd=ycgjjbhqad;data source=VolgaInfoDB.mssql.somee.com;persist security info=False;initial catalog=VolgaInfoDB
