@@ -1,11 +1,10 @@
 ﻿namespace RieltorBase.Domain
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Linq.Expressions;
 
     using VI_EF;
+    using RieltorBase.Domain.Metadata;
 
     public static class SharedOperations
     {
@@ -30,8 +29,8 @@
 
             IQueryable<PropertyValue> matchProps
                 = SharedOperations.dbContext.PropertyValues
-                    .Where(prop => (prop.PropertyType.PropertyName == "Address" && prop.StringValue.Contains(searchOptions.PartOfAddress))
-                        /* по цене не работает. Надо или столбец в БД, или хранимую процедуру или еще что-нибудь.|| prop.PropertiesApartment.NameProperties == "Cost" && (prop.IntValue >= searchOptions.MinCost && prop.IntValue <= searchOptions.MaxCost)*/);
+                    .Where(prop => (prop.PropertyType.PropertyName == PropertyNames.Address && prop.StringValue.Contains(searchOptions.PartOfAddress))
+                        /* по цене не работает. Надо или столбец в БД, или хранимую процедуру или еще что-нибудь.|| prop.PropertiesApartment.NameProperties == PropertyNames.Cost && (prop.IntValue >= searchOptions.MinCost && prop.IntValue <= searchOptions.MaxCost)*/);
 
             IQueryable<int> appartmentIds = matchProps.Select(prop => prop.RealtyObjectId);
 
@@ -49,8 +48,8 @@
             resultInfo.Id = realtyObj.RealtyObjectId;
 
             PropertyValue costProperty
-                = realtyObj.PropertyValues.FirstOrDefault(prop => 
-                    prop.PropertyType.PropertyName == "Cost");
+                = realtyObj.PropertyValues.FirstOrDefault(prop =>
+                    prop.PropertyType.PropertyName == PropertyNames.Cost);
 
             resultInfo.Cost = costProperty != null 
                 ? costProperty.StringValue
@@ -58,7 +57,7 @@
 
             PropertyValue addressProperty
                 = realtyObj.PropertyValues.FirstOrDefault(prop =>
-                    prop.PropertyType.PropertyName == "Address");
+                    prop.PropertyType.PropertyName == PropertyNames.Address);
 
             resultInfo.Address = addressProperty != null
                 ? addressProperty.StringValue
