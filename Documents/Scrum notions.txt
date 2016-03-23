@@ -1,0 +1,38 @@
+Base Scrum notions.
+Roles: 
+	Product owner 
+	Scrum master 
+	Scrum team
+Activities: 
+	Sprint review meeting 
+	Sprint retrospective meeting 
+	Sprint planning meeting
+	Daily Scrum
+Artifacts:
+	Product backlog
+	Sprint backlog
+	Burn down chart
+
+
+” нас:
+Roles:
+	Product owner - нет (есть документы требований
+		в соответствии с ними можно расставл€ть приоритеты задач).
+	Scrum master - нет (совместно)
+	Scrum team - все вместе)
+
+Activities (Scrum и еще дополнительно):
+	5ч - (доп.) ¬ыполнение рабочих заданий на неделе 
+		(в отдельной ветке Git'а, затем - pull request).
+	0,5ч - (доп.) Integration meeting - обсуждение pullrequest'ов и слив всего в мастер,
+		тестирование.
+	0,5ч - Sprint review meeting - обсуждение, что сделано за неделю.
+	0,5ч - Sprint retrospective meeting - обсуждение процесса работы.
+	0,5ч - Sprint planning meeting - планирование задач на след. спринт (а также,
+		дополнительно, добавление задач в Product backlog и расставление приоритетов).
+	--- Daily Scrum - нет
+
+Artifacts:
+	Product backlog - —писок небольших (не больше 5ч) задач вообще по проекту (в excel).
+	Sprint backlog - —писок задач на реализацию на неделю (т.е. на спринт).
+	Burn down chart - ƒиаграмма или таблица (в excel).
