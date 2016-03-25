@@ -34,3 +34,7 @@ Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/Images/ButtonImages/*
 Program/RieltorBase.WebSite/obj/Release/*.*
 Program/RieltorBase.WebSite.v12.suo
 Program/RieltorBase.WebSite/bin/*.*
+Program/RieltorBase.WebSite/obj/Release/TransformWebConfig/transformed/*.*
+Program/RieltorBase.WebSite/obj/Release/TransformWebConfig/original/*.*
+Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/Views/*.*
+Program/RieltorBase.WebSite/obj/Release/*.*
