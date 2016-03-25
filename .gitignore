@@ -25,3 +25,7 @@ Program/RieltorBase.WebSite/obj/Debug/*.*
 Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/bin/*.*
 Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/Content/*.*
 Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/Scripts/i18n/*.*
+Program/RieltorBase.WebSite/bin/*.*
+Program/RieltorBase.WebSite/obj/Debug/*.*
+Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/fonts/*.*
+Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/Views/Home/*.*
