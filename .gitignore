@@ -34,3 +34,10 @@ Program/RieltorBase.WebSite/obj/Release/TransformWebConfig/original/*.*
 Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/Views/*.*
 Program/RieltorBase.WebSite/obj/Release/*.*
 Program/RieltorBase.WebSite/obj/Release/TransformWebConfig/assist/*.*
+Program/RieltorBase.ParserVI/ParserVolgInfo/obj/Release/*.*
+Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/*.*
+Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/Template/*.*
+Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/Views/Shared/*.*
+Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/Scripts/*.*
+Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/Views/MainPage/*.*
+Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/Views/Search/*.*
