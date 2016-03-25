@@ -5,7 +5,6 @@ Program/RieltorBase.DBLogic/VI_EF/Test_EF/obj/
 Program/RiletorBase.DBLogic/VI_EF/Test_EF/bin/
 Program/RieltorBase.DBLogic/VI_EF/Test_EF/obj/Debug/*.*
 Program/RieltorBase.WebSite/obj/Debug/RieltorBase.WebSite.csprojResolveAssemblyReference.cache
-Program/RieltorBase.WebSite.suo
 Program/RieltorBase.WebSite/bin/*.*
 Program/RieltorBase.WebSite/obj/Debug/*.*
 Program/RieltorBase.WebSite.v12.suo
@@ -13,9 +12,6 @@ Program/RieltorBase.DBLogic/VI_EF/Test_EF/bin/Release/*.*
 Program/RieltorBase.Domain/bin/Release/*.*
 Program/RieltorBase.Domain/obj/Release/*.*
 Program/RieltorBase.ParserVI/ParserVolgInfo/bin/Release/*.*
-Program/RieltorBase.ParserVI/ParserVolgInfo/obj/Release/*.*
-Program/RieltorBase.WebSite.v12.suo
-Program/RieltorBase.WebSite.v12.suo
 Program/*.suo
 Program/RieltorBase.WebSite/bin/*.*
 Program/RieltorBase.WebSite/bin/*.*
@@ -32,9 +28,9 @@ Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/Views/Home/*.*
 Program/RieltorBase.WebSite/bin/*.*
 Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/Images/ButtonImages/*.*
 Program/RieltorBase.WebSite/obj/Release/*.*
-Program/RieltorBase.WebSite.v12.suo
 Program/RieltorBase.WebSite/bin/*.*
 Program/RieltorBase.WebSite/obj/Release/TransformWebConfig/transformed/*.*
 Program/RieltorBase.WebSite/obj/Release/TransformWebConfig/original/*.*
 Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/Views/*.*
 Program/RieltorBase.WebSite/obj/Release/*.*
+Program/RieltorBase.WebSite/obj/Release/TransformWebConfig/assist/*.*
