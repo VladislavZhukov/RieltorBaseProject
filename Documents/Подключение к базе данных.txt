@@ -1,13 +1,13 @@
-SOMEE.COM
+п»їSOMEE.COM
 
-somee.com - бесплатный (очень ограниченный) хостинг asp.net + ms sql server.
+somee.com - Р±РµСЃРїР»Р°С‚РЅС‹Р№ (РѕС‡РµРЅСЊ РѕРіСЂР°РЅРёС‡РµРЅРЅС‹Р№) С…РѕСЃС‚РёРЅРі asp.net + ms sql server.
 
-пароль от somee.com - login: AlexandrIvanov, password - 12345Abc
-Там можно посмотреть базу данных (строку подключения, имя сервера и т.д.), и можно также редактировать много чего.
+РїР°СЂРѕР»СЊ РѕС‚ somee.com - login: AlexandrIvanov, password - 12345Abc
+РўР°Рј РјРѕР¶РЅРѕ РїРѕСЃРјРѕС‚СЂРµС‚СЊ Р±Р°Р·Сѓ РґР°РЅРЅС‹С… (СЃС‚СЂРѕРєСѓ РїРѕРґРєР»СЋС‡РµРЅРёСЏ, РёРјСЏ СЃРµСЂРІРµСЂР° Рё С‚.Рґ.), Рё РјРѕР¶РЅРѕ С‚Р°РєР¶Рµ СЂРµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РјРЅРѕРіРѕ С‡РµРіРѕ.
 
-строка подключения, которую сгенерировала студия:
+СЃС‚СЂРѕРєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ, РєРѕС‚РѕСЂСѓСЋ СЃРіРµРЅРµСЂРёСЂРѕРІР°Р»Р° СЃС‚СѓРґРёСЏ:
 Data Source=VolgaInfoDB.mssql.somee.com;Persist Security Info=True;User ID=AlexandrIvanov_SQLLogin_1;Password=*********** 
-(в студии пароль как-то зашифрован, а вообще - ycgjjbhqad - пароль, AlexandrIvanov_SQLLogin_1 - логин) 
+(РІ СЃС‚СѓРґРёРё РїР°СЂРѕР»СЊ РєР°Рє-С‚Рѕ Р·Р°С€РёС„СЂРѕРІР°РЅ, Р° РІРѕРѕР±С‰Рµ - ycgjjbhqad - РїР°СЂРѕР»СЊ, AlexandrIvanov_SQLLogin_1 - Р»РѕРіРёРЅ) 
 
-строка подключения, которую сгенерировал сайт somee.com:
+СЃС‚СЂРѕРєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ, РєРѕС‚РѕСЂСѓСЋ СЃРіРµРЅРµСЂРёСЂРѕРІР°Р» СЃР°Р№С‚ somee.com:
 workstation id=VolgaInfoDB.mssql.somee.com;packet size=4096;user id=AlexandrIvanov_SQLLogin_1;pwd=ycgjjbhqad;data source=VolgaInfoDB.mssql.somee.com;persist security info=False;initial catalog=VolgaInfoDB
