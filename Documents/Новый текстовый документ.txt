@@ -1,2 +1,4 @@
 fff1
 changes in fast-forward_branch
+
+another change
