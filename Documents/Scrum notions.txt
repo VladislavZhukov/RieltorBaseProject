@@ -35,4 +35,5 @@ Activities (Scrum и еще дополнительно):
 Artifacts:
 	Product backlog - Список небольших (не больше 5ч) задач вообще по проекту (в excel).
 	Sprint backlog - Список задач на реализацию на неделю (т.е. на спринт).
-	Burn down chart - Диаграмма или таблица (в excel).
+	Product burn down chart - Диаграмма или таблица (в excel).
+	--- Sprint burn down chart - нет
