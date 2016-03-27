@@ -37,3 +37,13 @@ C:\Users\ivanov\Desktop\LEARNING\Проект и др. (суббот)\RieltorBas
 C:\Users\ivanov\Desktop\LEARNING\Проект и др. (суббот)\RieltorBaseShared\Program\RieltorBase.DBLogic\VI_EF\Test_EF\obj\Debug\VI_EF.csprojResolveAssemblyReference.cache
 C:\Users\ivanov\Desktop\LEARNING\Проект и др. (суббот)\RieltorBaseShared\Program\RieltorBase.DBLogic\VI_EF\Test_EF\obj\Debug\VI_EF.dll
 C:\Users\ivanov\Desktop\LEARNING\Проект и др. (суббот)\RieltorBaseShared\Program\RieltorBase.DBLogic\VI_EF\Test_EF\obj\Debug\VI_EF.pdb
+C:\info\RieltorBaseProject\Program\RieltorBase.DBLogic\VI_EF\Test_EF\bin\Debug\VI_EF.dll.config
+C:\info\RieltorBaseProject\Program\RieltorBase.DBLogic\VI_EF\Test_EF\bin\Debug\VI_EF.dll
+C:\info\RieltorBaseProject\Program\RieltorBase.DBLogic\VI_EF\Test_EF\bin\Debug\VI_EF.pdb
+C:\info\RieltorBaseProject\Program\RieltorBase.DBLogic\VI_EF\Test_EF\bin\Debug\EntityFramework.dll
+C:\info\RieltorBaseProject\Program\RieltorBase.DBLogic\VI_EF\Test_EF\bin\Debug\EntityFramework.SqlServer.dll
+C:\info\RieltorBaseProject\Program\RieltorBase.DBLogic\VI_EF\Test_EF\bin\Debug\EntityFramework.xml
+C:\info\RieltorBaseProject\Program\RieltorBase.DBLogic\VI_EF\Test_EF\bin\Debug\EntityFramework.SqlServer.xml
+C:\info\RieltorBaseProject\Program\RieltorBase.DBLogic\VI_EF\Test_EF\obj\Debug\VI_EF.csprojResolveAssemblyReference.cache
+C:\info\RieltorBaseProject\Program\RieltorBase.DBLogic\VI_EF\Test_EF\obj\Debug\VI_EF.dll
+C:\info\RieltorBaseProject\Program\RieltorBase.DBLogic\VI_EF\Test_EF\obj\Debug\VI_EF.pdb

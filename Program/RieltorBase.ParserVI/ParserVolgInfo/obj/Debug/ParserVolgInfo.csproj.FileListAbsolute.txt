@@ -80,3 +80,13 @@ C:\Users\Александр\Desktop\LEARNING home\RieltorBase shared\Program\Rie
 C:\Users\Александр\Desktop\LEARNING home\RieltorBase shared\Program\RieltorBase.ParserVI\ParserVolgInfo\obj\Debug\ParserVolgInfo.csprojResolveAssemblyReference.cache
 C:\Users\Александр\Desktop\LEARNING home\RieltorBase shared\Program\RieltorBase.ParserVI\ParserVolgInfo\obj\Debug\ParserVolgInfo.exe
 C:\Users\Александр\Desktop\LEARNING home\RieltorBase shared\Program\RieltorBase.ParserVI\ParserVolgInfo\obj\Debug\ParserVolgInfo.pdb
+C:\info\RieltorBaseProject\Program\RieltorBase.ParserVI\ParserVolgInfo\bin\Debug\NLog.config
+C:\info\RieltorBaseProject\Program\RieltorBase.ParserVI\ParserVolgInfo\bin\Debug\ParserVolgInfo.exe.config
+C:\info\RieltorBaseProject\Program\RieltorBase.ParserVI\ParserVolgInfo\bin\Debug\ParserVolgInfo.exe
+C:\info\RieltorBaseProject\Program\RieltorBase.ParserVI\ParserVolgInfo\bin\Debug\ParserVolgInfo.pdb
+C:\info\RieltorBaseProject\Program\RieltorBase.ParserVI\ParserVolgInfo\bin\Debug\NLog.dll
+C:\info\RieltorBaseProject\Program\RieltorBase.ParserVI\ParserVolgInfo\bin\Debug\xNet.dll
+C:\info\RieltorBaseProject\Program\RieltorBase.ParserVI\ParserVolgInfo\bin\Debug\NLog.xml
+C:\info\RieltorBaseProject\Program\RieltorBase.ParserVI\ParserVolgInfo\obj\Debug\ParserVolgInfo.csprojResolveAssemblyReference.cache
+C:\info\RieltorBaseProject\Program\RieltorBase.ParserVI\ParserVolgInfo\obj\Debug\ParserVolgInfo.exe
+C:\info\RieltorBaseProject\Program\RieltorBase.ParserVI\ParserVolgInfo\obj\Debug\ParserVolgInfo.pdb
