@@ -41,3 +41,5 @@ Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/Views/Shared/*.*
 Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/Scripts/*.*
 Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/Views/MainPage/*.*
 Program/RieltorBase.WebSite/obj/Release/Package/PackageTmp/Views/Search/*.*
+Program/RieltorBase.DBLogic/VI_EF/Test_EF/bin/Debug/*.*
+Program/RieltorBase.ParserVI/ParserVolgInfo/bin/Debug/*.*
