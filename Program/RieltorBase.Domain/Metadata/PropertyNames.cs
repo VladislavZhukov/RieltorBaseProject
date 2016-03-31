@@ -1,9 +1,9 @@
 ﻿namespace RieltorBase.Domain.Metadata
 {
-    internal static class PropertyNames
+    public class PropertyNames
     {
-        internal const string Cost = "Цена";
+        public const string Address = "Адрес";
 
-        internal const string Address = "Адрес";
+        public const string Cost = "Цена";
     }
 }
