@@ -1,17 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Data.Entity;
-using System.Data.Entity.SqlServer;
-
-namespace RieltorBase.Domain
+﻿namespace RieltorBase.Domain
 {
+    using System;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Data.Entity.SqlServer;
     using System.Linq;
 
-    using VI_EF;
     using RieltorBase.Domain.InfoClasses;
     using RieltorBase.Domain.Metadata;
+    using VI_EF;
 
+    /// <summary>
+    /// Общедоступные операции, не требующие каких-либо специальных
+    /// прав/полномочий.
+    /// </summary>
     public static class SharedOperations
     {
         /// <summary>
