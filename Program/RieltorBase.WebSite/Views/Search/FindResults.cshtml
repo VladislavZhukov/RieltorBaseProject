@@ -21,8 +21,9 @@
     {
         <tr>
             <td>@info.Id</td>
-            <td>@info.Properties[PropertyNames.Address]</td>
-            <td>@info.Properties[PropertyNames.Cost]</td>
+            <td>@(info.Properties.ContainsKey(PropertyNames.Address) ? info.Properties[PropertyNames.Address] : "")</td>
+            <td>@(info.Properties.ContainsKey(PropertyNames.Cost) ? info.Properties[PropertyNames.Address] : "")</td>
+            <td>@(info.Properties.ContainsKey("Address") ? info.Properties["Address"] : "")</td>
         </tr>
     }
 </table>
