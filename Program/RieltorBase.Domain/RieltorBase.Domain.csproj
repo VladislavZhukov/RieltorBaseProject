@@ -51,8 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppartmentInfo.cs" />
-    <Compile Include="AppartmentSearchOptions.cs" />
+    <Compile Include="RealtyObjectSearchOptions.cs" />
+    <Compile Include="InfoClasses\RealtyObjectInfo.cs" />
     <Compile Include="Metadata\PropertyNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharedOperations.cs" />
@@ -67,6 +67,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

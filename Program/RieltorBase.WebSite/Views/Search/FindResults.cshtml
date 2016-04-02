@@ -1,5 +1,6 @@
-﻿@using RieltorBase.Domain;
-@model IEnumerable<AppartmentInfo>
+﻿@using RieltorBase.Domain.InfoClasses;
+@using RieltorBase.Domain.Metadata
+@model IEnumerable<RealtyObjectInfo>
 
 @{
     ViewBag.Title = "Find";
@@ -16,12 +17,13 @@
         </tr>
     </thead>
 
-    @foreach(AppartmentInfo appInfo in this.Model)
+    @foreach(RealtyObjectInfo info in this.Model)
     {
         <tr>
-            <td>@appInfo.Id</td>
-            <td>@appInfo.Address</td>
-            <td>@appInfo.Cost</td>
+            <td>@info.Id</td>
+            <td>@(info.Properties.ContainsKey(PropertyNames.Address) ? info.Properties[PropertyNames.Address] : "")</td>
+            <td>@(info.Properties.ContainsKey(PropertyNames.Cost) ? info.Properties[PropertyNames.Address] : "")</td>
+            <td>@(info.Properties.ContainsKey("Address") ? info.Properties["Address"] : "")</td>
         </tr>
     }
 </table>

@@ -4,6 +4,7 @@
     using System.Web.Mvc;
 
     using RieltorBase.Domain;
+    using RieltorBase.Domain.InfoClasses;
 
     public class SearchController : Controller
     {
@@ -15,10 +16,10 @@
         }
 
         public ActionResult FindResults(
-            AppartmentSearchOptions options)
+            RealtyObjectSearchOptions options)
         {
-            IEnumerable<AppartmentInfo> result
-                = SharedOperations.GetAppartments(options);
+            IEnumerable<RealtyObjectInfo> result
+                = SharedOperations.GetRealtyObjects(options);
 
             return View(result);
         }

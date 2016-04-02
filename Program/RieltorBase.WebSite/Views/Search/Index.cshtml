@@ -1,4 +1,4 @@
-﻿@model RieltorBase.Domain.AppartmentSearchOptions
+﻿@model RieltorBase.Domain.RealtyObjectSearchOptions
 
 @{
     ViewBag.Title = "Index";
@@ -6,23 +6,45 @@
 
 <h2>Поиск квартир - Index.cshtml (главн.стр.поиска).</h2>
 
-<form action="FindResults" >
+<form action="FindResults">
+    <div class="form-group">
+        <label>Введите типы квартиры, разделяя запятой или чем-нибудь еще:</label>
+        @Html.TextBoxFor(m => m.RealtyObjectTypes, new { @class = "form-control" })
+    </div>
+
+    @*<div class="form-group">
+        <label>Выберите типы:</label>
+        @Html.ListBoxFor(m => m.RealtyObjectTypes,
+            new MultiSelectList(new [] { "Квартира", "Малосемейка" }, new [] { "Квартира" }),
+            new {@class = "form-control"})
+    </div>*@
+
     <div class="form-group">
         <label>Введите часть адреса:</label>
-        @Html.TextBoxFor(m => m.PartOfAddress, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.PartOfAddress, new {@class = "form-control"})
     </div>
-    
+
     <div class="form-group">
         <label>Введите минимальную цену (только цифры!!!):</label>
-        @Html.TextBoxFor(m => m.MinCost, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.MinCost, new {@class = "form-control"})
     </div>
 
     <div class="form-group">
         <label>Введите максимальную цену (тоже только цифры!!!):</label>
-        @Html.TextBoxFor(m => m.MaxCost, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.MaxCost, new {@class = "form-control"})
     </div>
 
-    <input type="submit" class="btn btn-success" />
+    <div class="form-group">
+        <label>Введите минимальную дату добавления:</label>
+        @Html.TextBoxFor(m => m.MinDate, new {@class = "form-control"})
+    </div>
+
+    <div class="form-group">
+        <label>Введите максимальную дату добавления:</label>
+        @Html.TextBoxFor(m => m.MaxDate, new {@class = "form-control"})
+    </div>
+
+    <input type="submit" class="btn btn-success"/>
 </form>
 
 

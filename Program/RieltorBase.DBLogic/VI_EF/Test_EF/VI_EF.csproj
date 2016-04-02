@@ -128,7 +128,10 @@
       <DependentUpon>RealtyBase.edmx</DependentUpon>
       <LastGenOutput>RealtyBase.cs</LastGenOutput>
     </Content>
+    <Content Include="scripts\InsertDataTestVI.sql" />
     <Content Include="scripts\script.sql" />
+    <Content Include="scripts\scriptRenamed.sql" />
+    <Content Include="scripts\scriptToSomee.com.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

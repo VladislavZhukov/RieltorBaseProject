@@ -1,9 +1,15 @@
 ﻿namespace RieltorBase.Domain.Metadata
 {
-    internal static class PropertyNames
+    /// <summary>
+    /// Имена свойств.
+    /// </summary>
+    /// <remarks>В БД должны быть именно такие типы свойств.
+    /// Если типы свойств в БД обновляются, этот класс следует 
+    /// также обновить.</remarks>
+    public class PropertyNames
     {
-        internal const string Cost = "Цена";
+        public const string Address = "Адрес";
 
-        internal const string Address = "Адрес";
+        public const string Cost = "Цена";
     }
 }
