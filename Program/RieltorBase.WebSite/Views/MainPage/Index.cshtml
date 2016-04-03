@@ -4,32 +4,30 @@
 }
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" ng-app="testApp">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="testApp" lang="ru">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="~/Content/TopDropdownMenu.css" rel="stylesheet" />
-    <title>MainMenu</title>
     <meta charset="utf-8">
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>MainMenu</title>
+
+    <!-- Уточнить что это? -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Стили: -->
+    <link href="~/Content/TopDropdownMenu.css" rel="stylesheet" />  <!-- Стили для меню -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />    <!-- Стили Bootstrap -->
+    <link href="~/Content/index.css" rel="stylesheet" />
+
+    <!-- JS-скрипты: -->
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/index.js"></script>      <!-- js-файл для главной страницы -->
+
+    <!-- Angular-приложение -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
     <script src="~/Scripts/controllers.js"></script>
+
 </head>
 <body>
-
-    
-
-
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-
-
-
     <nav>
         <ul id="menu">
             <li>
@@ -137,40 +135,13 @@
                             <label>Быстрый поиск: </label>
                             <input id="Text1" type="text" />
                         </span>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div>
                         <br />
-                        <label>Тип:</label>
-                        <select id="Select1">
-                            <option>Test 1</option>
-                            <option>Test 2</option>
-                            <option>Test 3</option>
-                        </select>
-                        <label>Цена: от</label>
-                        <input id="Text1" type="text" />
-                        <label>до</label>
-                        <input id="Text2" type="text" />
                         <span style="float:right">
                             <button>
                                 Разширенный поиск
                             </button>
                         </span>
-                    </div>
-
-                    <div style="clear:both">
                         <br />
-                        <label>За последний:</label>
-                        <input type="radio" name="browser">1 день
-                        <input type="radio" name="browser">1 неделю
-                        <input type="radio" name="browser">1 месяц
-                        <label>С</label>
-                        <input type="date" name="minDateCalendar" />
-                        <label> по </label>
-                        <input type="date" name="maxDateCalendar" />
                         <span style="float:right">
                             <label>Тип:</label>
                             <select id="Select2">
@@ -185,6 +156,49 @@
         </table>
     </div>
 
+    <!-- Панель поиска -->
+    <div class="well">
+        <div>
+            <label>Тип:</label>
+            <!-- Если надо отсылать индекс элемента - то оставить с value="0"; если нужен текст на русском - то удалить параметр "value" -->
+            <select id="searchType">
+                <option value="0">Квартиры</option>
+                <option value="1">Малосемейки</option>
+                <option value="2">Новостройки</option>
+                <option value="3">Дома/Коттеджи</option>
+                <option value="4">Аренда жилья</option>
+                <option value="5">Коммерческая Недвижимость</option>
+                <option value="6">Участки</option>
+                <option value="7">Дачи</option>
+                <option value="8">Разное</option>
+                <option value="9">Тубзоны</option>
+                <option value="10">Борцовские ринги</option>
+                <option value="11">Клетки ММА</option>
+                <option value="12">Пиратские крейсера</option>
+            </select>
+            <label>Цена: от</label>
+            <input id="searchPriceMin" type="text" />
+            <label>до</label>
+            <input id="searchPriceMax" type="text" />
+        </div>
+        <div>
+            <label>За последний:</label>
+            <span class="searchSpecificDate btn btn-xs btn-info" data-item="day">1 день</span>
+            <span class="searchSpecificDate btn btn-xs btn-default" data-item="week">1 неделю</span>
+            <span class="searchSpecificDate btn btn-xs btn-default" data-item="month">1 месяц</span>
+
+            <label>С</label>
+            <input type="date" id="searchDateMin" />
+            <label>по</label>
+            <input type="date" id="searchDateMax" />
+        </div>
+        <div>
+            <label>Адрес:</label>
+            <input id="searchAddress" type="text" />
+            <input id="searchSubmit" type="button" value="Поиск" class="btn btn-sm btn-primary" />
+        </div>
+    </div>
+
     <br />
     <br />
     <br />
@@ -193,7 +207,7 @@
     <br />
     <br />
 
-
+    <!-- Angular приложение -->
     <div class="panel panel-default">
         <h3 class="panel-heading">Header</h3>
 
