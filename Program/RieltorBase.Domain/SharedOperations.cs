@@ -89,22 +89,6 @@
                 });
             
             return result;
-
-
-            // старая реализация:
-            //
-            //IQueryable<PropertyValue> matchProps
-            //    = SharedOperations.dbContext.PropertyValues
-            //        .Where(prop => (prop.PropertyType.PropertyName == PropertyNames.Address && prop.StringValue.Contains(searchOptions.PartOfAddress))
-            //            /* по цене не работает. Надо или столбец в БД, или хранимую процедуру или еще что-нибудь.|| prop.PropertiesApartment.NameProperties == PropertyNames.Cost && (prop.IntValue >= searchOptions.MinCost && prop.IntValue <= searchOptions.MaxCost)*/);
-
-            //IQueryable<int> appartmentIds = matchProps.Select(prop => prop.RealtyObjectId);
-
-            //List<RealtyObjectInfo> result = SharedOperations.dbContext.RealtyObjects
-            //    .Where(app => appartmentIds.Contains(app.RealtyObjectId))
-            //    .Select(realtyObj => new RealtyObjectInfo(realtyObj)).ToList();
-
-            //return result;
         }
     }
 }
