@@ -20,7 +20,7 @@ DBCC CHECKIDENT (ChangelogAgent, RESEED, 0);
 DBCC CHECKIDENT (Firm, RESEED, 0);
 DBCC CHECKIDENT (Photo, RESEED, 0);
 DBCC CHECKIDENT (PropertyType, RESEED, 0); -- -&gt; не должно быть в XML после парсина (см. Дачи)
-DBCC CHECKIDENT (RealtyObject, RESEED, 0); --AgetId не должно быть null
+DBCC CHECKIDENT (RealtyObject, RESEED, 0); 
 DBCC CHECKIDENT (RealtyObjectType, RESEED, 0);
 GO
 INSERT INTO Firm
