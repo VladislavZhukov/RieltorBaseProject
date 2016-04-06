@@ -1,0 +1,15 @@
+E:\01_project\001_prod\RieltorBaseProject\Program\RieltorBase.UnitTest\obj\Debug\RieltorBase.UnitTest.csprojResolveAssemblyReference.cache
+E:\01_project\001_prod\RieltorBaseProject\Program\RieltorBase.UnitTest\bin\Debug\RieltorBase.UnitTest.dll.config
+E:\01_project\001_prod\RieltorBaseProject\Program\RieltorBase.UnitTest\bin\Debug\RieltorBase.UnitTest.dll
+E:\01_project\001_prod\RieltorBaseProject\Program\RieltorBase.UnitTest\bin\Debug\RieltorBase.UnitTest.pdb
+E:\01_project\001_prod\RieltorBaseProject\Program\RieltorBase.UnitTest\bin\Debug\EntityFramework.dll
+E:\01_project\001_prod\RieltorBaseProject\Program\RieltorBase.UnitTest\bin\Debug\EntityFramework.SqlServer.dll
+E:\01_project\001_prod\RieltorBaseProject\Program\RieltorBase.UnitTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+E:\01_project\001_prod\RieltorBaseProject\Program\RieltorBase.UnitTest\bin\Debug\VI_EF.dll
+E:\01_project\001_prod\RieltorBaseProject\Program\RieltorBase.UnitTest\bin\Debug\VI_EF.pdb
+E:\01_project\001_prod\RieltorBaseProject\Program\RieltorBase.UnitTest\bin\Debug\EntityFramework.xml
+E:\01_project\001_prod\RieltorBaseProject\Program\RieltorBase.UnitTest\bin\Debug\EntityFramework.SqlServer.xml
+E:\01_project\001_prod\RieltorBaseProject\Program\RieltorBase.UnitTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+E:\01_project\001_prod\RieltorBaseProject\Program\RieltorBase.UnitTest\bin\Debug\ru\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+E:\01_project\001_prod\RieltorBaseProject\Program\RieltorBase.UnitTest\obj\Debug\RieltorBase.UnitTest.dll
+E:\01_project\001_prod\RieltorBaseProject\Program\RieltorBase.UnitTest\obj\Debug\RieltorBase.UnitTest.pdb

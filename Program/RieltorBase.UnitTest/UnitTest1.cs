@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VI_EF;
 
-namespace UnitTestVI
+namespace RieltorBase.UnitTest
 {
     [TestClass]
-    public class FirsrTest
+    public class UnitTest1
     {
         [TestMethod]
         public void TestMethod1()
