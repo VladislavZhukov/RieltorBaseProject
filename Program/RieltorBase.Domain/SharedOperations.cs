@@ -90,5 +90,17 @@
             
             return result;
         }
+
+        /// <summary>
+        /// Медод добавляет в базу фирмы(создан для тестирования)
+        /// </summary>
+        /// <param name="firmname"></param>
+        public static void AddFirm(string firmname)
+        {
+            var newFirm = new Firm { Name = firmname };
+
+            dbContext.Firms.Add(newFirm);
+            dbContext.SaveChanges();
+        }
     }
 }
