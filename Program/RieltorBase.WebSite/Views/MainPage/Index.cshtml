@@ -7,24 +7,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app="testApp" lang="ru">
 <head>
     <meta charset="utf-8">
+
     <title>MainMenu</title>
 
     <!-- Уточнить что это? -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Стили: -->
-    <link href="~/Content/TopDropdownMenu.css" rel="stylesheet" />  <!-- Стили для меню -->
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />    <!-- Стили Bootstrap -->
-    <link href="~/Content/index.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />        <!-- Стили Bootstrap -->
+    <link href="~/Content/vendors/datepicker3.css" rel="stylesheet" />  <!-- календарь bootstrap-datepicker -->
+    <link href="~/Content/TopDropdownMenu.css" rel="stylesheet" />      <!-- Стили для меню -->
+    <link href="~/Content/inner/index.css" rel="stylesheet" />
 
     <!-- JS-скрипты: -->
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/index.js"></script>      <!-- js-файл для главной страницы -->
-
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>    
+    
     <!-- Angular-приложение -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-    <script src="~/Scripts/controllers.js"></script>
+    <script src="~/Scripts/inner/controllers.js"></script>
+
+    <!-- календарь bootstrap-datepicker -->
+    <script src="~/Scripts/vendors/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/vendors/bootstrap-datepicker.ru.js"></script>
+
+    <script src="~/Scripts/inner/index.js"></script>    <!-- js-файл для главной страницы -->
 
 </head>
 <body>
@@ -176,6 +183,7 @@
             <input id="searchPriceMin" type="text" />
             <label>до</label>
             <input id="searchPriceMax" type="text" />
+
         </div>
         <div>
             <label>За последний:</label>

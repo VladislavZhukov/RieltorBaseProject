@@ -9,7 +9,6 @@ Ajax GET - http://jquery.page2page.ru/index.php5/Ajax_%D0%B7%D0%B0%D0%BF%D1%80%D
 
 // Вызывается, когда загрузятся DOM-элементы (элементы страницы)
 $(document).ready(function () {
-    console.log($);
     initHTMLProperies();
     initHandlers();
 });
