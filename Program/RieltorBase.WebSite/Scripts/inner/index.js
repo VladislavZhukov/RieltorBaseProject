@@ -29,12 +29,10 @@ function initHTMLProperies() {
 }
 
 function initHandlers() {
+    // Панель поиска: кнопки, текстовые поля даты и пр.
     $('#searchSubmit').on('click', searchSubmit);   // Вешаем обработчик клика на кнопке "Поиск" ('#searchSubmit')
-
-    // Панель поиска - кнопки и текствоые поля даты
     $('.searchSpecificDate').on('click', searchSpecificDateButton);
-    $('#searchDateMin').on('keydown', searchSpecificDateTextField);
-    $('#searchDateMax').on('keydown', searchSpecificDateTextField);
+    $('#searchDateMin, #searchDateMax').change(searchSpecificDateTextField);
 }
 
 // Событие вызывается при нажатии кнопки "Поиск".
