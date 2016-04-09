@@ -60,3 +60,5 @@ Program/RieltorBase.DBLogic/VI_EF/Test_EF/obj/
 Program/RieltorBase.DBLogic/VI_EF/Test_EF/bin/
 Program/RieltorBase.ParserVI/ParserVolgInfo/obj/
 Program/RieltorBase.ParserVI/ParserVolgInfo/bin/
+Program/RieltorBase.UnitTests/obj/Debug/
+Program/RieltorBase.UnitTests/bin/
