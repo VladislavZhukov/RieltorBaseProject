@@ -64,3 +64,5 @@ Program/RieltorBase.UnitTests/obj/Debug/
 Program/RieltorBase.UnitTests/bin/
 Program/RieltorBase.UnitTests/bin/*
 Program/RieltorBase.UnitTests/obj/*
+Program/.vs/config/applicationhost.config
+Program/.vs/config/applicationhost.config.orig
