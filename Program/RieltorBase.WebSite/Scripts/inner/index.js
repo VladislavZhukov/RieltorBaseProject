@@ -3,6 +3,8 @@
 /* Доки:
 Справка по методу 'on', если чё: http://jquery.page2page.ru/index.php5/On
 Ajax GET - http://jquery.page2page.ru/index.php5/Ajax_%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81_%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%BC_GET
+
+Календарь (bootstrap-datepicker): https://eternicode.github.io/bootstrap-datepicker
 */
 
 // Вызывается, когда загрузятся DOM-элементы (элементы страницы)
@@ -14,17 +16,23 @@ $(document).ready(function () {
 function initHTMLProperies() {
     // Задаём дату поиска на сегодня
     var date = new Date();
-    $('#searchDateMax').val(date.toLocaleDateString());
-    $('#searchDateMin').val(date.toLocaleDateString());
+    $('#searchDateMin, #searchDateMax').val(date.toLocaleDateString());
+    
+    // Привязка календаря к панели поиска
+    $('#searchDateMin, #searchDateMax').datepicker({
+        format: "dd.mm.yyyy",
+        todayBtn: "linked",
+        todayHighlight: true,
+        forceParse: false,
+        language: "ru"
+    });
 }
 
 function initHandlers() {
+    // Панель поиска: кнопки, текстовые поля даты и пр.
     $('#searchSubmit').on('click', searchSubmit);   // Вешаем обработчик клика на кнопке "Поиск" ('#searchSubmit')
-
-    // Панель поиска - кнопки и текствоые поля даты
     $('.searchSpecificDate').on('click', searchSpecificDateButton);
-    $('#searchDateMin').on('keydown', searchSpecificDateTextField);
-    $('#searchDateMax').on('keydown', searchSpecificDateTextField);
+    $('#searchDateMin, #searchDateMax').change(searchSpecificDateTextField);
 }
 
 // Событие вызывается при нажатии кнопки "Поиск".

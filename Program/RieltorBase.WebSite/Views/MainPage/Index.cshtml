@@ -7,24 +7,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app="testApp" lang="ru">
 <head>
     <meta charset="utf-8">
+
     <title>MainMenu</title>
 
     <!-- Уточнить что это? -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Стили: -->
-    <link href="~/Content/TopDropdownMenu.css" rel="stylesheet" />  <!-- Стили для меню -->
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />    <!-- Стили Bootstrap -->
-    <link href="~/Content/index.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />        <!-- Стили Bootstrap -->
+    <link href="~/Content/vendors/datepicker3.css" rel="stylesheet" />  <!-- календарь bootstrap-datepicker -->
+    <link href="~/Content/TopDropdownMenu.css" rel="stylesheet" />      <!-- Стили для меню -->
+    <link href="~/Content/inner/index.css" rel="stylesheet" />
 
     <!-- JS-скрипты: -->
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/index.js"></script>      <!-- js-файл для главной страницы -->
-
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>    
+    
     <!-- Angular-приложение -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-    <script src="~/Scripts/controllers.js"></script>
+    <script src="~/Scripts/inner/controllers.js"></script>
+
+    <!-- календарь bootstrap-datepicker -->
+    <script src="~/Scripts/vendors/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/vendors/bootstrap-datepicker.ru.js"></script>
+
+    <script src="~/Scripts/inner/index.js"></script>    <!-- js-файл для главной страницы -->
 
 </head>
 <body>
@@ -158,41 +165,52 @@
 
     <!-- Панель поиска -->
     <div class="well">
-        <div>
-            <label>Тип:</label>
-            <!-- Если надо отсылать индекс элемента - то оставить с value="0"; если нужен текст на русском - то удалить параметр "value" -->
-            <select id="searchType">
-                <option>Квартиры</option>
-                <option>Малосемейки</option>
-                <option>Новостройки</option>
-                <option>Дома/Коттеджи</option>
-                <option>Аренда жилья</option>
-                <option>Коммерческая Недвижимость</option>
-                <option>Участки</option>
-                <option>Дачи</option>
-                <option>Разное</option>
-            </select>
-            <label>Цена: от</label>
-            <input id="searchPriceMin" type="text" />
-            <label>до</label>
-            <input id="searchPriceMax" type="text" />
-        </div>
-        <div>
-            <label>За последний:</label>
-            <span class="searchSpecificDate btn btn-xs btn-info" data-item="day">1 день</span>
-            <span class="searchSpecificDate btn btn-xs btn-default" data-item="week">1 неделю</span>
-            <span class="searchSpecificDate btn btn-xs btn-default" data-item="month">1 месяц</span>
-
-            <label>С</label>
-            <input type="date" id="searchDateMin" />
-            <label>по</label>
-            <input type="date" id="searchDateMax" />
-        </div>
-        <div>
-            <label>Адрес:</label>
-            <input id="searchAddress" type="text" />
-            <input id="searchSubmit" type="button" value="Поиск" class="btn btn-sm btn-primary" />
-        </div>
+        <form class="form-inline">
+            <div>
+                <div class="form-group">
+                    <label class="control-label" for="searchType">Тип:</label>
+                    <!-- Если надо отсылать индекс элемента - то оставить с value="0"; если нужен текст на русском - то удалить параметр "value" -->
+                    <select id="searchType" class="form-control">
+                        <option>Квартиры</option>
+                        <option>Малосемейки</option>
+                        <option>Новостройки</option>
+                        <option>Дома/Коттеджи</option>
+                        <option>Аренда жилья</option>
+                        <option>Коммерческая Недвижимость</option>
+                        <option>Участки</option>
+                        <option>Дачи</option>
+                        <option>Разное</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="searchPriceMin">Цена: от</label>
+                    <input type="text" class="form-control" id="searchPriceMin" placeholder="Минимальная цена"><span class="glyphicon glyphicon-ruble" aria-hidden="true"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="searchPriceMax">до</label>
+                    <input type="text" class="form-control" id="searchPriceMax" placeholder="Максимальаня цена"><span class="glyphicon glyphicon-ruble" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label class="control-label">За последний:</label>
+                    <span class="searchSpecificDate btn btn-xs btn-info" data-item="day">1 день</span>
+                    <span class="searchSpecificDate btn btn-xs btn-default" data-item="week">1 неделю</span>
+                    <span class="searchSpecificDate btn btn-xs btn-default" data-item="month">1 месяц</span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="searchDateMin">С</label>
+                    <input type="text" id="searchDateMin" class="form-control" /><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    <label class="control-label" for="searchDateMax">по</label>
+                    <input type="text" id="searchDateMax" class="form-control" /><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div>
+                <label class="control-label" for="searchAddress">Адрес:</label>
+                <input id="searchAddress" type="text" class="form-control" placeholder="Адрес" />
+                <input id="searchSubmit" type="button" value="Поиск" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
 
     <br />
