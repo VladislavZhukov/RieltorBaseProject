@@ -11,34 +11,26 @@ namespace RieltorBase.UnitTests
     [TestClass]
     public class AddDataInDB
     {
-        static VolgaInfoDBEntities context = new VolgaInfoDBEntities();
+        VolgaInfoDBEntities context = new VolgaInfoDBEntities();
 
-        [SetUp]
-        public static void SetUpTestsMethod()
-        {
-            context = new VolgaInfoDBEntities();
-        }
+
 
         [TestMethod]
         public void AddNewFirm()
         {
-            SharedOperations.AddFirm("Жожа и рулет");
+            SharedOperations.AddFirm("   Жожа и рулет   ");
 
             var myFirmsName = context.Firms
                 .Select(firm => firm.Name).ToList();
 
             NUnit.Framework.Assert.Contains("Жожа и рулет", myFirmsName);
+            NUnit.Framework.Assert.IsTrue(myFirmsName.Count(j => j == "Жожа и рулет") == 1);
 
             var lastFirm = context.Firms.Select(firm => firm).ToList().Last();
             context.Firms.Remove(lastFirm);
             context.SaveChanges();
         }
 
-        [TearDown]
-        public static void TearDownTestMethod()
-        {
-            context.Dispose();
-            context = null;
-        }
+
     }
 }
