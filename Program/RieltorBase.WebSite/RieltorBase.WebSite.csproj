@@ -94,7 +94,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\index.css" />
+    <Content Include="Content\inner\index.css" />
     <Content Include="Content\TopDropdownMenu.css" />
+    <Content Include="Content\vendors\datepicker3.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -898,6 +900,8 @@
     <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
     <Content Include="Scripts\index.js" />
+    <Content Include="Scripts\inner\controllers.js" />
+    <Content Include="Scripts\inner\index.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -905,6 +909,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\vendors\bootstrap-datepicker.js" />
+    <Content Include="Scripts\vendors\bootstrap-datepicker.ru.js" />
     <Content Include="Template\about.html" />
     <Content Include="Template\contact.html" />
     <Content Include="Template\home.html" />
