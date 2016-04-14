@@ -34,7 +34,7 @@
     <script src="~/Scripts/inner/index.js"></script>    <!-- js-файл для главной страницы -->
 
 </head>
-<body>
+<body class="container-fluid">
     <nav>
         <ul id="menu">
             <li>
@@ -165,7 +165,8 @@
 
     <!-- Панель поиска -->
     <div class="well">
-        <form class="form-inline">
+        <form class="form-inline" role="form">
+            <legend>Поиск</legend>
             <div>
                 <div class="form-group">
                     <label class="control-label" for="searchType">Тип:</label>
@@ -183,14 +184,24 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="searchPriceMin">Цена: от</label>
-                    <input type="text" class="form-control" id="searchPriceMin" placeholder="Минимальная цена"><span class="glyphicon glyphicon-ruble" aria-hidden="true"></span>
+                    <label class="control-label" for="searchPriceMin">Цена:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">от</span>
+                        <input type="text" class="form-control" id="searchPriceMin" placeholder="Минимальная цена">
+                        <span class="input-group-addon">руб.</span>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="searchPriceMax">до</label>
-                    <input type="text" class="form-control" id="searchPriceMax" placeholder="Максимальаня цена"><span class="glyphicon glyphicon-ruble" aria-hidden="true"></span>
+                    
+                    <div class="input-group">
+                        <span class="input-group-addon">до</span>
+                        <input type="text" class="form-control" id="searchPriceMax" placeholder="Максимальная цена">
+                        <span class="input-group-addon">руб.</span>
+                    </div>
                 </div>
             </div>
+
+            <!-- Панель поиска: Дата -->
             <div>
                 <div class="form-group">
                     <label class="control-label">За последний:</label>
@@ -199,12 +210,20 @@
                     <span class="searchSpecificDate btn btn-xs btn-default" data-item="month">1 месяц</span>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="searchDateMin">С</label>
-                    <input type="text" id="searchDateMin" class="form-control" /><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                    <label class="control-label" for="searchDateMax">по</label>
-                    <input type="text" id="searchDateMax" class="form-control" /><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    <div class="input-group">
+                        <span class="input-group-addon">С</span>
+                        <input type="text" id="searchDateMin" class="form-control" placeholder="Минимальная дата" />
+                        <span class="input-group-addon glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">по</span>
+                        <input type="text" id="searchDateMax" class="form-control" placeholder="Максимальная дата" />
+                        <span class="input-group-addon glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    </div>
                 </div>
             </div>
+
+            <!-- Панель поиска: Адрес -->
             <div>
                 <label class="control-label" for="searchAddress">Адрес:</label>
                 <input id="searchAddress" type="text" class="form-control" placeholder="Адрес" />
@@ -213,6 +232,10 @@
         </form>
     </div>
 
+  
+    <br />
+    <br />
+    <br />
     <br />
     <br />
     <br />
