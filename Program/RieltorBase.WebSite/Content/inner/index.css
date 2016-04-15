@@ -1,8 +1,6 @@
 ﻿
 /* Панель поиска */
-.searchSpecificDate{
-    margin-left: 10px;
-}
+
 .searchSpecificDate.active{
     /*background-color: #85850c;*/
 }

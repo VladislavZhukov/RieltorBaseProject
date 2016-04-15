@@ -165,11 +165,20 @@
 
     <!-- Панель поиска -->
     <div class="well">
-        <form class="form-inline" role="form">
+        <form class="form-horizontal" role="form">
             <legend>Поиск</legend>
-            <div>
-                <div class="form-group">
+
+            <div class="row">
+                <div class="col-lg-1">
                     <label class="control-label" for="searchType">Тип:</label>
+                </div>
+                <div class="col-lg-2 col-lg-offset-1">
+                    <label class="control-label" for="searchPriceMin">Цена:</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-2">
                     <!-- Если надо отсылать индекс элемента - то оставить с value="0"; если нужен текст на русском - то удалить параметр "value" -->
                     <select id="searchType" class="form-control">
                         <option>Квартиры</option>
@@ -183,38 +192,51 @@
                         <option>Разное</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label class="control-label" for="searchPriceMin">Цена:</label>
+                <div class="col-lg-2">
                     <div class="input-group">
                         <span class="input-group-addon">от</span>
-                        <input type="text" class="form-control" id="searchPriceMin" placeholder="Минимальная цена">
+                        <input type="text" class="form-control" id="searchPriceMin" placeholder="Минимальная">
                         <span class="input-group-addon">руб.</span>
                     </div>
                 </div>
-                <div class="form-group">
-                    
+                <div class="col-lg-2">
                     <div class="input-group">
                         <span class="input-group-addon">до</span>
-                        <input type="text" class="form-control" id="searchPriceMax" placeholder="Максимальная цена">
+                        <input type="text" class="form-control" id="searchPriceMax" placeholder="Максимальная">
                         <span class="input-group-addon">руб.</span>
                     </div>
                 </div>
             </div>
 
             <!-- Панель поиска: Дата -->
-            <div>
-                <div class="form-group">
+            <div class="row">
+                <div class="col-lg-2">
                     <label class="control-label">За последний:</label>
-                    <span class="searchSpecificDate btn btn-xs btn-info" data-item="day">1 день</span>
-                    <span class="searchSpecificDate btn btn-xs btn-default" data-item="week">1 неделю</span>
-                    <span class="searchSpecificDate btn btn-xs btn-default" data-item="month">1 месяц</span>
                 </div>
-                <div class="form-group">
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <span class="searchSpecificDate btn btn-xs btn-info" data-item="day">1 день</span>
+                        </div>
+                        <div class="col-lg-4">
+                            <span class="searchSpecificDate btn btn-xs btn-default" data-item="week">1 неделю</span>
+                        </div>
+                        <div class="col-lg-4">
+                            <span class="searchSpecificDate btn btn-xs btn-default" data-item="month">1 месяц</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-2">
                     <div class="input-group">
                         <span class="input-group-addon">С</span>
                         <input type="text" id="searchDateMin" class="form-control" placeholder="Минимальная дата" />
                         <span class="input-group-addon glyphicon glyphicon-calendar" aria-hidden="true"></span>
                     </div>
+                </div>
+                <div class="col-lg-2">
                     <div class="input-group">
                         <span class="input-group-addon">по</span>
                         <input type="text" id="searchDateMax" class="form-control" placeholder="Максимальная дата" />
@@ -224,15 +246,23 @@
             </div>
 
             <!-- Панель поиска: Адрес -->
-            <div>
-                <label class="control-label" for="searchAddress">Адрес:</label>
-                <input id="searchAddress" type="text" class="form-control" placeholder="Адрес" />
-                <input id="searchSubmit" type="button" value="Поиск" class="btn btn-primary" />
+            <div class="row">
+                <div class="col-lg-2">
+                    <label class="control-label" for="searchAddress">Адрес:</label>
+                </div>
             </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <input id="searchAddress" type="text" class="form-control" placeholder="Адрес" />
+                </div>
+                <div class="col-lg-1">
+                    <input id="searchSubmit" type="button" value="Поиск" class="btn btn-primary" />
+                </div>
+            </div>
+
         </form>
     </div>
 
-  
     <br />
     <br />
     <br />
