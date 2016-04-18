@@ -60,14 +60,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AddDataInDB.cs" />
+    <Compile Include="TestFirm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RieltorBase.DBLogic\VI_EF\Test_EF\VI_EF.csproj">
-      <Project>{e319db0c-f618-4740-802e-5a7b5ff56d0d}</Project>
-      <Name>VI_EF</Name>
-    </ProjectReference>
     <ProjectReference Include="..\RieltorBase.Domain\RieltorBase.Domain.csproj">
       <Project>{5272e49a-c7fa-49c9-9bee-c1bacfd4bc6c}</Project>
       <Name>RieltorBase.Domain</Name>
