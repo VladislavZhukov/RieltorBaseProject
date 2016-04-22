@@ -4,10 +4,20 @@
     using System.Linq;
     using System.Xml.Linq;
 
+    /// <summary>
+    /// Описание конкретного типа недвижимости.
+    /// </summary>
     internal class TypeMetadataDescription
     {
+        /// <summary>
+        /// XML-элемент, на основе которого читаются имена свойств.
+        /// </summary>
         private readonly XElement xmlElement;
 
+        /// <summary>
+        /// Свойства, которые не нужно читать из xml, так как это не свойства, а ссылки
+        /// на связанные объекты.
+        /// </summary>
         private static string[] notLoadedProperties = new[] {"Фирма", "Агент", "Телефон контакта"};
 
         /// <summary>

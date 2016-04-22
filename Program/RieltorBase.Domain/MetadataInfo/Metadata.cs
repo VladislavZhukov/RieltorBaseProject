@@ -7,6 +7,9 @@
     using System.Reflection;
     using System.Xml.Linq;
 
+    /// <summary>
+    /// Метаданные (описание типов и всех свойств каждого типа).
+    /// </summary>
     internal class Metadata
     {
         /// <summary>
@@ -25,6 +28,10 @@
                 ?? (Metadata.instance = new Metadata());
         }
 
+        /// <summary>
+        /// Имена элементов xml, содержащих информацию 
+        /// об отдельных типах недвижимости.
+        /// </summary>
         private static string[] elementNames =
         {
             "ParsKvartiryiList",
@@ -38,6 +45,9 @@
             "ParsRaznoeList"
         };
 
+        /// <summary>
+        /// Создать экземпляр класса метаданных.
+        /// </summary>
         private Metadata()
         {
             XElement rootElement;
