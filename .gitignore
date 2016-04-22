@@ -67,3 +67,4 @@ Program/RieltorBase.UnitTests/obj/*
 Program/.vs/config/applicationhost.config
 Program/.vs/config/applicationhost.config.orig
 Program/packages/*/
+Program/RieltorBase.UnitTests/bin/
