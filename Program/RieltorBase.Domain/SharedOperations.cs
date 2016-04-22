@@ -1,14 +1,9 @@
 ﻿namespace RieltorBase.Domain
 {
-    using System;
-    using System.Collections;
     using System.Collections.Generic;
-    using System.Data.Entity;
-    using System.Data.Entity.SqlServer;
     using System.Linq;
 
     using RieltorBase.Domain.InfoClasses;
-    using RieltorBase.Domain.Metadata;
     
 
     /// <summary>
@@ -44,7 +39,7 @@
             {
                 queryableResult = queryableResult.Where(ro =>
                     ro.PropertyValues.Any(pv =>
-                        pv.PropertyType.PropertyName == PropertyNames.Cost
+                        pv.PropertyType.PropertyName == "Цена"
                         /*&& pv.IntegerValue >= searchOptions.MinCost 
                          *&& pv.IntegerValue <= searchOptions.MaxCost*/)); // с ценой пока не работает!!! нужно целочисленное поле в БД.
             }
@@ -53,7 +48,7 @@
             {
                 queryableResult = queryableResult.Where(ro =>
                     ro.PropertyValues.Any(pv =>
-                        pv.PropertyType.PropertyName == PropertyNames.Address
+                        pv.PropertyType.PropertyName == "Адрес"
                         && pv.StringValue.Contains(searchOptions.PartOfAddress)));   
             }
 
@@ -68,19 +63,19 @@
             IEnumerable<RealtyObjectInfo> result =
                 queryableResult.Select(realtyObject => new
                 {
-                    RealtyObjectId = realtyObject.RealtyObjectId,
+                    realtyObject.RealtyObjectId,
                     RealtyObjectType = realtyObject.RealtyObjectType.TypeName,
 
                     RealtyObjectProperties = realtyObject.PropertyValues.Select(value =>
                         new
                         {
-                            PropertyName = value.PropertyType.PropertyName,
+                            value.PropertyType.PropertyName,
                             PropertyValue = value.StringValue
                         })
                 })
                 .ToList()
                 .Select(anonymousType =>
-                new RealtyObjectInfo()
+                new RealtyObjectInfo
                 {
                     Id = anonymousType.RealtyObjectId,
                     Type = anonymousType.RealtyObjectType,

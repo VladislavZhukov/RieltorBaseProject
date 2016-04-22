@@ -1,5 +1,4 @@
 ﻿@using RieltorBase.Domain.InfoClasses;
-@using RieltorBase.Domain.Metadata
 @model IEnumerable<RealtyObjectInfo>
 
 @{
@@ -21,8 +20,8 @@
     {
         <tr>
             <td>@info.Id</td>
-            <td>@(info.Properties.ContainsKey(PropertyNames.Address) ? info.Properties[PropertyNames.Address] : "")</td>
-            <td>@(info.Properties.ContainsKey(PropertyNames.Cost) ? info.Properties[PropertyNames.Address] : "")</td>
+            <td>@(info.Properties.ContainsKey("Адрес") ? info.Properties["Адрес"] : "")</td>
+            <td>@(info.Properties.ContainsKey("Цена") ? info.Properties["Цена"] : "")</td>
             <td>@(info.Properties.ContainsKey("Address") ? info.Properties["Address"] : "")</td>
         </tr>
     }

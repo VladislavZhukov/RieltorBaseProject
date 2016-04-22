@@ -1,0 +1,48 @@
+﻿namespace RieltorBase.Domain.MetadataInfo
+{
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Xml.Linq;
+
+    internal class TypeMetadataDescription
+    {
+        private readonly XElement xmlElement;
+
+        private static string[] notLoadedProperties = new[] {"Фирма", "Агент", "Телефон контакта"};
+
+        /// <summary>
+        /// Создать описание типа объекта недвижимости.
+        /// </summary>
+        /// <param name="typeElement">XML-элемент, описывающий тип недвижимости.</param>
+        internal TypeMetadataDescription(XElement typeElement)
+        {
+            this.xmlElement = typeElement;
+        }
+
+        /// <summary>
+        /// Имя типа объекта недвижимости.
+        /// </summary>
+        internal string Name
+        {
+            get
+            {
+                return this.xmlElement.Attribute("realtyType").Value;
+            }
+        }
+
+        /// <summary>
+        /// Имена свойств для данного типа.
+        /// </summary>
+        internal IEnumerable<string> PropertyNames
+        {
+            get
+            {
+                return this.xmlElement
+                    .Elements("Properties")
+                    .Select(el => el.Value)
+                    .Where(propName => !notLoadedProperties.Contains(propName))
+                    .ToList();
+            }
+        }
+    }
+}
