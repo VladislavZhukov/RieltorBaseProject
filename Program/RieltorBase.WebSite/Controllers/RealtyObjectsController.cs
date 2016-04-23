@@ -5,19 +5,38 @@
     using System.Web.Http;
 
     using RieltorBase.Domain;
+    using RieltorBase.Domain.InfoClasses;
 
     public class RealtyObjectsController : ApiController
     {
-        // GET api/realtyobjects
-        public IEnumerable<string> Get(
+        // GET api/realtyobjects/api/v1/RealtyObjects
+        public IEnumerable<RealtyObjectInfo> Get()
+        {
+            return SharedOperations.GetRealtyObjects(
+                new RealtyObjectSearchOptions());
+        }
+
+        // GET api/realtyobjects/api/v1/RealtyObjects?minCost=2&maxCost=35&partOfAddress=Ленина&realtyObjectType=Квартира&minDate=22.11.16&maxDate=24.11.16
+        public IEnumerable<RealtyObjectInfo> Get(
             int minCost, 
             int maxCost, 
-            int partOfAddress, 
+            string partOfAddress, 
             string realtyObjectType, 
             DateTime minDate, 
             DateTime maxDate)
         {
-            return new string[] { "value1", "value2" };
+            RealtyObjectSearchOptions options = 
+                new RealtyObjectSearchOptions()
+                {
+                    MinCost = minCost,
+                    MaxCost = maxCost,
+                    PartOfAddress = partOfAddress,
+                    RealtyObjectTypes = realtyObjectType,
+                    MinDate = minDate,
+                    MaxDate = maxDate
+                };
+
+            return SharedOperations.GetRealtyObjects(options);
         }
 
         // GET api/realtyobjects/5
