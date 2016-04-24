@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Http;
 
     using RieltorBase.Domain;
@@ -9,15 +10,17 @@
 
     public class RealtyObjectsController : ApiController
     {
+        VolgaInfoDBEntities context = new VolgaInfoDBEntities();
+
         // GET api/realtyobjects/api/v1/RealtyObjects
-        public IEnumerable<RealtyObjectInfo> Get()
+        public IEnumerable<RealtyObject> Get()
         {
-            return SharedOperations.GetRealtyObjects(
-                new RealtyObjectSearchOptions());
+            List<RealtyObject> result = this.context.RealtyObjects.ToList();
+            return result;
         }
 
         // GET api/realtyobjects/api/v1/RealtyObjects?minCost=2&maxCost=35&partOfAddress=Ленина&realtyObjectType=Квартира&minDate=22.11.16&maxDate=24.11.16
-        public IEnumerable<RealtyObjectInfo> Get(
+        public IEnumerable<RealtyObject> Get(
             int minCost, 
             int maxCost, 
             string partOfAddress, 
@@ -36,7 +39,8 @@
                     MaxDate = maxDate
                 };
 
-            return SharedOperations.GetRealtyObjects(options);
+            // сейчас возвращаются ВСЕ квартиры, независимо от параметров поиска.
+            return this.context.RealtyObjects.ToList();
         }
 
         // GET api/realtyobjects/5
