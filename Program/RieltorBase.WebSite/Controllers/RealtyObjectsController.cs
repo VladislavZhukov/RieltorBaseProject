@@ -10,17 +10,18 @@
 
     public class RealtyObjectsController : ApiController
     {
-        VolgaInfoDBEntities context = new VolgaInfoDBEntities();
+        private readonly VolgaInfoDBEntities context 
+            = new VolgaInfoDBEntities();
 
         // GET api/realtyobjects/api/v1/RealtyObjects
-        public IEnumerable<RealtyObject> Get()
+        public IEnumerable<RealtyObjectInfo> Get()
         {
             List<RealtyObject> result = this.context.RealtyObjects.ToList();
-            return result;
+            return result.Select(obj => new RealtyObjectInfo(obj)).ToList();
         }
 
         // GET api/realtyobjects/api/v1/RealtyObjects?minCost=2&maxCost=35&partOfAddress=Ленина&realtyObjectType=Квартира&minDate=22.11.16&maxDate=24.11.16
-        public IEnumerable<RealtyObject> Get(
+        public IEnumerable<RealtyObjectInfo> Get(
             int minCost, 
             int maxCost, 
             string partOfAddress, 
@@ -40,7 +41,8 @@
                 };
 
             // сейчас возвращаются ВСЕ квартиры, независимо от параметров поиска.
-            return this.context.RealtyObjects.ToList();
+            List<RealtyObject> result = this.context.RealtyObjects.ToList();
+            return result.Select(obj => new RealtyObjectInfo(obj)).ToList();
         }
 
         // GET api/realtyobjects/5
@@ -54,6 +56,15 @@
         public void Post([FromBody]string value)
         {
             // заменить на нормальный Response
+            RealtyObject fff = new RealtyObject()
+            {
+                Agent = null,
+
+            };
+
+            this.context.RealtyObjects.Add(fff);
+            context.SaveChanges();
+
             throw new NotImplementedException();
         }
 

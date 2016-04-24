@@ -23,7 +23,7 @@
         /// Стандартный конструктор на основе объекта недвижимости.
         /// </summary>
         /// <param name="realtyObject">Объект недвижимости.</param>
-        internal RealtyObjectInfo(RealtyObject realtyObject)
+        public RealtyObjectInfo(RealtyObject realtyObject)
         {
             this.Id = realtyObject.RealtyObjectId;
 
@@ -31,6 +31,16 @@
 
             this.Properties = realtyObject.PropertyValues.ToDictionary(
                 value => value.PropertyType.PropertyName, value => value.StringValue);
+        }
+
+        public RealtyObject CreateRealtyObject()
+        {
+            return new RealtyObject()
+            {
+                RealtyObjectId = this.Id
+            };
+
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
