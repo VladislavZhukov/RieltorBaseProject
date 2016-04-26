@@ -1,11 +1,13 @@
-﻿using System.Web.Mvc;
-using RieltorBase.Domain;
-
-namespace RieltorBase.WebSite.Controllers
+﻿namespace RieltorBase.WebSite.Controllers
 {
+    using System.Web.Mvc;
+
+    using RieltorBase.Domain.Interfaces;
+
     public class HomeController : Controller
     {
-        private VolgaInfoDBEntities context;
+        private IRealtyBaseContext context
+            = RBDependencyResolver.Current.Resolve<IRealtyBaseContext>();
 
         //
         // GET: /Home/
@@ -14,35 +16,26 @@ namespace RieltorBase.WebSite.Controllers
             return View();
         }
 
-        public VolgaInfoDBEntities Context
-        {
-            get
-            {
-                return this.context 
-                    ?? (this.context = new VolgaInfoDBEntities());
-            }
-        }
-
         public ActionResult CreateMetadata()
         {
-            this.Context.CreateStandardMetadata();
-            this.Context.SaveChanges();
+            this.context.CreateStandardMetadata();
+            this.context.SaveChanges();
 
             return this.RedirectToAction("Index");
         }
 
         public ActionResult ClearDatabase()
         {
-            this.Context.ClearDatabase();
-            this.Context.SaveChanges();
+            this.context.ClearDatabase();
+            this.context.SaveChanges();
 
             return this.RedirectToAction("Index");
         }
 
         public ActionResult CreateTestObjects()
         {
-            this.Context.CreateFewObjects();
-            this.Context.SaveChanges();
+            this.context.CreateFewObjects();
+            this.context.SaveChanges();
 
             return this.RedirectToAction("Index");
         }

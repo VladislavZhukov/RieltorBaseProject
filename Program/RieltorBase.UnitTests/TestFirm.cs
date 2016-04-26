@@ -11,43 +11,43 @@ namespace RieltorBase.UnitTests
     [TestClass]
     public class TestFirm
     {
-        VolgaInfoDBEntities _context = new VolgaInfoDBEntities();
-        readonly Firm _testFirm = new Firm() { Name = "TestFirm" };
+        //VolgaInfoDBEntities _context = new VolgaInfoDBEntities();
+        //readonly Firm _testFirm = new Firm() { Name = "TestFirm" };
 
-        [SetUp]
-        public void Init()
-        {
-            _context = new VolgaInfoDBEntities();
-        }
+        //[SetUp]
+        //public void Init()
+        //{
+        //    _context = new VolgaInfoDBEntities();
+        //}
 
-        [TestMethod]
-        public void AddNewFirm()
-        {
-            FirmCard.Add(_testFirm, _context);
+        //[TestMethod]
+        //public void AddNewFirm()
+        //{
+        //    FirmCard.Add(_testFirm, _context);
 
-            var checkingFirm = _context.Firms
-                .Select(firm => firm.Name).ToList();
+        //    var checkingFirm = _context.Firms
+        //        .Select(firm => firm.Name).ToList();
 
-            NUnit.Framework.Assert.Contains(_testFirm.Name, checkingFirm);
-        }
+        //    NUnit.Framework.Assert.Contains(_testFirm.Name, checkingFirm);
+        //}
 
-        [TestMethod]
-        public void DeleteFirm()
-        {
-            FirmCard.Delete(_testFirm, _context);
+        //[TestMethod]
+        //public void DeleteFirm()
+        //{
+        //    FirmCard.Delete(_testFirm, _context);
 
-            var checkingFirm = _context.Firms
-                .Where(firm => firm.Name == _testFirm.Name)
-                .Select(firm => firm.Name).ToList();
+        //    var checkingFirm = _context.Firms
+        //        .Where(firm => firm.Name == _testFirm.Name)
+        //        .Select(firm => firm.Name).ToList();
 
-            NUnit.Framework.Assert.AreEqual(checkingFirm.Count(), 0);
-        }
+        //    NUnit.Framework.Assert.AreEqual(checkingFirm.Count(), 0);
+        //}
 
-        [TearDown]
-        public void Cleanup()
-        {
-            _context.Dispose();
-            _context = null;
-        }
+        //[TearDown]
+        //public void Cleanup()
+        //{
+        //    _context.Dispose();
+        //    _context = null;
+        //}
     }
 }

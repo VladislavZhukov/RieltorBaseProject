@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace RieltorBase.WebSite.Controllers
+﻿namespace RieltorBase.WebSite.Controllers
 {
+    using System.Web.Mvc;
+
     public class MainPageController : Controller
     {
         //

@@ -2,26 +2,23 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Web.Http;
 
-    using RieltorBase.Domain;
-    using RieltorBase.Domain.InfoClasses;
+    using RieltorBase.Domain.Interfaces;
 
     public class RealtyObjectsController : ApiController
     {
-        private readonly VolgaInfoDBEntities context 
-            = new VolgaInfoDBEntities();
+        private readonly IRealtyObjectsRepository realtyObjects 
+            = RBDependencyResolver.Current.Resolve<IRealtyObjectsRepository>();
 
         // GET api/realtyobjects/api/v1/RealtyObjects
-        public IEnumerable<RealtyObjectInfo> Get()
+        public IEnumerable<IRealtyObject> Get()
         {
-            List<RealtyObject> result = this.context.RealtyObjects.ToList();
-            return result.Select(obj => new RealtyObjectInfo(obj)).ToList();
+            return this.realtyObjects.GetAll();
         }
 
         // GET api/realtyobjects/api/v1/RealtyObjects?minCost=2&maxCost=35&partOfAddress=Ленина&realtyObjectType=Квартира&minDate=22.11.16&maxDate=24.11.16
-        public IEnumerable<RealtyObjectInfo> Get(
+        public IEnumerable<IRealtyObject> Get(
             int minCost, 
             int maxCost, 
             string partOfAddress, 
@@ -40,46 +37,35 @@
                     MaxDate = maxDate
                 };
 
-            // сейчас возвращаются ВСЕ квартиры, независимо от параметров поиска.
-            List<RealtyObject> result = this.context.RealtyObjects.ToList();
-            return result.Select(obj => new RealtyObjectInfo(obj)).ToList();
+            return this.realtyObjects.FindByParams(options);
         }
 
         // GET api/realtyobjects/5
-        public string Get(int id)
+        public IRealtyObject Get(int id)
         {
-            // заменить на нормальный Response
-            throw new NotImplementedException();
+            return this.realtyObjects.Find(id);
         }
 
         // POST api/realtyobjects
-        public void Post([FromBody]string value)
+        public IRealtyObject Post([FromBody]IRealtyObject value)
         {
-            // заменить на нормальный Response
-            RealtyObject fff = new RealtyObject()
-            {
-                Agent = null,
-
-            };
-
-            this.context.RealtyObjects.Add(fff);
-            context.SaveChanges();
-
-            throw new NotImplementedException();
+            IRealtyObject newObj = this.realtyObjects.Add(value);
+            this.realtyObjects.SaveChanges();
+            return newObj;
         }
 
         // PUT api/realtyobjects/5
-        public void Put(int id, [FromBody]string value)
+        public IRealtyObject Put(int id, [FromBody]IRealtyObject value)
         {
-            // заменить на нормальный Response
-            throw new NotImplementedException();
+            IRealtyObject updatedObj = this.realtyObjects.Update(value);
+            this.realtyObjects.SaveChanges();
+            return updatedObj;
         }
 
         // DELETE api/realtyobjects/5
         public void Delete(int id)
         {
-            // заменить на нормальный Response
-            throw new NotImplementedException();
+            this.realtyObjects.Delete(id);
         }
     }
 }
