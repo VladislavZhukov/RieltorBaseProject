@@ -11,7 +11,7 @@ namespace RieltorBase.Domain
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Photo
     {
         public int PhotoId { get; set; }

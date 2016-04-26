@@ -1,7 +1,6 @@
-﻿namespace RieltorBase.Domain
+﻿namespace RieltorBase.Domain.Interfaces
 {
     using System;
-    using System.Collections;
 
     /// <summary>
     /// Опции поиска объектов недвижимости.
