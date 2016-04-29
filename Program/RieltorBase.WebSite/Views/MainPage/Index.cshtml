@@ -49,9 +49,9 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Файл</a></li>
-                    <li><a href="#view">Вид</a></li>
-                    <li><a href="#communication">Связь</a></li>
+                    <li class="active"><a href="#/">Файл</a></li>
+                    <li><a href="#/about">Вид</a></li>
+                    <li><a href="#/contact">Связь</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Прайс-листы <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -69,171 +69,15 @@
                     <li><a href="#">Настройки</a></li>
                     <li><a href="#">Справка</a></li>
                 </ul>
-            </div><!--/.nav-collapse -->
+            </div>
         </div>
     </nav>
 
     <div class="container theme-showcase" role="main">
-        <div class="page-header">
-            <h1>Поиск квартир в Тольятти</h1>
-        </div>
-
-        <!-- Панель инструментов -->
-        <div class="panel-toolbar well">
-            <button title="Своя база">
-                <i class="fa fa-list-ul fa-3x" aria-hidden="true"></i>
-            </button>
-            <button title="Вся база">
-                <i class="fa fa-database fa-3x" aria-hidden="true"></i>
-            </button>
-            <button title="Карточка объекта">
-                <i class="fa fa-file-text-o fa-3x" aria-hidden="true"></i>
-            </button>
-            <button title="Редактировать свои объекты">
-                <i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i>
-            </button>
-            <button title="Доп. информация">
-                <i class="fa fa-info fa-3x" aria-hidden="true"></i>
-            </button>
-            <button title="Версия для печати">
-                <i class="fa fa-print fa-3x" aria-hidden="true"></i>
-            </button>
-        </div>
-
-        <div class="panel-toolbar well">
-            <button>
-                <i class="glyphicon glyphicon-indent-left fa-3x" aria-hidden="true"></i>
-            </button>
-            <button>
-                <i class="glyphicon glyphicon-align-justify fa-3x" aria-hidden="true"></i>
-            </button>
-            <button>
-                <i class="glyphicon glyphicon-list-alt fa-3x" aria-hidden="true"></i>
-            </button>
-            <button>
-                <i class="glyphicon glyphicon-edit fa-3x" aria-hidden="true"></i>
-            </button>
-            <button>
-                <i class="glyphicon glyphicon-info-sign fa-3x" aria-hidden="true"></i>
-            </button>
-            <button>
-                <i class="glyphicon glyphicon-print fa-3x" aria-hidden="true"></i>
-            </button>
-        </div>
-
-        <!-- Панель поиска -->
-        <div class="well">
-            <form class="form-horizontal" role="form">
-                <legend>Поиск по параметрам</legend>
-
-                <div class="row">
-                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                        <label class="control-label" for="searchType">Тип:</label>
-                    </div>
-                    <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 hidden-xs">
-                        <label class="control-label" for="searchPriceMin">Цена:</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                        <!-- Если надо отсылать индекс элемента - то оставить с value="0"; если нужен текст на русском - то удалить параметр "value" -->
-                        <select id="searchType" class="form-control">
-                            <option>Квартиры</option>
-                            <option>Малосемейки</option>
-                            <option>Новостройки</option>
-                            <option>Дома/Коттеджи</option>
-                            <option>Аренда жилья</option>
-                            <option>Коммерческая Недвижимость</option>
-                            <option>Участки</option>
-                            <option>Дачи</option>
-                            <option>Разное</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">от</span>
-                            <input type="text" class="form-control" id="searchPriceMin" placeholder="тыс. руб.">
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">до</span>
-                            <input type="text" class="form-control" id="searchPriceMax" placeholder="тыс. руб.">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Панель поиска: Дата -->
-                <div class="row">
-                    <div class="col-md-3">
-                        <label class="control-label">За последний:</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                        <div class="btn-group btn-group-xs btn-group-justified">
-                            <span class="searchSpecificDate btn btn-info" data-item="day">день</span>
-                            <span class="searchSpecificDate btn btn-default" data-item="week">неделю</span>
-                            <span class="searchSpecificDate btn btn-default" data-item="month">месяц</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">с</span>
-                            <input type="text" id="searchDateMin" class="form-control" placeholder="дд.мм.гггг" />
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">по</span>
-                            <input type="text" id="searchDateMax" class="form-control" placeholder="дд.мм.гггг" />
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Панель поиска: Адрес -->
-                <div class="row">
-                    <div class="col-md-2">
-                        <label class="control-label" for="searchAddress">Адрес:</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                        <input id="searchAddress" type="text" class="form-control" placeholder="Адрес" />
-                    </div>
-                    <div class="col-xs-1">
-                        <input id="searchSubmit" type="button" value="Поиск" class="btn btn-primary" />
-                    </div>
-                </div>
-
-            </form>
-        </div>
-
         <!-- Angular приложение -->
-        <div class="panel panel-default">
-            <h3 class="panel-heading">Header</h3>
-
-            <div class="panel-body" ng-controller="test1Ctrl">
-                <header>
-                    <nav class="navbar navbar-default">
-                        <div class="container">
-                            <ul class="nav navbar-nav">
-                                <li><a href="#/"><i class="fa fa-home"></i> Home</a></li>
-                                <li><a href="#/about"><i class="fa fa-shield"></i> About</a></li>
-                                <li><a href="#/contact"><i class="fa fa-comment"></i> Contact</a></li>
-                            </ul>
-                            <div class="navbar-header navbar-right">
-                                <a class="navbar-brand" href="/">Angular Routing Example</a>
-                            </div>
-                        </div>
-                    </nav>
-                </header>
-
-                <ng-view></ng-view>
-            </div>
+        <div class="panel-body" ng-controller="test1Ctrl">
+             <ng-view></ng-view>
         </div>
-
     </div>
 
     <!-- Bootstrap core JavaScript
