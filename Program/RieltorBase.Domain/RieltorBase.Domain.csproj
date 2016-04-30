@@ -69,6 +69,8 @@
     <Compile Include="ChangelogAgent.cs">
       <DependentUpon>RealtyBaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityFrameworkImpl\AgentRepository.cs" />
+    <Compile Include="EntityFrameworkImpl\AgentWrap.cs" />
     <Compile Include="EntityFrameworkImpl\EFRepository.cs" />
     <Compile Include="EntityFrameworkImpl\IWrapBase.cs" />
     <Compile Include="EntityFrameworkImpl\FirmWrap.cs" />
@@ -81,6 +83,7 @@
       <DependentUpon>RealtyBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IAgent.cs" />
+    <Compile Include="Interfaces\IAgentRepository.cs" />
     <Compile Include="Interfaces\IFirm.cs" />
     <Compile Include="Interfaces\IFirmsRepository.cs" />
     <Compile Include="Interfaces\IPhoto.cs" />

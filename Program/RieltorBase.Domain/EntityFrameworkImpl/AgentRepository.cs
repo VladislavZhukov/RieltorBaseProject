@@ -42,7 +42,7 @@
                 changedEntity,
                 this.Context);
 
-            wrap.UpdateAgent(updatedObj);
+            wrap.UpdateRealObject(updatedObj);
 
             return wrap;
         }
@@ -57,6 +57,12 @@
         public IEnumerable<IAgent> FindByName(string partOfName)
         {
             throw new NotImplementedException();
+        }
+        
+        public IEnumerable<IAgent> FindByFirmId(int firmId)
+        {
+            return Context.Agents.Where(ag => ag.Id_firm == firmId)
+                .ToList().Select(agent => new AgentWrap(agent, Context));
         }
     }
 }

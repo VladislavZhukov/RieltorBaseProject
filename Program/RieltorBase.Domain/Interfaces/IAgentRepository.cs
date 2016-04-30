@@ -5,5 +5,7 @@
     public interface IAgentRepository : IRepository<IAgent>
     {
         IEnumerable<IAgent> FindByName(string partOfName);
+
+        IEnumerable<IAgent> FindByFirmId(int firmId);
     }
 }

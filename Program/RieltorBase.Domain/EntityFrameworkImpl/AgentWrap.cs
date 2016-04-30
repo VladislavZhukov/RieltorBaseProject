@@ -117,7 +117,7 @@
             return _agentEF;
         }
 
-        public void UpdateAgent(Agent realObject)
+        public void UpdateRealObject(Agent realObject)
         {
             realObject.Name = Name;
             realObject.LastName = LastName;
