@@ -1,4 +1,4 @@
-﻿namespace RieltorBase.Domain.MetadataInfo
+﻿namespace RieltorBase.Domain.Interfaces
 {
     using System.Collections.Generic;
     using System.Linq;
