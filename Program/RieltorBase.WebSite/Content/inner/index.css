@@ -1,8 +1,4 @@
 ﻿
-/* Панель поиска */
-
-.searchSpecificDate.active{
-    /*background-color: #85850c;*/
+.panel-toolbar button{
+    width: 58px;
 }
-
-
