@@ -1,4 +1,35 @@
 ﻿
-.panel-toolbar button{
-    width: 58px;
+.panel-toolbar i{
+    vertical-align:middle;
+}
+.panel-toolbar span{
+    font-size:14px;
+}
+
+
+.panel-toolbar-33{
+    text-align:center;
+    
+}
+.panel-toolbar-33 i{
+    vertical-align:middle;
+}
+.panel-toolbar-33{
+    font-size:12px;
+}
+.panel-toolbar-33 i{
+    width:155px;
+    
+}
+
+
+.panel-toolbar-2{
+    text-align:center;
+}
+.panel-toolbar-2 i{
+    width:58px;
+}
+.panel-toolbar-2 span{
+    display:block;
+    font-size:12px;
 }
