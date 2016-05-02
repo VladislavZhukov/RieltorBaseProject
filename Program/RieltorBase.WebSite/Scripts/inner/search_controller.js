@@ -14,6 +14,9 @@
 
     // Контроллер для главной страницы поиска
     function searchCntrl($scope, $http, $location) {
+        $scope.sortField = undefined;   // Для сортировки таблицы
+        $scope.reverse = false;         // Для сортировки таблицы
+
         // Событие вызывается при нажатии кнопки "Поиск".
         $scope.searchSubmit = function () {
             $('#searchSubmit').prop('disabled', true);
@@ -52,8 +55,6 @@
         $scope.searchSubmit();
 
         // Для сортировки таблицы
-	    $scope.sortField = undefined;
-	    $scope.reverse = false;
 	    $scope.sort = function(fieldName) {
 		    if ($scope.sortField === fieldName) {
 			    $scope.reverse = !$scope.reverse;
