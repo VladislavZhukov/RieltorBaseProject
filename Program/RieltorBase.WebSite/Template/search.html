@@ -187,7 +187,7 @@
                     <input id="searchAddress" type="text" class="form-control" placeholder="Адрес" />
                 </div>
                 <div class="col-xs-1">
-                    <input id="searchSubmit" type="button" value="Поиск" class="btn btn-primary" />
+                    <input id="searchSubmit" type="button" value="Поиск" class="btn btn-primary" ng-click="searchSubmit()" />
                 </div>
             </div>
 
@@ -213,7 +213,7 @@
 
             <!-- Выводим динамически ячейки строк -->
             <tr ng-repeat="app in appts | orderBy:sortField:reverse">
-                <td ng-repeat="column in apptsColumns">{{app[column.column]}}</td>
+                <td ng-repeat="column in apptsColumns">{{ app[column.column] }}</td>
             </tr>
         </table>
     </div>

@@ -9,29 +9,50 @@ Ajax GET - http://jquery.page2page.ru/index.php5/Ajax_%D0%B7%D0%B0%D0%BF%D1%80%D
 
 // Контроллер для главной страницы поиска
 function searchCntrl($scope, $http, $location) {
-    $http.get(GET_REALTY_OBJECTS).success(function (data) {
-        $scope.appts = data;
-        console.log(data);
-    });
 
+    // Событие вызывается при нажатии кнопки "Поиск".
+    $scope.searchSubmit = function () {
+        // Считываем параметры поиска
+        var searchRequest = {};
+        searchRequest.searchType = $('#searchType').val();
+        searchRequest.searchPriceMin = $('#searchPriceMin').val();
+        searchRequest.searchPriceMax = $('#searchPriceMax').val();
+        searchRequest.searchDateMin = $('#searchDateMin').val();
+        searchRequest.searchDateMax = $('#searchDateMax').val();
+        searchRequest.searchAddress = $('#searchAddress').val();
 
+        // Печатаем запрос в консоль
+        console.log('Сформирован запрос:');
+        console.log(searchRequest);
 
-
-    // test
-    $scope.updatedApps = function (data, textStatus) {
-        alert('fffffffff');
-        // Здесь мы получаем данные, отправленные сервером и выводим их на экран.
-        alert("Ответ с сервера: " + textStatus + " " + data);
-        console.log("Ответ с сервера: " + textStatus + " " + data);
-
-        
+        // Отправляем запрос на сервер
+        $.get(
+          GET_REALTY_OBJECTS,
+          searchRequest,
+          function (data, textStatus) {
+              console.log('С сервера пришёл ответ:');
+              console.log(data);
+              // Здесь мы получаем данные, отправленные сервером и выводим их на экран.
+              $scope.appts = processAppartments(data);
+              console.log('$scope.appts:');
+              console.log($scope.appts);
+          },
+          "json"
+        );
     };
-    
 
-    // Для сортировки
+    // Вызов разных методов при инициилизации
+    initHTMLProperies();
+    initHandlers();
+
+    $scope.appts = [];
+
+    //$scope.searchSubmit();
+    //$scope.searchSubmit();
+
+    // Для сортировки таблицы
 	$scope.sortField = undefined;
 	$scope.reverse = false;
-
 	$scope.sort = function(fieldName) {
 		if ($scope.sortField === fieldName) {
 			$scope.reverse = !$scope.reverse;
@@ -51,18 +72,7 @@ function searchCntrl($scope, $http, $location) {
 	};
 
 
-
     ///////////////////////
-
-	
-
-    // Вызывается, когда загрузятся DOM-элементы (элементы страницы)
-	$(document).ready(function () {
-	    initHTMLProperies();
-	    initHandlers();
-	    alert('ready');
-	});
-
 	function initHTMLProperies() {
 	    // Задаём дату поиска на сегодня
 	    var date = new Date();
@@ -80,41 +90,9 @@ function searchCntrl($scope, $http, $location) {
 
 	function initHandlers() {
 	    // Панель поиска: кнопки, текстовые поля даты и пр.
-	    $('#searchSubmit').on('click', searchSubmit);   // Вешаем обработчик клика на кнопке "Поиск" ('#searchSubmit')
+	    //$('#searchSubmit').on('click', searchSubmit);   // Вешаем обработчик клика на кнопке "Поиск" ('#searchSubmit')
 	    $('.searchSpecificDate').on('click', searchSpecificDateButton);
 	    $('#searchDateMin, #searchDateMax').change(searchSpecificDateTextField);
-	}
-
-    // Событие вызывается при нажатии кнопки "Поиск".
-	function searchSubmit() {
-	    // Считываем параметры поиска
-	    var searchRequest = {};
-	    searchRequest.searchType = $('#searchType').val();
-	    searchRequest.searchPriceMin = $('#searchPriceMin').val();
-	    searchRequest.searchPriceMax = $('#searchPriceMax').val();
-	    searchRequest.searchDateMin = $('#searchDateMin').val();
-	    searchRequest.searchDateMax = $('#searchDateMax').val();
-	    searchRequest.searchAddress = $('#searchAddress').val();
-
-	    // Печатаем запрос в консоль
-	    console.log(searchRequest);
-
-	    alert('kkkk');
-
-	    // Отправляем запрос на сервер
-	    $.get(
-          GET_REALTY_OBJECTS,
-          searchRequest,
-          function (data, textStatus) {
-              // Здесь мы получаем данные, отправленные сервером и выводим их на экран.
-              alert("Ответ с сервера: " + textStatus + " " + data);
-              console.log("Ответ с сервера: " + textStatus + " " + data);
-
-              angular.element($('.panel-body')).scope().updatedApps(data, textStatus);
-
-          },
-          "json"
-        );
 	}
 
     // Клик по одной из кнопок "За последний: день\неделю\месяц"
@@ -147,6 +125,54 @@ function searchCntrl($scope, $http, $location) {
 	    $('.searchSpecificDate').removeClass("btn-info");
 	    $('.searchSpecificDate').addClass("btn-default");
 	}
+
+
+
+    // Обрабатывает квартиры
+	function processAppartments(objects) {
+	    var res = [];
+	    objects.forEach(function (obj, i, arr) {
+	        var newObj = {};
+	        newObj.rooms = obj.AdditionalAttributes.Комнат;
+	        newObj.address = obj.AdditionalAttributes.Улица + ' ' + obj.AdditionalAttributes.Дом;
+	        newObj.numberOfFloors = obj.AdditionalAttributes.Этажи;
+	        newObj.area = obj.AdditionalAttributes['Площадь[общ / жил / кух]'];
+	        newObj.price = obj.Cost;
+	        newObj.firm = obj.FirmName;
+	        res.push(newObj);
+	    });
+	    //console.log('~~~~~~~~');
+	    //console.log(res);
+	    return res;
+	}
+
+    // meta - Колонки
+	$scope.apptsColumns = [
+		{
+		    'column': 'rooms',
+		    'readableName': 'Ком.'
+		},
+		{
+		    'column': 'address',
+		    'readableName': 'Адрес'
+		},
+		{
+		    'column': 'numberOfFloors',
+		    'readableName': 'Этажность '
+		},
+		{
+		    'column': 'area',
+		    'readableName': 'Площадь [общ/жил/кух]'
+		},
+		{
+		    'column': 'price',
+		    'readableName': 'Цена'
+		},
+		{
+		    'column': 'firm',
+		    'readableName': 'Фирма'
+		},
+	];
 
 }
 
