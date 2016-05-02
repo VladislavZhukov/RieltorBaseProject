@@ -147,10 +147,18 @@
 
     <br />
     <br />
+    <br />
+    <br />
 
     <div class="container theme-showcase" role="main">
         <!-- Angular приложение -->
-        <div class="panel-body" ng-controller="test1Ctrl">
+        
+        <a href="#/">Main</a>
+        <a href="#/about">About</a>
+        <a href="#/contact">Contact</a>
+        <a href="#/app"> App</a>
+
+        <div class="panel-body">
              <ng-view></ng-view>
         </div>
     </div>
@@ -165,20 +173,19 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 
-
-    <!-- JS-скрипты: -->
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
     <!-- Angular-приложение -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-    <script src="~/Scripts/inner/controllers.js"></script>
 
     <!-- календарь bootstrap-datepicker -->
     <script src="~/Scripts/vendors/bootstrap-datepicker.js"></script>
     <script src="~/Scripts/vendors/bootstrap-datepicker.ru.js"></script>
 
-    <script src="~/Scripts/inner/index.js"></script>    <!-- js-файл для главной страницы -->
+    <script src="~/Scripts/inner/search_controller.js"></script>
+    <script src="~/Scripts/inner/app_controller.js"></script>
+    <script src="~/Scripts/inner/controllers.js"></script>
 
 </body>
 </html>
