@@ -7,9 +7,6 @@ Ajax GET - http://jquery.page2page.ru/index.php5/Ajax_%D0%B7%D0%B0%D0%BF%D1%80%D
 Календарь (bootstrap-datepicker): https://eternicode.github.io/bootstrap-datepicker
 */
 
-var API_V1 = '/api/v1/';
-var GET_REALTY_OBJECTS = API_V1 + 'realtyobjects';
-
 // Контроллер для главной страницы поиска
 function searchCntrl($scope, $http, $location) {
     $http.get(GET_REALTY_OBJECTS).success(function (data) {

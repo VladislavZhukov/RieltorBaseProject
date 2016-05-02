@@ -1,9 +1,10 @@
 'use strict';
 
-var testApp = angular.module('testApp', []);
 var API_V1 = '/api/v1/';
 var GET_REALTY_OBJECTS = API_V1 + 'realtyobjects';
 var GET_REALTY_OBJECT = API_V1 + 'realtyobjects/';
+
+var testApp = angular.module('testApp', []);
 
 testApp.config(['$routeProvider', function($routeProvide) {
 	$routeProvide
@@ -19,7 +20,7 @@ testApp.config(['$routeProvider', function($routeProvide) {
 		    templateUrl: '../../Template/contact.html',
 			controller: 'AboutCtrl'
 		})
-        .when('/app', {
+        .when('/app/:appId', {
             templateUrl: '../../Template/app.html',
             controller: 'appCntrl'
         })
