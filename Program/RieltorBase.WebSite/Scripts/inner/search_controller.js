@@ -14,7 +14,6 @@
 
     // Контроллер для главной страницы поиска
     function searchCntrl($scope, $http, $location) {
-
         // Событие вызывается при нажатии кнопки "Поиск".
         $scope.searchSubmit = function () {
             $('#searchSubmit').prop('disabled', true);
@@ -34,29 +33,23 @@
 
             // Отправляем запрос на сервер
             $.get(
-              GET_REALTY_OBJECTS,
-              searchRequest,
-              function (data, textStatus) {
-                  console.log('С сервера пришёл ответ:');
-                  console.log(data);
-                  // Здесь мы получаем данные, отправленные сервером и выводим их на экран.
-                  $scope.appts = processAppartments(data);
-                  console.log('$scope.appts:');
-                  console.log($scope.appts);
-                  $('#searchSubmit').prop('disabled', false);
-              },
-              "json"
+                GET_REALTY_OBJECTS,
+                searchRequest,
+                function (data, textStatus) {
+                    // Здесь мы получаем данные, отправленные сервером и выводим их на экран.
+                    $scope.$apply(function () {
+                        $scope.appts = processAppartments(data);
+                    });
+                    $('#searchSubmit').prop('disabled', false);
+                },
+                "json"
             );
         };
 
         // Вызов разных методов при инициилизации
         initHTMLProperies();
         initHandlers();
-
-        $scope.appts = [];
-
-        //$scope.searchSubmit();
-        //$scope.searchSubmit();
+        $scope.searchSubmit();
 
         // Для сортировки таблицы
 	    $scope.sortField = undefined;
