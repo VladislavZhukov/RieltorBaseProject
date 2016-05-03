@@ -8,6 +8,9 @@
     /// </summary>
     public interface IRealtyObject
     {
+        /// <summary>
+        /// Id объекта недвижимости.
+        /// </summary>
         int RealtyObjectId { get; set; }
 
         /// <summary>

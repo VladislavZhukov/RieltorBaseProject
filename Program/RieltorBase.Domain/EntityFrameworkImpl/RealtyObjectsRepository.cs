@@ -8,14 +8,26 @@
 
     using RieltorBase.Domain.Interfaces;
 
+    /// <summary>
+    /// EF-реализация хранилища объектов недвижимости.
+    /// </summary>
     public class RealtyObjectsRepository : EFRepository<IRealtyObject>, IRealtyObjectsRepository
     {
+        /// <summary>
+        /// Получить все объекты недвижимости.
+        /// </summary>
+        /// <returns>Все объекты недвижимости.</returns>
         public override IEnumerable<IRealtyObject> GetAll()
         {
             return this.Context.RealtyObjects.ToList().Select(
                 obj => new RealtyObjectWrap(obj, this.Context));
         }
 
+        /// <summary>
+        /// Найти конкретный объект недвижимости.
+        /// </summary>
+        /// <param name="id">Id объекта недвижимости.</param>
+        /// <returns>Найденный объект недвижимости.</returns>
         public override IRealtyObject Find(int id)
         {
             RealtyObject obj = this.Context.RealtyObjects.FirstOrDefault(
@@ -26,6 +38,11 @@
                 : null;
         }
 
+        /// <summary>
+        /// Добавить новый объект недвижимости.
+        /// </summary>
+        /// <param name="newEntity">Новый объект недвижимости.</param>
+        /// <returns>Добавленный объект недвижимости.</returns>
         public override IRealtyObject Add(IRealtyObject newEntity)
         {
             RealtyObjectWrap wrap =
@@ -35,6 +52,12 @@
             return wrap;
         }
 
+        /// <summary>
+        /// Обновить данные существующего объекта недвижимости.
+        /// </summary>
+        /// <param name="changedEntity">Объект недвижимости с 
+        /// обновленными данными.</param>
+        /// <returns>Обновленный объект недвижимости.</returns>
         public override IRealtyObject Update(IRealtyObject changedEntity)
         {
             if (!this.Context.RealtyObjects.Any(ro =>
@@ -45,59 +68,17 @@
                     + changedEntity.RealtyObjectId + " не существует.");
             }
 
-            RealtyObjectWrap wrap = new RealtyObjectWrap(
-                changedEntity,
-                this.Context);
+            RealtyObject rObj = this.AttachRealtyObject(changedEntity);
 
-            RealtyObject rObj = wrap.GetRealObject();
+            this.UpdateProperties(rObj);
 
-            this.Context.RealtyObjects.Attach(rObj);
-            this.Context.Entry(rObj).State = EntityState.Modified;
-
-            int[] newPropTypeIds = 
-                rObj.PropertyValues.Select(pv => pv.PropertyTypeId)
-                .ToArray();
-
-            List<PropertyValue> oldProps = this.Context.PropertyValues
-                .Where(pv => pv.RealtyObjectId == changedEntity.RealtyObjectId)
-                .ToList();
-
-            List<PropertyValue> removedProps = oldProps
-                .Where(pv => !newPropTypeIds.Contains(pv.PropertyTypeId))
-                .ToList();
-
-            foreach (PropertyValue oldProp in removedProps)
-            {
-                this.Context.PropertyValues.Remove(oldProp);
-            }
-
-            foreach (PropertyValue prop in rObj.PropertyValues)
-            {
-                DbEntityEntry<PropertyValue> entry = this.Context.Entry(prop);
-
-                if (oldProps.Contains(prop))
-                {
-                    entry.State = EntityState.Modified;
-                }
-                else
-                {
-                    entry.State = EntityState.Added;
-                }
-            }
-
-            //foreach (PropertyValue newProp in rObj.PropertyValues)
-            //{
-            //    if (this.Context.Entry(newProp) == null)
-            //    {
-            //        this.Context.PropertyValues.Attach(newProp);
-            //    }
-
-            //    this.Context.Entry(newProp).State = EntityState.Modified;
-            //}
-            
-            return wrap;
+            return new RealtyObjectWrap(rObj, this.Context);
         }
 
+        /// <summary>
+        /// Удалить объект недвижимости.
+        /// </summary>
+        /// <param name="id">Id удаляемого объекта.</param>
         public override void Delete(int id)
         {
             this.Context.RealtyObjects.Remove(
@@ -105,6 +86,11 @@
                     ro.RealtyObjectId == id));
         }
 
+        /// <summary>
+        /// Найти объекты недвижимости.
+        /// </summary>
+        /// <param name="options">Параметры поиска.</param>
+        /// <returns>Найденные объекты недвижимости.</returns>
         public IEnumerable<IRealtyObject> FindByParams(
             RealtyObjectSearchOptions options)
         {
@@ -146,6 +132,80 @@
                 new RealtyObjectWrap(robj, this.Context));
 
             return result.AsQueryable();
+        }
+
+        /// <summary>
+        /// Прикрепить к контексту обновленный объект недвижимости.
+        /// </summary>
+        /// <param name="changedEntity">Интерфейс обновленного объекта 
+        /// недвижимости.</param>
+        /// <returns>EF-объект недвижимости, прикрепленный к контексту.</returns>
+        private RealtyObject AttachRealtyObject(IRealtyObject changedEntity)
+        {
+            RealtyObjectWrap wrap = new RealtyObjectWrap(
+                changedEntity,
+                this.Context);
+
+            RealtyObject rObj = wrap.GetRealObject();
+
+            this.Context.RealtyObjects.Attach(rObj);
+            this.Context.Entry(rObj).State = EntityState.Modified;
+            return rObj;
+        }
+
+        /// <summary>
+        /// Обновить все свойства в контексте EF.
+        /// </summary>
+        /// <param name="rObj">Обновленный EF-объект недвижимости.</param>
+        private void UpdateProperties(RealtyObject rObj)
+        {
+            int[] newPropTypeIds =
+                rObj.PropertyValues.Select(pv => pv.PropertyTypeId)
+                    .ToArray();
+
+            int id = rObj.RealtyObjectId;
+
+            List<PropertyValue> oldProps = this.Context.PropertyValues
+                .Where(pv => pv.RealtyObjectId == id)
+                .ToList();
+
+            List<PropertyValue> removedProps = oldProps
+                .Where(pv => !newPropTypeIds.Contains(pv.PropertyTypeId))
+                .ToList();
+
+            foreach (PropertyValue oldProp in removedProps)
+            {
+                this.Context.PropertyValues.Remove(oldProp);
+            }
+
+            this.UpdatePropertyStates(rObj.PropertyValues, oldProps);
+        }
+
+        /// <summary>
+        /// Обновить состояние каждого свойства в контексте БД.
+        /// </summary>
+        /// <param name="propValues">Набор свойств.</param>
+        /// <param name="oldProps">Свойства, которые уже были в БД.</param>
+        private void UpdatePropertyStates(
+            IEnumerable<PropertyValue> propValues,
+            ICollection<PropertyValue> oldProps)
+        {
+            foreach (PropertyValue propValue in propValues)
+            {
+                DbEntityEntry<PropertyValue> entry = 
+                    this.Context.Entry(propValue);
+
+                // если свойство было до этого - оно обновлено, 
+                // если нет - добавлено.
+                if (oldProps.Contains(propValue))
+                {
+                    entry.State = EntityState.Modified;
+                }
+                else
+                {
+                    entry.State = EntityState.Added;
+                }
+            }
         }
     }
 }
