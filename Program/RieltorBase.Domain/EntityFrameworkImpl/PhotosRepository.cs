@@ -1,4 +1,7 @@
-﻿namespace RieltorBase.Domain.EntityFrameworkImpl
+﻿using System;
+using System.Data.Entity;
+
+namespace RieltorBase.Domain.EntityFrameworkImpl
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -28,12 +31,18 @@
 
         public override IPhoto Update(IPhoto changedEntity)
         {
-            Photo existingPhoto = this.Context.Photos.First(
-                ph => ph.PhotoId == changedEntity.PhotoId);
+            if (!this.Context.Photos.Any(ph =>
+                ph.PhotoId == changedEntity.PhotoId))
+            {
+                throw new InvalidOperationException(
+                    "Попытка обновления несуществующего объекта. "
+                    + "Фотографии с id=" + changedEntity.PhotoId + " нет в БД.");
+            }
 
-            new PhotoWrap(changedEntity)
-                .UpdateRealObject(existingPhoto);
+            Photo photo = new PhotoWrap(changedEntity).GetRealObject();
 
+            this.Context.Photos.Attach(photo);
+            this.Context.Entry(photo).State = EntityState.Modified;
             return changedEntity;
         }
 

@@ -79,12 +79,5 @@
         {
             return this.photo;
         }
-
-        public void UpdateRealObject(Photo realObject)
-        {
-            realObject.RealtyObjectId = this.RealtyObjectId;
-            realObject.FirmId = this.FirmId;
-            realObject.RelativeSource = this.RelativeSource;
-        }
     }
 }

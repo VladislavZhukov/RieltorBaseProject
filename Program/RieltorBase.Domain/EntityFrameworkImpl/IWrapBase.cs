@@ -7,12 +7,7 @@
         /// Получить обертываемый объект.
         /// </summary>
         /// <returns>Реальный объект (EF Entity).</returns>
+        /// <remarks>Может быть не связан с контекстом БД.</remarks>
         TRealObject GetRealObject();
-
-        /// <summary>
-        /// Обновить реальный объект EF в соответствии со свойствами обертки.
-        /// </summary>
-        /// <param name="realObject">Реальный объект.</param>
-        void UpdateRealObject(TRealObject realObject);
     }
 }

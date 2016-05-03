@@ -1,4 +1,7 @@
-﻿namespace RieltorBase.Domain.EntityFrameworkImpl
+﻿using System;
+using System.Data.Entity;
+
+namespace RieltorBase.Domain.EntityFrameworkImpl
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -35,12 +38,19 @@
 
         public override IFirm Update(IFirm changedEntity)
         {
-            Firm updatedFirm = this.Context.Firms.First(firm => 
-                firm.FirmId == changedEntity.FirmId);
+            if (!this.Context.Firms.Any(firm =>
+                firm.FirmId == changedEntity.FirmId))
+            {
+                throw new InvalidOperationException(
+                    "Попытка обновления несуществующего объекта. "
+                    + "Фирмы с id=" + changedEntity.FirmId + " не существует.");
+            }
 
             FirmWrap wrap = new FirmWrap(changedEntity);
-            wrap.UpdateRealObject(updatedFirm);
+            Firm realFirm = wrap.GetRealObject();
 
+            this.Context.Firms.Attach(realFirm);
+            this.Context.Entry(realFirm).State = EntityState.Modified;
             return wrap;
         }
 

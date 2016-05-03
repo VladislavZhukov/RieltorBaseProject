@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Linq;
 
     using RieltorBase.Domain.Interfaces;
@@ -35,15 +36,22 @@
 
         public override IAgent Update(IAgent changedEntity)
         {
-            Agent updatedObj = Context.Agents
-                .First(f => f.Id_agent == changedEntity.Id_agent);
+            if (!this.Context.Agents.Any(f =>
+                f.Id_agent == changedEntity.Id_agent))
+            {
+                throw new InvalidOperationException(
+                    "Попытка обновления данных несуществующего агента"
+                    + " (id = " + changedEntity.Id_agent + "). ");
+            }
 
             AgentWrap wrap = new AgentWrap(
                 changedEntity,
                 this.Context);
 
-            wrap.UpdateRealObject(updatedObj);
+            Agent agent = wrap.GetRealObject();
 
+            this.Context.Agents.Attach(agent);
+            this.Context.Entry(agent).State = EntityState.Modified;
             return wrap;
         }
 
