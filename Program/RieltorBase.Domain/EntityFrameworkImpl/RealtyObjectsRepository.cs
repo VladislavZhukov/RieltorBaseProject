@@ -1,6 +1,9 @@
 ﻿namespace RieltorBase.Domain.EntityFrameworkImpl
 {
+    using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
     using System.Linq;
 
     using RieltorBase.Domain.Interfaces;
@@ -34,15 +37,64 @@
 
         public override IRealtyObject Update(IRealtyObject changedEntity)
         {
-            RealtyObject updatedObj = this.Context.RealtyObjects.First(ro =>
-                ro.RealtyObjectId == changedEntity.RealtyObjectId);
+            if (!this.Context.RealtyObjects.Any(ro =>
+                ro.RealtyObjectId == changedEntity.RealtyObjectId))
+            {
+                throw new InvalidOperationException(
+                    "Невозможно обновить данные объекта недвижимости. Объекта с id "
+                    + changedEntity.RealtyObjectId + " не существует.");
+            }
 
             RealtyObjectWrap wrap = new RealtyObjectWrap(
                 changedEntity,
                 this.Context);
 
-            wrap.UpdateRealObject(updatedObj);
+            RealtyObject rObj = wrap.GetRealObject();
 
+            this.Context.RealtyObjects.Attach(rObj);
+            this.Context.Entry(rObj).State = EntityState.Modified;
+
+            int[] newPropTypeIds = 
+                rObj.PropertyValues.Select(pv => pv.PropertyTypeId)
+                .ToArray();
+
+            List<PropertyValue> oldProps = this.Context.PropertyValues
+                .Where(pv => pv.RealtyObjectId == changedEntity.RealtyObjectId)
+                .ToList();
+
+            List<PropertyValue> removedProps = oldProps
+                .Where(pv => !newPropTypeIds.Contains(pv.PropertyTypeId))
+                .ToList();
+
+            foreach (PropertyValue oldProp in removedProps)
+            {
+                this.Context.PropertyValues.Remove(oldProp);
+            }
+
+            foreach (PropertyValue prop in rObj.PropertyValues)
+            {
+                DbEntityEntry<PropertyValue> entry = this.Context.Entry(prop);
+
+                if (oldProps.Contains(prop))
+                {
+                    entry.State = EntityState.Modified;
+                }
+                else
+                {
+                    entry.State = EntityState.Added;
+                }
+            }
+
+            //foreach (PropertyValue newProp in rObj.PropertyValues)
+            //{
+            //    if (this.Context.Entry(newProp) == null)
+            //    {
+            //        this.Context.PropertyValues.Attach(newProp);
+            //    }
+
+            //    this.Context.Entry(newProp).State = EntityState.Modified;
+            //}
+            
             return wrap;
         }
 

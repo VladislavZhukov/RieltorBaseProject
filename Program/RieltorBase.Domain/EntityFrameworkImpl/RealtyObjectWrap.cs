@@ -226,15 +226,6 @@
             return this.realtyObjectEF;
         }
 
-        public void UpdateRealObject(RealtyObject realObject)
-        {
-            realObject.Agent = this.realtyObjectEF.Agent;
-            realObject.AgentId = this.realtyObjectEF.AgentId;
-            realObject.RealtyObjectType = this.realtyObjectEF.RealtyObjectType;
-            realObject.RealtyObjectTypeId = this.realtyObjectEF.RealtyObjectTypeId;
-            realObject.PropertyValues = this.realtyObjectEF.PropertyValues;
-        }
-
         private void SetPropertyValues(Dictionary<string, string> properties)
         {
             string[] propNames = Metadata.GetAdditionalAttrNames(this.TypeName);
@@ -249,14 +240,33 @@
             }
         }
 
-        private void SetPropertyValue(string propName, string propValue)
+        private PropertyValue GetProperty(string propName)
         {
             PropertyValue currentValue = this.realtyObjectEF.PropertyValues
                 .FirstOrDefault(prValue => prValue.PropertyType.PropertyName == propName);
+            return currentValue;
+        }
 
-            if (currentValue != null)
+        private string GetPropertyValue(string propName)
+        {
+            PropertyValue value =
+                this.realtyObjectEF.PropertyValues.FirstOrDefault(
+                    pv => pv.PropertyType.PropertyName == propName);
+
+            return value != null ? value.StringValue : null;
+        }
+
+        private void SetPropertyValue(string propName, string propValue)
+        {
+            if (string.IsNullOrWhiteSpace(propValue))
             {
-                currentValue.StringValue = propValue;
+                this.RemoveProperty(propName);
+                return;
+            }
+
+            if (this.GetProperty(propName) != null)
+            {
+                this.GetProperty(propName).StringValue = propValue;
             }
             else
             {
@@ -273,13 +283,13 @@
             }
         }
 
-        private string GetPropertyValue(string propName)
+        private void RemoveProperty(string propName)
         {
-            PropertyValue value =
-                this.realtyObjectEF.PropertyValues.FirstOrDefault(
-                    pv => pv.PropertyType.PropertyName == propName);
-
-            return value != null ? value.StringValue : null;
+            if (this.GetProperty(propName) != null)
+            {
+                this.realtyObjectEF.PropertyValues.Remove(
+                    this.GetProperty(propName));
+            }
         }
 
         private PropertyType GetPropertyType(string propTypeName)
