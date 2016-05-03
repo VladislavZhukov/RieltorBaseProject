@@ -3,6 +3,9 @@
 Справка по JQuery (можно найти нужную функцию в поиске): http://jquery.page2page.ru/
 Календарь (bootstrap-datepicker): https://eternicode.github.io/bootstrap-datepicker
 Руководство по стилям для AngularJS: https://github.com/johnpapa/angular-styleguide/blob/master/a1/i18n/ru-RU.md
+
+Видео "ngRoute и AngularUI Router — Открытый вебинар по Angular.js": https://youtube.com/watch?v=0lIoZw_uicA
+
 */
 
 (function () {
