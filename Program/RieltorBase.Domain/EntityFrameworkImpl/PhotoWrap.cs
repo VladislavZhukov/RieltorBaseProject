@@ -1,21 +1,38 @@
-﻿namespace RieltorBase.Domain.EntityFrameworkImpl
+﻿using System;
+
+namespace RieltorBase.Domain.EntityFrameworkImpl
 {
     using RieltorBase.Domain.Interfaces;
 
-    public class PhotoWrap : IWrapBase<Photo, IPhoto>, IPhoto
+    /// <summary>
+    /// Обертка класса <see cref="Photo"/>, реализующая 
+    /// интерфейс <see cref="IPhoto"/>.
+    /// </summary>
+    public class PhotoWrap : IWrapBase<Photo>, IPhoto
     {
+        /// <summary>
+        /// EF-объект фотографии.
+        /// </summary>
         private Photo photo;
 
-        public PhotoWrap()
-        {
-            this.photo = new Photo();
-        }
-
+        /// <summary>
+        /// Создать обертку фотографии на основе реальной EF-фотографии.
+        /// </summary>
+        /// <param name="photo">EF-объект фотографии.</param>
         public PhotoWrap(Photo photo)
         {
+            if (photo == null)
+            {
+                throw new ArgumentNullException("photo");
+            }
+
             this.photo = photo;
         }
 
+        /// <summary>
+        /// Создать обертку EF-фотографии на основе любого объекта фотографии.
+        /// </summary>
+        /// <param name="iPhoto">Интерфейс фотографии.</param>
         public PhotoWrap(IPhoto iPhoto)
         {
             this.photo = new Photo()
@@ -27,6 +44,9 @@
             };
         }
 
+        /// <summary>
+        /// Id фотографии.
+        /// </summary>
         public int PhotoId
         {
             get
@@ -39,6 +59,9 @@
             }
         }
 
+        /// <summary>
+        /// Id объекта недвижимости (если это фотография объекта недвижимости).
+        /// </summary>
         public int RealtyObjectId
         {
             get
@@ -51,6 +74,9 @@
             }
         }
 
+        /// <summary>
+        /// Id фирмы (если это фотография фирмы).
+        /// </summary>
         public int FirmId
         {
             get
@@ -63,6 +89,9 @@
             }
         }
 
+        /// <summary>
+        /// Относительная часть пути к фотографии (например, часть url).
+        /// </summary>
         public string RelativeSource
         {
             get
@@ -75,6 +104,10 @@
             }
         }
 
+        /// <summary>
+        /// Получить EF-объект фотографии.
+        /// </summary>
+        /// <returns>EF-объект фотографии.</returns>
         public Photo GetRealObject()
         {
             return this.photo;

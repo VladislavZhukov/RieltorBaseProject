@@ -6,13 +6,19 @@
     using RieltorBase.Domain.Interfaces;
 
     /// <summary>
-    /// Контекст базы данных недвижимости.
+    /// EF-реализация контекста базы данных недвижимости.
     /// </summary>
     public class RealtyBaseContext : IRealtyBaseContext
     {
+        /// <summary>
+        /// EF-контекст.
+        /// </summary>
         VolgaInfoDBEntities context 
             = new VolgaInfoDBEntities();
 
+        /// <summary>
+        /// Сохранить изменения.
+        /// </summary>
         public void SaveChanges()
         {
             this.context.SaveChanges();
