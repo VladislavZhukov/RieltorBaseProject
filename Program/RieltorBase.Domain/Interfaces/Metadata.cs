@@ -40,7 +40,7 @@
 
         internal const string AdditionalInfoPropName = "Дополнительная информация";
 
-        internal const string NotePropName = "Примечание";
+        internal const string NotePropName = "Примечания";
 
         /// <summary>
         /// Имя свойства цены для всех типов объектов, кроме аренды.
