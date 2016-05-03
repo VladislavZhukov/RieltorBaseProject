@@ -177,9 +177,10 @@
     <Content Include="Scripts\i18n\angular-locale_en.js" />
     <Content Include="Scripts\i18n\angular-locale_ru-ru.js" />
     <Content Include="Scripts\i18n\angular-locale_ru.js" />
-    <Content Include="Scripts\inner\app_controller.js" />
-    <Content Include="Scripts\inner\controllers.js" />
-    <Content Include="Scripts\inner\search_controller.js" />
+    <Content Include="Scripts\inner\apartment-controller.js" />
+    <Content Include="Scripts\inner\constants.js" />
+    <Content Include="Scripts\inner\route-config.js" />
+    <Content Include="Scripts\inner\search-controller.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -190,7 +191,7 @@
     <Content Include="Scripts\vendors\bootstrap-datepicker.js" />
     <Content Include="Scripts\vendors\bootstrap-datepicker.ru.js" />
     <Content Include="Template\about.html" />
-    <Content Include="Template\app.html" />
+    <Content Include="Template\apartment.html" />
     <Content Include="Template\contact.html" />
     <Content Include="Template\search.html" />
     <Content Include="Web.config" />

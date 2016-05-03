@@ -154,7 +154,7 @@
             <!-- Выводим динамически ячейки строк -->
             <tr ng-repeat="app in appts | orderBy:sortField:reverse">
                 <td ng-repeat="column in apptsColumns">
-                    <a href="#/app/{{ app.id }}">
+                    <a href="#/app/{{ app.id }}" target="_blank">
                         {{ app[column.column] }}
                     </a>
                 </td>
@@ -169,7 +169,7 @@
             <div class="panel panel-primary" ng-repeat="app in appts">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <a href="#/app/{{ app.id }}">
+                        <a href="#/app/{{ app.id }}" target="_blank">
                             id = {{ app.id }}
                         </a>
                     </h3>
