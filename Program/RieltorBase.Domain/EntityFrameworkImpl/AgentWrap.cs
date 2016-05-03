@@ -116,15 +116,5 @@
         {
             return _agentEF;
         }
-
-        public void UpdateRealObject(Agent realObject)
-        {
-            realObject.Name = Name;
-            realObject.LastName = LastName;
-            realObject.Addres = Addres;
-            realObject.PhoneNumber = PhoneNumber;
-            realObject.Id_firm = Id_firm;
-            realObject.IsFirmAdmin = IsFirmAdmin;
-        }
     }
 }

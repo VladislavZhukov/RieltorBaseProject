@@ -48,10 +48,5 @@
         {
             return this.firmEF;
         }
-
-        public void UpdateRealObject(Firm realObject)
-        {
-            realObject.Name = this.Name;
-        }
     }
 }

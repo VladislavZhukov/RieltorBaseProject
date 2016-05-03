@@ -5,6 +5,7 @@
     using System.Web.Http;
 
     using RieltorBase.Domain.Interfaces;
+    using RieltorBase.WebSite.JsonCompatibleClasses;
 
     public class RealtyObjectsController : ApiController
     {
@@ -47,7 +48,7 @@
         }
 
         // POST api/realtyobjects
-        public IRealtyObject Post([FromBody]IRealtyObject value)
+        public IRealtyObject Post([FromBody]JsonRealtyObject value)
         {
             IRealtyObject newObj = this.realtyObjects.Add(value);
             this.realtyObjects.SaveChanges();
@@ -55,7 +56,7 @@
         }
 
         // PUT api/realtyobjects/5
-        public IRealtyObject Put(int id, [FromBody]IRealtyObject value)
+        public IRealtyObject Put(int id, [FromBody]JsonRealtyObject value)
         {
             IRealtyObject updatedObj = this.realtyObjects.Update(value);
             this.realtyObjects.SaveChanges();
@@ -66,6 +67,7 @@
         public void Delete(int id)
         {
             this.realtyObjects.Delete(id);
+            this.realtyObjects.SaveChanges();
         }
     }
 }
