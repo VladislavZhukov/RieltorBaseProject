@@ -213,7 +213,11 @@
 
             <!-- Выводим динамически ячейки строк -->
             <tr ng-repeat="app in appts | orderBy:sortField:reverse">
-                <td ng-repeat="column in apptsColumns">{{ app[column.column] }}</td>
+                <td ng-repeat="column in apptsColumns">
+                    <a href="#/app/{{ app.id }}">
+                        {{ app[column.column] }}
+                    </a>
+                </td>
             </tr>
         </table>
     </div>

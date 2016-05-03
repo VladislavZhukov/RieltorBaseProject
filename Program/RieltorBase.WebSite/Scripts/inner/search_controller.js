@@ -39,6 +39,9 @@
                 GET_REALTY_OBJECTS,
                 searchRequest,
                 function (data, textStatus) {
+                    console.log('С сервера пришёл ответ:');
+                    console.log(data);
+
                     // Здесь мы получаем данные, отправленные сервером и выводим их на экран.
                     $scope.$apply(function () {
                         $scope.appts = processAppartments(data);
@@ -135,6 +138,7 @@
 	        var res = [];
 	        objects.forEach(function (obj, i, arr) {
 	            var newObj = {};
+	            newObj.id = obj.RealtyObjectId;
 	            newObj.rooms = obj.AdditionalAttributes.Комнат;
 	            newObj.address = obj.AdditionalAttributes.Улица + ' ' + obj.AdditionalAttributes.Дом;
 	            newObj.numberOfFloors = obj.AdditionalAttributes.Этажи;
