@@ -3,66 +3,6 @@
         <h1>Поиск квартир в Тольятти</h1>
     </div>
 
-    <!-- Панель инструментов -->
-    <div class="panel-toolbar well">
-        <div>
-            <button title="Своя база">
-                <i class="fa fa-list-ul fa-3x" aria-hidden="true"></i><span> Своя база</span>
-            </button>
-            <button title="Вся база">
-                <i class="fa fa-database fa-3x" aria-hidden="true"></i><span> Вся база</span>
-            </button>
-            <button title="Карточка объекта">
-                <i class="fa fa-file-text-o fa-3x" aria-hidden="true"></i><span> Карточка объекта</span>
-            </button>
-            <button title="Редактировать свои объекты">
-                <i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i><span> Редактировать объекты</span>
-            </button>
-            <button title="Доп. информация">
-                <i class="fa fa-info fa-3x" aria-hidden="true"></i><span> Доп. информация</span>
-            </button>
-            <button title="Версия для печати">
-                <i class="fa fa-print fa-3x" aria-hidden="true"></i><span> Версия для печати</span>
-            </button>
-        </div>
-        
-    </div>
-
-    <div class="panel-toolbar-33 well">
-        <div class="row">
-            <div class="col-md-2 col-sm-4 col-xs-12">
-                <button title="Своя база">
-                    <i class="fa fa-list-ul fa-3x" aria-hidden="true"></i> Своя база
-                </button>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-12">
-                <button title="Вся база">
-                    <i class="fa fa-list fa-3x" aria-hidden="true"></i> Вся база
-                </button>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-12">
-                <button title="Карточка объекта">
-                    <i class="fa fa-file-text-o fa-3x" aria-hidden="true"></i> Карточка объекта
-                </button>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-12">
-                <button title="Редактировать свои объекты">
-                    <i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i> Редактировать
-                </button>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-12">
-                <button title="Доп. информация">
-                    <i class="fa fa-info fa-3x" aria-hidden="true"></i> Доп. информация
-                </button>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-12">
-                <button title="Версия для печати">
-                    <i class="fa fa-print fa-3x" aria-hidden="true"></i> Печать
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Панель инструментов, версия 2 -->
     <div class="panel-toolbar-2 well">
         <div class="row">
@@ -195,8 +135,8 @@
     </div>
 
 
-    <!-- Тестовая html-таблица "Квартиры" -->
-    <div class="well">
+    <!-- Таблица "Квартиры" -->
+    <div class="well hidden-xs">
         <legend>Квартиры, маленькая таблица</legend>
 
         <table class="table table-striped table-bordered table-hover table-condensed">
@@ -221,4 +161,75 @@
             </tr>
         </table>
     </div>
+
+    <!-- Панель "Квартиры" для телефонов -->
+    <div class="well visible-xs-block">
+        <legend>Квартиры</legend>
+        <div class="">
+            <div class="panel panel-primary" ng-repeat="app in appts">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <a href="#/app/{{ app.id }}">
+                            id = {{ app.id }}
+                        </a>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div ng-repeat="col in apptsColumns">
+                        {{ col.readableName }}: {{ app[col.column] }}
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+
+
+    <!-- Панель инструментов -->
+    <div class="panel-toolbar-33 well  ">
+        <div class="row">
+            <div class="col-md-2 col-sm-4 col-xs-12">
+                <button title="Своя база">
+                    <i class="fa fa-list-ul fa-3x" aria-hidden="true"></i>
+                    <div class="visible-sm-block visible-xs-block"></div>
+                    <span>&nbsp;Своя база</span>
+                </button>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-12">
+                <button title="Вся база">
+                    <i class="fa fa-list fa-3x" aria-hidden="true"></i>
+                    <div class="visible-sm-block visible-xs-block"></div>
+                    &nbsp;Вся база
+                </button>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-12">
+                <button title="Карточка объекта">
+                    <i class="fa fa-file-text-o fa-3x" aria-hidden="true"></i>
+                    <div class="visible-sm-block visible-xs-block"></div>
+                    Карточка объекта
+                </button>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-12">
+                <button title="Редактировать свои объекты">
+                    <i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i>
+                    <div class="visible-sm-block visible-xs-block"></div>
+                    &nbsp;Редактировать
+                </button>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-12">
+                <button title="Доп. информация">
+                    <i class="fa fa-info fa-3x" aria-hidden="true"></i>
+                    <div class="visible-sm-block visible-xs-block"></div>
+                    &nbsp;Доп. информация
+                </button>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-12">
+                <button title="Версия для печати">
+                    <i class="fa fa-print fa-3x" aria-hidden="true"></i>
+                    <div class="visible-sm-block visible-xs-block"></div>
+                    &nbsp;Печать
+                </button>
+            </div>
+        </div>
+    </div>
+
 </div>

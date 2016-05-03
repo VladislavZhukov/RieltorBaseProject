@@ -9,7 +9,12 @@
 
 .panel-toolbar-33{
     text-align:center;
-    
+}
+.panel-toolbar-33 div{
+    padding:0;
+}
+.panel-toolbar-33 button{
+    width:100%;
 }
 .panel-toolbar-33 i{
     vertical-align:middle;
@@ -18,7 +23,7 @@
     font-size:12px;
 }
 .panel-toolbar-33 i{
-    width:155px;
+    /*width:155px;*/
     
 }
 

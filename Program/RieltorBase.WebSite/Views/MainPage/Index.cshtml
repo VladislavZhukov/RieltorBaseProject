@@ -45,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Realtor Base</a>
+                <a class="navbar-brand" href="#/">Realtor Base</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -148,19 +148,25 @@
     <br />
     <br />
     <br />
-    <br />
 
     <div class="container theme-showcase" role="main">
         <!-- Angular приложение -->
-        
+        <div class="panel-body">
+             <ng-view></ng-view>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
         <a href="#/">Main</a>
         <a href="#/about">About</a>
         <a href="#/contact">Contact</a>
         <a href="#/app/13"> App</a>
 
-        <div class="panel-body">
-             <ng-view></ng-view>
-        </div>
     </div>
 
     <!-- Bootstrap core JavaScript
