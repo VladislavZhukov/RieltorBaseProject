@@ -205,6 +205,7 @@
     <Compile Include="Controllers\MainPageController.cs" />
     <Compile Include="Controllers\PhotosController.cs" />
     <Compile Include="Controllers\RealtyObjectsController.cs" />
+    <Compile Include="JsonCompatibleClasses\JsonRealtyObject.cs" />
     <Compile Include="JsonCompatibleClasses\JsonFirm.cs" />
     <Compile Include="RBDependencyResolver.cs" />
     <Compile Include="Global.asax.cs">
