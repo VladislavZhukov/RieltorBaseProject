@@ -14,32 +14,68 @@
     {
         #region TypeNames
 
+        /// <summary>
+        /// Имя типа квартир.
+        /// </summary>
         internal const string AppartmentTypeName = "Квартиры";
 
+        /// <summary>
+        /// Имя типа малосемеек.
+        /// </summary>
         internal const string MalosemeykiTypeName = "Малосемейки";
 
+        /// <summary>
+        /// Имя типа новостроек.
+        /// </summary>
         internal const string NovostroykiTypeName = "Новостройки";
 
+        /// <summary>
+        /// Имя типа домов и коттеджей.
+        /// </summary>
         internal const string DomaKottedgiTypeName = "Дома/Коттеджи";
 
+        /// <summary>
+        /// Имя типа арендной недвижимости.
+        /// </summary>
         internal const string ArendaTypeName = "Аренда жилья";
 
+        /// <summary>
+        /// Имя типа коммерческой недвижимости.
+        /// </summary>
         internal const string KommercheskayaTypeName = "Коммерческая Недвижимость";
 
+        /// <summary>
+        /// Имя типа земельных участков.
+        /// </summary>
         internal const string UchastkiTypeName = "Участки";
 
+        /// <summary>
+        /// Имя типа дач.
+        /// </summary>
         internal const string DachiTypeName = "Дачи";
 
+        /// <summary>
+        /// Имя типа прочих объектов недвижимости.
+        /// </summary>
         internal const string RaznoeTypeName = "Разное";
 
         #endregion
 
         #region Имена общих свойств для всех типов объектов
 
+        /// <summary>
+        /// Имя свойства даты.
+        /// </summary>
         internal const string DatePropName = "Дата";
 
+        /// <summary>
+        /// Имя свойства дополнительной информации.
+        /// </summary>
         internal const string AdditionalInfoPropName = "Дополнительная информация";
 
+        /// <summary>
+        /// Имя свойства примечаний.
+        /// </summary>
         internal const string NotePropName = "Примечания";
 
         /// <summary>
@@ -250,6 +286,12 @@
             }
         }
 
+        /// <summary>
+        /// Получить имя свойства цены (имя свойства цены может 
+        /// быть разным для разных типов объектов недвижимости).
+        /// </summary>
+        /// <param name="typeName">Имя типа объекта недвижимости.</param>
+        /// <returns>Имя свойства цены.</returns>
         internal static string GetCostPropertyName(string typeName)
         {
             if (typeName == Metadata.ArendaTypeName)
