@@ -103,21 +103,20 @@
 	        $('.searchSpecificDate').on('click', searchSpecificDateButton);
 	        $('#searchDateMin, #searchDateMax').change(searchSpecificDateTextField);
 
-	        // Показывает/скрывает дополнительную информацию в блоке квартир
-	        $('#appartments').on('click', '.toggle-appartment-additional', mobileBlockClicked);
+	        // Разворачивает (hide\show) дополнительную информацию о квартире
+	        $('#appartments').on('click', '.toggle-appartment-additional', toggleAppartmentAdditionalInfo);
 	    }
 
-        // Показывает/скрывает дополнительную информацию в блоке квартир
-	    function mobileBlockClicked() {
-	        /* Раскрывающийся блок (с дополнительной информацией) идёт после блока с общей информацией.
-            Например:
-            <tr class="toggle-appartment-additional"></tr>
-            <tr class="appartment-additional"></tr>
+        // Разворачивает (hide\show) дополнительную информацию о квартире
+	    function toggleAppartmentAdditionalInfo() {
+	        /* Переключение между мобильным и десктопным разрешением сохраняет какие вкладки были развёрнуты.
 
-            Так сделано из-за <tr> тегов.
+            В html надо добавить:
+            - class="toggle-appartment-additional" data-id="{{ app.id }}"   // Элемент, который будет "тумблером". {{ app.id }} - какой-либо идентификатор для селекторов (можно id квартиры)
+            - class="appartment-additional-{{ app.id }}">                   // Блок, который будет сворачиваться-разворачиваться
             */
 
-	        $(this).nextAll('.appartment-additional:first').toggle();
+	        $('.appartment-additional-' + this.getAttribute('data-toggle-id')).toggle();
 	    }
 
         // Клик по одной из кнопок "За последний: день\неделю\месяц"

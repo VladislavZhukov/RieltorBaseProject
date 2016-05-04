@@ -150,24 +150,26 @@
                                         'glyphicon-chevron-down' : isSortDown(col['column'])}"></i>
                         </a>
                     </th>
+                    <th></th>
                 </tr>
 
-                <!-- Выводим динамически ячейки строк -->
-                <tr class="toggle-appartment-additional" ng-repeat-start="app in appts | orderBy:sortField:reverse">
+                <!-- Основные свойства квартиры. Выводим динамически ячейки строк -->
+                <tr ng-repeat-start="app in appts | orderBy:sortField:reverse">
                     <td ng-repeat="col in apptsColumns">
                         <a href="#/app/{{ app.id }}" target="_blank">
                             {{ app[col.column] }}
                         </a>
                     </td>
+                    <td class="toggle-appartment-additional" data-toggle-id="{{ app.id }}">Развернуть</td>
                 </tr>
                 <tr></tr>
 
                 <!-- Развернутые свойства квартиры -->
-                <tr class="appartment-additional" ng-repeat-end>
-                    <td colspan="{{ apptsColumns.length }}">
+                <tr class="appartment-additional appartment-additional-{{ app.id }}" ng-repeat-end>
+                    <td colspan="{{ apptsColumns.length + 1 }}">
                         <div class="panel panel-primary">
-                            <span>Раскрывающаяся панель для id = {{ app.id }}</span>
                             <div class="panel-body">
+                                <span>Раскрывающаяся панель для id = {{ app.id }}</span>
                                 <div ng-repeat="col in apptsColumns">
                                     {{ col.readableName }}: {{ app[col.column] }}
                                 </div>
@@ -194,14 +196,14 @@
                     <div class="panel-body">
 
                         <!-- Основные свойства квартиры -->
-                        <div class="toggle-appartment-additional">
+                        <div class="toggle-appartment-additional" data-toggle-id="{{ app.id }}">
                             <div class="" ng-repeat="col in apptsColumns">
                                 {{ col.readableName }}: {{ app[col.column] }}
                             </div>
                         </div>
 
                         <!-- Развернутые свойства квартиры -->
-                        <div class="panel panel-primary appartment-additional">
+                        <div class="panel panel-primary appartment-additional appartment-additional-{{ app.id }}">
                             <div class="panel-body">
                                 <div>Раскрывающаяся панель для id = {{ app.id }}</div>
                                 <div ng-repeat="col in apptsColumns">
