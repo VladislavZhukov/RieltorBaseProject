@@ -44,6 +44,12 @@
 }
 
 /* Блок найденных квартир */
-.appartment-block-additional{
+.appartment-additional{
     display:none;
+}
+.toggle-appartment-additional{
+    cursor:pointer;
+}
+.appartments-mobile .appartment-additional{
+    margin-top:15px;
 }

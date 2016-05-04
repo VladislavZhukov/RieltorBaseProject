@@ -134,65 +134,87 @@
         </form>
     </div>
 
-
-    <!-- Таблица "Квартиры" -->
-    <div class="well hidden-xs">
-        <legend>Квартиры, маленькая таблица</legend>
-
-        <table class="table table-striped table-bordered table-hover table-condensed">
-            <!-- Выводим динамически названия столбцов -->
-            <tr>
-                <th ng-repeat="col in apptsColumns" ng-click="sort(col['column'])">
-                    <a href="">
-                        {{ col.readableName }}
-                        <i class="glyphicon" ng-class="{'glyphicon-chevron-up' : isSortUp(col['column']),
-                                        'glyphicon-chevron-down' : isSortDown(col['column'])}"></i>
-                    </a>
-                </th>
-            </tr>
-
-            <!-- Выводим динамически ячейки строк -->
-            <tr ng-repeat="app in appts | orderBy:sortField:reverse">
-                <td ng-repeat="col in apptsColumns">
-                    <a href="#/app/{{ app.id }}" target="_blank">
-                        {{ app[col.column] }}
-                    </a>
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <!-- Мобильная версия блока найденных квартир -->
-    <div class="well visible-xs-block appartments">
+    <!-- Блок найденных квартир -->
+    <div class="well" id="appartments">
         <legend>Найденные квартиры</legend>
 
-        <!-- Отдельный блок для каждой квартиры -->
-        <div class="panel panel-primary appartment-block" ng-repeat="app in appts">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    <a href="#/app/{{ app.id }}" target="_blank">
-                        id = {{ app.id }}
-                    </a>
-                </h3>
-            </div>
-            <div class="panel-body">
-                <div ng-repeat="col in apptsColumns">
-                    {{ col.readableName }}: {{ app[col.column] }}
-                </div>
-            </div>
+        <!-- "Десктопная" версия блока найденных квартир (для большого и среднего экрана) -->
+        <div class="hidden-xs">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+                <!-- Заголовки столбцов -->
+                <tr>
+                    <th ng-repeat="col in apptsColumns" ng-click="sort(col['column'])">
+                        <a href="">
+                            {{ col.readableName }}
+                            <i class="glyphicon" ng-class="{'glyphicon-chevron-up' : isSortUp(col['column']),
+                                        'glyphicon-chevron-down' : isSortDown(col['column'])}"></i>
+                        </a>
+                    </th>
+                </tr>
 
-            <!-- Развернутые свойства квартиры -->
-            <div class="panel panel-primary appartment-block-additional">
-                <span>Раскрывающаяся панель для id = {{ app.id }}</span>
-                <div class="panel-body">
-                    <div ng-repeat="col in apptsColumns">
-                        {{ col.readableName }}: {{ app[col.column] }}
+                <!-- Выводим динамически ячейки строк -->
+                <tr class="toggle-appartment-additional" ng-repeat-start="app in appts | orderBy:sortField:reverse">
+                    <td ng-repeat="col in apptsColumns">
+                        <a href="#/app/{{ app.id }}" target="_blank">
+                            {{ app[col.column] }}
+                        </a>
+                    </td>
+                </tr>
+                <tr></tr>
+
+                <!-- Развернутые свойства квартиры -->
+                <tr class="appartment-additional" ng-repeat-end>
+                    <td colspan="{{ apptsColumns.length }}">
+                        <div class="panel panel-primary">
+                            <span>Раскрывающаяся панель для id = {{ app.id }}</span>
+                            <div class="panel-body">
+                                <div ng-repeat="col in apptsColumns">
+                                    {{ col.readableName }}: {{ app[col.column] }}
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Мобильная версия блока найденных квартир -->
+        <div class="visible-xs-block appartments-mobile">
+            <!-- Отдельный блок для каждой квартиры -->
+            <div ng-repeat="app in appts">
+                
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <a href="#/app/{{ app.id }}" target="_blank">
+                                id = {{ app.id }} (Открыть)
+                            </a>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <!-- Основные свойства квартиры -->
+                        <div class="toggle-appartment-additional">
+                            <div class="" ng-repeat="col in apptsColumns">
+                                {{ col.readableName }}: {{ app[col.column] }}
+                            </div>
+                        </div>
+
+                        <!-- Развернутые свойства квартиры -->
+                        <div class="panel panel-primary appartment-additional">
+                            <div class="panel-body">
+                                <div>Раскрывающаяся панель для id = {{ app.id }}</div>
+                                <div ng-repeat="col in apptsColumns">
+                                    {{ col.readableName }}: {{ app[col.column] }}
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-     </div>
-
+    </div>
 
     <!-- Панель инструментов -->
     <div class="panel-toolbar-33 well  ">

@@ -104,12 +104,20 @@
 	        $('#searchDateMin, #searchDateMax').change(searchSpecificDateTextField);
 
 	        // Показывает/скрывает дополнительную информацию в блоке квартир
-	        $('body').on('click', '.appartment-block', mobileBlockClicked);
+	        $('#appartments').on('click', '.toggle-appartment-additional', mobileBlockClicked);
 	    }
 
         // Показывает/скрывает дополнительную информацию в блоке квартир
 	    function mobileBlockClicked() {
-	        $(this).find('.appartment-block-additional').toggle();
+	        /* Раскрывающийся блок (с дополнительной информацией) идёт после блока с общей информацией.
+            Например:
+            <tr class="toggle-appartment-additional"></tr>
+            <tr class="appartment-additional"></tr>
+
+            Так сделано из-за <tr> тегов.
+            */
+
+	        $(this).nextAll('.appartment-additional:first').toggle();
 	    }
 
         // Клик по одной из кнопок "За последний: день\неделю\месяц"
