@@ -42,3 +42,8 @@
     display:block;
     font-size:12px;
 }
+
+/* Блок найденных квартир */
+.appartment-block-additional{
+    display:none;
+}

@@ -153,27 +153,37 @@
 
             <!-- Выводим динамически ячейки строк -->
             <tr ng-repeat="app in appts | orderBy:sortField:reverse">
-                <td ng-repeat="column in apptsColumns">
+                <td ng-repeat="col in apptsColumns">
                     <a href="#/app/{{ app.id }}" target="_blank">
-                        {{ app[column.column] }}
+                        {{ app[col.column] }}
                     </a>
                 </td>
             </tr>
         </table>
     </div>
 
-    <!-- Панель "Квартиры" для телефонов -->
-    <div class="well visible-xs-block">
-        <legend>Квартиры</legend>
-        <div class="">
-            <div class="panel panel-primary" ng-repeat="app in appts">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        <a href="#/app/{{ app.id }}" target="_blank">
-                            id = {{ app.id }}
-                        </a>
-                    </h3>
+    <!-- Мобильная версия блока найденных квартир -->
+    <div class="well visible-xs-block appartments">
+        <legend>Найденные квартиры</legend>
+
+        <!-- Отдельный блок для каждой квартиры -->
+        <div class="panel panel-primary appartment-block" ng-repeat="app in appts">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a href="#/app/{{ app.id }}" target="_blank">
+                        id = {{ app.id }}
+                    </a>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div ng-repeat="col in apptsColumns">
+                    {{ col.readableName }}: {{ app[col.column] }}
                 </div>
+            </div>
+
+            <!-- Развернутые свойства квартиры -->
+            <div class="panel panel-primary appartment-block-additional">
+                <span>Раскрывающаяся панель для id = {{ app.id }}</span>
                 <div class="panel-body">
                     <div ng-repeat="col in apptsColumns">
                         {{ col.readableName }}: {{ app[col.column] }}

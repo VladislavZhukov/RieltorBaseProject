@@ -100,9 +100,16 @@
 
 	    function initHandlers() {
 	        // Панель поиска: кнопки, текстовые поля даты и пр.
-	        //$('#searchSubmit').on('click', searchSubmit);   // Вешаем обработчик клика на кнопке "Поиск" ('#searchSubmit')
 	        $('.searchSpecificDate').on('click', searchSpecificDateButton);
 	        $('#searchDateMin, #searchDateMax').change(searchSpecificDateTextField);
+
+	        // Показывает/скрывает дополнительную информацию в блоке квартир
+	        $('body').on('click', '.appartment-block', mobileBlockClicked);
+	    }
+
+        // Показывает/скрывает дополнительную информацию в блоке квартир
+	    function mobileBlockClicked() {
+	        $(this).find('.appartment-block-additional').toggle();
 	    }
 
         // Клик по одной из кнопок "За последний: день\неделю\месяц"
