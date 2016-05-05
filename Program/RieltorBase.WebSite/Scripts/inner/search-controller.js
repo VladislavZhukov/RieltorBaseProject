@@ -5,7 +5,12 @@
 Руководство по стилям для AngularJS: https://github.com/johnpapa/angular-styleguide/blob/master/a1/i18n/ru-RU.md
 
 Видео-уроки по Bootstrap 3: https://www.youtube.com/watch?v=AYkEfr-5b1o&list=PLypd1VrGv7FPokhw3f5pwBQTHsU9T2mBq&index=1
-Видео "ngRoute и AngularUI Router — Открытый вебинар по Angular.js": https://youtube.com/watch?v=0lIoZw_uicA
+
+Angular Internet Explorer Compatibility: https://docs.angularjs.org/guide/ie
+
+Часть видео, которые я смотрел по Ангуляру:
+- "AngularJs - введение": https://www.youtube.com/watch?v=CyWJZnNpezU&index=1&list=PLY4rE9dstrJxWEX3fCPjFpmcnoU_3GRWW
+- "ngRoute и AngularUI Router — Открытый вебинар по Angular.js": https://youtube.com/watch?v=0lIoZw_uicA
 
 
 */
@@ -60,7 +65,7 @@
         // Вызов разных методов при инициилизации
         initHTMLProperies();
         initHandlers();
-        $scope.searchSubmit();
+        //$scope.searchSubmit();
 
         // Для сортировки таблицы
 	    $scope.sort = function(fieldName) {
