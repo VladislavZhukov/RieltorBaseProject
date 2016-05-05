@@ -94,44 +94,19 @@
         public IEnumerable<IRealtyObject> FindByParams(
             RealtyObjectSearchOptions options)
         {
-            IQueryable<RealtyObject> queryableResult =
-                this.Context.RealtyObjects;
-
-            if (!string.IsNullOrWhiteSpace(options.RealtyObjectType))
+            if (options == null)
             {
-                queryableResult = queryableResult.Where(ro =>
-                    options.RealtyObjectType.Contains(
-                        ro.RealtyObjectType.TypeName));
+                return this.GetAll();
             }
 
-            if (options.MinCost != 0 || options.MaxCost != 0)
-            {
-                queryableResult = queryableResult.Where(ro =>
-                    ro.PropertyValues.Any(pv =>
-                        pv.PropertyType.PropertyName == Metadata.CostPropName
-                        /*&& pv.IntegerValue >= searchOptions.MinCost 
-                         *&& pv.IntegerValue <= searchOptions.MaxCost*/)); // с ценой пока не работает!!! нужно целочисленное поле в БД.
-            }
+            RealtyObjectsFinder finder = new RealtyObjectsFinder(
+                options,
+                this.Context.RealtyObjects);
 
-            if (!string.IsNullOrWhiteSpace(options.PartOfAddress))
-            {
-                queryableResult = queryableResult.Where(ro =>
-                    ro.PropertyValues.Any(pv =>
-                        pv.PropertyType.PropertyName == "Адрес"
-                        && pv.StringValue.Contains(options.PartOfAddress)));
-            }
+            ICollection<RealtyObject> rawResult = finder.Find();
 
-            if (options.MinDate != null
-                || options.MaxDate != null)
-            {
-                queryableResult = queryableResult.Where(ro =>
-                    true); // нужно обязательное поле "CreationDate" ro.CreationDate >= searchOptions.MinDate && ro.CreationDate <= searchOptions.MaxDate);
-            }
-
-            IEnumerable<IRealtyObject> result = queryableResult.Select(robj =>
+            return rawResult.Select(robj => 
                 new RealtyObjectWrap(robj, this.Context));
-
-            return result.AsQueryable();
         }
 
         /// <summary>
