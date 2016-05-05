@@ -1,4 +1,9 @@
-﻿namespace RieltorBase.WebSite.Controllers
+﻿using System;
+using System.Net.Http.Headers;
+using System.Security.Authentication;
+using System.Text;
+
+namespace RieltorBase.WebSite.Controllers
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -60,6 +65,7 @@
         /// (в теле запроса - JSON-объект фирмы).</remarks>
         public void Post([FromBody]JsonFirm newFirm)
         {
+            this.AuthorizeAdmin();
             this.firmsRepo.Add(newFirm);
             this.firmsRepo.SaveChanges();
         }
@@ -74,6 +80,7 @@
         /// (в теле запроса - JSON-объект фирмы).</remarks>
         public void Put(int id, [FromBody]JsonFirm firm)
         {
+            this.AuthorizeAdmin();
             this.firmsRepo.Update(firm);
             this.firmsRepo.SaveChanges();
         }
@@ -85,8 +92,41 @@
         /// <remarks>Пример запроса: DELETE api/v1/firms/5.</remarks>
         public void Delete(int id)
         {
+            this.AuthorizeAdmin();
             this.firmsRepo.Delete(id);
             this.firmsRepo.SaveChanges();
+        }
+
+        /// <summary>
+        /// Провести аутентификацию (убедиться, что это администратор) 
+        /// и авторизацию (не вызывать исключение, что позволит выполнить дальнейшие операции)
+        /// пользователя.
+        /// </summary>
+        private void AuthorizeAdmin()
+        {
+            AuthenticationHeaderValue auth = this.Request.Headers.Authorization;
+
+            if (auth == null || auth.Scheme != "Basic")
+            {
+                throw new AuthenticationException(
+                    "Нет прав на добавление, изменение или удаление фирм.");
+            }
+
+            string encodedCredentials = auth.Parameter; 
+            byte[] credentialBytes = Convert.FromBase64String(encodedCredentials); 
+            string[] credentials = Encoding.ASCII.GetString(credentialBytes).Split(':');
+
+            if (credentials[0] != "Admin")
+            {
+                throw new AuthenticationException(
+                    "Неправильный логин. Должно быть: \"Admin\".");
+            }
+
+            if (credentials[1] != "123")
+            {
+                throw new AuthenticationException(
+                    "Неправильный пароль. Должно быть \"123\"");
+            }
         }
     }
 }
