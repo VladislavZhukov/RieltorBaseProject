@@ -8,9 +8,9 @@
     public class RealtyObjectSearchOptions
     {
         /// <summary>
-        /// Список типов объектов недвижимости.
+        /// Тип объекта недвижимости.
         /// </summary>
-        public string RealtyObjectTypes { get; set; }
+        public string RealtyObjectType { get; set; }
 
         /// <summary>
         /// Часть адреса.

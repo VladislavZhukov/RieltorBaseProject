@@ -57,7 +57,7 @@
                     MinCost = minCost,
                     MaxCost = maxCost,
                     PartOfAddress = partOfAddress,
-                    RealtyObjectTypes = realtyObjectType,
+                    RealtyObjectType = realtyObjectType,
                     MinDate = minDate,
                     MaxDate = maxDate
                 };

@@ -97,10 +97,10 @@
             IQueryable<RealtyObject> queryableResult =
                 this.Context.RealtyObjects;
 
-            if (!string.IsNullOrWhiteSpace(options.RealtyObjectTypes))
+            if (!string.IsNullOrWhiteSpace(options.RealtyObjectType))
             {
                 queryableResult = queryableResult.Where(ro =>
-                    options.RealtyObjectTypes.Contains(
+                    options.RealtyObjectType.Contains(
                         ro.RealtyObjectType.TypeName));
             }
 
