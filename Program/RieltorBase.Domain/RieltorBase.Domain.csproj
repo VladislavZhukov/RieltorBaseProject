@@ -78,6 +78,7 @@
     <Compile Include="EntityFrameworkImpl\PhotosRepository.cs" />
     <Compile Include="EntityFrameworkImpl\PhotoWrap.cs" />
     <Compile Include="EntityFrameworkImpl\RealtyBaseContext.cs" />
+    <Compile Include="EntityFrameworkImpl\RealtyObjectsFinder.cs" />
     <Compile Include="EntityFrameworkImpl\RealtyObjectsRepository.cs" />
     <Compile Include="Firm.cs">
       <DependentUpon>RealtyBaseModel.tt</DependentUpon>

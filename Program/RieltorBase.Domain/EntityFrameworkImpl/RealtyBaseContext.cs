@@ -80,6 +80,16 @@
                 PhoneNumber = "33 - 33-3(0)"
             });
 
+            Agent petya = this.context.Agents.Add(new Agent()
+            {
+                Firm = newFirm,
+                Name = "Петя",
+                IsFirmAdmin = false,
+                Addres = "Карла Маркса 25",
+                LastName = "Сидоров",
+                PhoneNumber = "2222-22"
+            });
+
             // квартиры
             RealtyObject vasyasAppartment1 = this.context.RealtyObjects.Add(new RealtyObject()
             {
@@ -154,6 +164,122 @@
                 }
             })
             .ForEach(value => vasyasAppartment2.PropertyValues.Add(value));
+
+            RealtyObject petyasAppartment1 = this.context.RealtyObjects.Add(new RealtyObject()
+            {
+                RealtyObjectType = this.context.RealtyObjectTypes
+                    .FirstOrDefault(type => type.TypeName == "Квартиры"),
+                Agent = petya
+            });
+
+            new List<PropertyValue>(new[]
+            {
+                new PropertyValue()
+                {
+                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дата"),
+                    StringValue = "10/07/2015"
+                }, 
+                new PropertyValue()
+                {
+                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Улица"),
+                    StringValue = "English Street"
+                }, 
+                new PropertyValue()
+                {
+                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дом"),
+                    StringValue = "111"
+                }, 
+                new PropertyValue()
+                {
+                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Цена тыс.руб."),
+                    StringValue = "2000"
+                }, 
+                new PropertyValue()
+                {
+                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дополнительная информация"),
+                    StringValue = "No info"
+                }
+            })
+            .ForEach(value => petyasAppartment1.PropertyValues.Add(value));
+
+            RealtyObject petyasAppartment2 = this.context.RealtyObjects.Add(new RealtyObject()
+            {
+                RealtyObjectType = this.context.RealtyObjectTypes
+                    .FirstOrDefault(type => type.TypeName == "Квартиры"),
+                Agent = petya
+            });
+
+            new List<PropertyValue>(new[]
+            {
+                new PropertyValue()
+                {
+                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дата"),
+                    StringValue = "10/07/2016"
+                }, 
+                new PropertyValue()
+                {
+                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Улица"),
+                    StringValue = "Московский проспект"
+                }, 
+                new PropertyValue()
+                {
+                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дом"),
+                    StringValue = "99"
+                }, 
+                new PropertyValue()
+                {
+                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Цена тыс.руб."),
+                    StringValue = "1500"
+                }, 
+                new PropertyValue()
+                {
+                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дополнительная информация"),
+                    StringValue = "Че-то типа того"
+                }
+            })
+            .ForEach(value => petyasAppartment2.PropertyValues.Add(value));
+
+            RealtyObject petyasAppartment3 = this.context.RealtyObjects.Add(new RealtyObject()
+            {
+                RealtyObjectType = this.context.RealtyObjectTypes
+                    .FirstOrDefault(type => type.TypeName == "Квартиры"),
+                Agent = petya
+            });
+
+            new List<PropertyValue>(new[]
+            {
+                new PropertyValue()
+                {
+                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дата"),
+                    StringValue = "10/07/2016"
+                }, 
+                new PropertyValue()
+                {
+                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Улица"),
+                    StringValue = "Московский проспект"
+                }, 
+                new PropertyValue()
+                {
+                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дом"),
+                    StringValue = "99"
+                }, 
+                new PropertyValue()
+                {
+                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Цена тыс.руб."),
+                    StringValue = "3500"
+                }, 
+                new PropertyValue()
+                {
+                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дополнительная информация"),
+                    StringValue = "Балкон, железная дверь"
+                },
+                new PropertyValue()
+                {
+                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Примечания"),
+                    StringValue = "Большая дорогая квартира"
+                }
+            })
+            .ForEach(value => petyasAppartment3.PropertyValues.Add(value));
         }
 
         /// <summary>

@@ -301,5 +301,32 @@
 
             return Metadata.CostPropName;
         }
+
+        /// <summary>
+        /// Получить имя свойства адреса.
+        /// </summary>
+        /// <param name="typeName">Имя типа объекта недвижимости.</param>
+        /// <returns></returns>
+        internal static string GetAddressPropName(string typeName)
+        {
+            switch (typeName)
+            {
+                case Metadata.AppartmentTypeName:
+                case Metadata.MalosemeykiTypeName:
+                case Metadata.NovostroykiTypeName:
+                case Metadata.ArendaTypeName:
+                    return "Улица";
+                case Metadata.DachiTypeName:
+                case Metadata.DomaKottedgiTypeName:
+                case Metadata.KommercheskayaTypeName:
+                case Metadata.RaznoeTypeName:
+                case Metadata.UchastkiTypeName:
+                    return "Адрес";
+                default:
+                    throw new ArgumentException(
+                        "Типа объектов недвижимости \"" + typeName + "\" не существует.",
+                        "typeName");
+            }
+        }
     }
 }
