@@ -65,7 +65,7 @@ Angular Internet Explorer Compatibility: https://docs.angularjs.org/guide/ie
         // Вызов разных методов при инициилизации
         initHTMLProperies();
         initHandlers();
-        //$scope.searchSubmit();
+        $scope.searchSubmit();
 
         // Для сортировки таблицы
 	    $scope.sort = function(fieldName) {
