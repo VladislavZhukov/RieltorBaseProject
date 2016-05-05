@@ -17,12 +17,6 @@
             console.log(data);
         });
 
-    
-
-        // print parameter in url
-        console.log($location.path());
-        console.log($location.search());
-
         // Колонки
         $scope.apptsColumns = [
 		    {
