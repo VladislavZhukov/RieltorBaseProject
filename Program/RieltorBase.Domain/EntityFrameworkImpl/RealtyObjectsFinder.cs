@@ -110,9 +110,12 @@
         {
             if (this.options.MinCost != 0 || this.options.MaxCost != 0)
             {
+                string costPropName = Metadata.GetCostPropertyName(
+                    this.options.RealtyObjectType);
+
                 this.currentQuery = this.currentQuery.Where(ro =>
                     ro.PropertyValues.Any(pv =>
-                        pv.PropertyType.PropertyName == Metadata.CostPropName));
+                        pv.PropertyType.PropertyName == costPropName));
             }
         }
 
@@ -158,6 +161,12 @@
                 this.currentLoadedResult = this.currentLoadedResult.Where(ob =>
                     ob.PropertyValues.Any(pv =>
                     {
+                        if (pv.PropertyType.PropertyName !=
+                            Metadata.GetCostPropertyName(this.options.RealtyObjectType))
+                        {
+                            return false;
+                        }
+
                         int cost;
                         if (!this.TryParseStringCost(pv.StringValue, out cost))
                         {
