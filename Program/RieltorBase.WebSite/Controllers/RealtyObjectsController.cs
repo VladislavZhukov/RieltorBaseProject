@@ -41,7 +41,7 @@
         /// <returns>Объекты недвижимости, удовлетворяющие условиям поиска.</returns>
         /// <remarks>Пример запроса:
 #pragma warning disable 1570
-        /// GET api/realtyobjects/api/v1/RealtyObjects?minCost=2&maxCost=35&partOfAddress=Ленина&realtyObjectType=Квартира&minDate=22.11.16&maxDate=24.11.16</remarks>
+        /// GET api/v1/RealtyObjects?minCost=2&maxCost=35&partOfAddress=Ленина&realtyObjectType=Квартиры&minDate=5.11.16&maxDate=10.11.16</remarks>
 #pragma warning restore 1570
         public IEnumerable<IRealtyObject> Get(
             int minCost, 
