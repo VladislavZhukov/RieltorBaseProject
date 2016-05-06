@@ -12,14 +12,13 @@ namespace RieltorBase.Domain
     using System;
     using System.Collections.Generic;
     
-    public partial class Photo
+    public partial class Password
     {
-        public int PhotoId { get; set; }
-        public int RealtyObjectId { get; set; }
-        public int FirmId { get; set; }
-        public string RelativeSource { get; set; }
+        public int PasswordId { get; set; }
+        public int AgentId { get; set; }
+        public string Login { get; set; }
+        public string Password1 { get; set; }
     
-        public virtual Firm Firm { get; set; }
-        public virtual RealtyObject RealtyObject { get; set; }
+        public virtual Agent Agent { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RealtyBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RealtyBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Action">
           <Key>
             <PropertyRef Name="Id_action" />
@@ -53,6 +53,15 @@
           <Property Name="FirmId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Passwords">
+          <Key>
+            <PropertyRef Name="PasswordId" />
+          </Key>
+          <Property Name="PasswordId" Type="int" Nullable="false" />
+          <Property Name="AgentId" Type="int" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Photo">
           <Key>
             <PropertyRef Name="PhotoId" />
@@ -86,6 +95,10 @@
           <Property Name="RealtyObjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RealtyObjectTypeId" Type="int" Nullable="false" />
           <Property Name="AgentId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Cost" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="500" />
+          <Property Name="AdditionalInfo" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="RealtyObjectType">
           <Key>
@@ -170,6 +183,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Passwords_Agent">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Passwords" Type="Self.Passwords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="Id_agent" />
+            </Principal>
+            <Dependent Role="Passwords">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Photo_Apartament">
           <End Role="RealtyObject" Type="Self.RealtyObject" Multiplicity="1" />
           <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
@@ -226,6 +253,7 @@
           <EntitySet Name="Changelog" EntityType="Self.Changelog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChangelogAgent" EntityType="Self.ChangelogAgent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Firm" EntityType="Self.Firm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passwords" EntityType="Self.Passwords" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropertyType" EntityType="Self.PropertyType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropertyValue" EntityType="Self.PropertyValue" Schema="dbo" store:Type="Tables" />
@@ -252,6 +280,10 @@
             <End Role="RealtyObjectType" EntitySet="RealtyObjectType" />
             <End Role="RealtyObject" EntitySet="RealtyObject" />
           </AssociationSet>
+          <AssociationSet Name="FK_Passwords_Agent" Association="Self.FK_Passwords_Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="Passwords" EntitySet="Passwords" />
+          </AssociationSet>
           <AssociationSet Name="FK_Photo_Apartament" Association="Self.FK_Photo_Apartament">
             <End Role="RealtyObject" EntitySet="RealtyObject" />
             <End Role="Photo" EntitySet="Photo" />
@@ -269,8 +301,7 @@
             <End Role="RealtyObjectType_PropertyType" EntitySet="RealtyObjectType_PropertyType" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RealtyBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -294,6 +325,7 @@
           <Property Name="IsFirmAdmin" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Firm" Relationship="Self.FK_Agent_Firm" FromRole="Agent" ToRole="Firm" />
           <NavigationProperty Name="RealtyObjects" Relationship="Self.FK_Apartament_Agent" FromRole="Agent" ToRole="RealtyObject" />
+          <NavigationProperty Name="Passwords" Relationship="RealtyBaseModel.FK_Passwords_Agent" FromRole="Agent" ToRole="Password" />
         </EntityType>
         <EntityType Name="Changelog">
           <Key>
@@ -369,6 +401,10 @@
           <NavigationProperty Name="Photos" Relationship="Self.FK_Photo_Apartament" FromRole="RealtyObject" ToRole="Photo" />
           <NavigationProperty Name="PropertyValues" Relationship="Self.FK_Apartament_PropertiesApartment_Apartament1" FromRole="RealtyObject" ToRole="PropertyValue" />
           <NavigationProperty Name="RealtyObjectType" Relationship="Self.FK_Apartament_TypeApartament" FromRole="RealtyObject" ToRole="RealtyObjectType" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Cost" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalInfo" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="RealtyObjectType">
           <Key>
@@ -518,7 +554,36 @@
             <End Role="PropertyType" EntitySet="PropertyTypes" />
             <End Role="RealtyObjectType" EntitySet="RealtyObjectTypes" />
           </AssociationSet>
+          <EntitySet Name="Passwords" EntityType="RealtyBaseModel.Password" />
+          <AssociationSet Name="FK_Passwords_Agent" Association="RealtyBaseModel.FK_Passwords_Agent">
+            <End Role="Agent" EntitySet="Agents" />
+            <End Role="Password" EntitySet="Passwords" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Password">
+          <Key>
+            <PropertyRef Name="PasswordId" />
+          </Key>
+          <Property Name="PasswordId" Type="Int32" Nullable="false" />
+          <Property Name="AgentId" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Agent" Relationship="RealtyBaseModel.FK_Passwords_Agent" FromRole="Password" ToRole="Agent" />
+        </EntityType>
+        <Association Name="FK_Passwords_Agent">
+          <End Type="RealtyBaseModel.Agent" Role="Agent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="RealtyBaseModel.Password" Role="Password" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="Id_agent" />
+            </Principal>
+            <Dependent Role="Password">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -609,6 +674,10 @@
           <EntitySetMapping Name="RealtyObjects">
             <EntityTypeMapping TypeName="RealtyBaseModel.RealtyObject">
               <MappingFragment StoreEntitySet="RealtyObject">
+                <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="RealtyObjectId" ColumnName="RealtyObjectId" />
                 <ScalarProperty Name="RealtyObjectTypeId" ColumnName="RealtyObjectTypeId" />
                 <ScalarProperty Name="AgentId" ColumnName="AgentId" />
@@ -631,6 +700,16 @@
               <ScalarProperty Name="RealtyObjectTypeId" ColumnName="RealtyObjectTypeId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Passwords">
+            <EntityTypeMapping TypeName="RealtyBaseModel.Password">
+              <MappingFragment StoreEntitySet="Passwords">
+                <ScalarProperty Name="Password1" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="PasswordId" ColumnName="PasswordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

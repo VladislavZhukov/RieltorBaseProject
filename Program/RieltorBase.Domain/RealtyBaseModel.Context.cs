@@ -10,14 +10,9 @@
 namespace RieltorBase.Domain
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Linq;
-
-    /// <summary>
-    /// Контекст базы данных недвижимости.
-    /// </summary>
+    
     public partial class VolgaInfoDBEntities : DbContext
     {
         public VolgaInfoDBEntities()
@@ -29,7 +24,7 @@ namespace RieltorBase.Domain
         {
             throw new UnintentionalCodeFirstException();
         }
-
+    
         public virtual DbSet<Action> Actions { get; set; }
         public virtual DbSet<Agent> Agents { get; set; }
         public virtual DbSet<Changelog> Changelogs { get; set; }
@@ -40,5 +35,6 @@ namespace RieltorBase.Domain
         public virtual DbSet<PropertyValue> PropertyValues { get; set; }
         public virtual DbSet<RealtyObject> RealtyObjects { get; set; }
         public virtual DbSet<RealtyObjectType> RealtyObjectTypes { get; set; }
+        public virtual DbSet<Password> Passwords { get; set; }
     }
 }

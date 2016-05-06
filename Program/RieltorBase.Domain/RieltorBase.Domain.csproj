@@ -94,6 +94,9 @@
     <Compile Include="Interfaces\IRealtyObject.cs" />
     <Compile Include="Interfaces\IRealtyObjectsRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Password.cs">
+      <DependentUpon>RealtyBaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Photo.cs">
       <DependentUpon>RealtyBaseModel.tt</DependentUpon>
     </Compile>
