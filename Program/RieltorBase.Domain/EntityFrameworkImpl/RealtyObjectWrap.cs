@@ -76,10 +76,10 @@
             this.realtyObjectEF.AgentId = agent.Id_agent;
 
             this.realtyObjectEF.RealtyObjectId = iRealtyObj.RealtyObjectId;
-            this.SetPropertyValue(Metadata.DatePropName, iRealtyObj.Date.ToShortDateString());
-            this.SetPropertyValue(Metadata.GetCostPropertyName(this.TypeName), iRealtyObj.Cost);
-            this.SetPropertyValue(Metadata.NotePropName, iRealtyObj.Note);
-            this.SetPropertyValue(Metadata.AdditionalInfoPropName, iRealtyObj.AdditionalInfo);
+            this.realtyObjectEF.Date = iRealtyObj.Date;
+            this.realtyObjectEF.Cost = iRealtyObj.Cost;
+            this.realtyObjectEF.Note = iRealtyObj.Note;
+            this.realtyObjectEF.AdditionalInfo = iRealtyObj.AdditionalInfo;
 
             this.SetPropertyValues(iRealtyObj.AdditionalAttributes);
         }
@@ -124,15 +124,12 @@
         {
             get
             {
-                return Convert.ToDateTime(
-                    this.GetPropertyValue(Metadata.DatePropName));
+                return this.realtyObjectEF.Date;
             }
 
             set
             {
-                this.SetPropertyValue(
-                    Metadata.DatePropName, 
-                    value.ToShortDateString());
+                this.realtyObjectEF.Date = value;
             }
         }
 
@@ -143,15 +140,12 @@
         {
             get
             {
-                return this.GetPropertyValue(
-                    Metadata.AdditionalInfoPropName);
+                return this.realtyObjectEF.AdditionalInfo;
             }
 
             set
             {
-                this.SetPropertyValue(
-                    Metadata.AdditionalInfoPropName,
-                    value);
+                this.realtyObjectEF.AdditionalInfo = value;
             }
         }
 
@@ -162,12 +156,12 @@
         {
             get
             {
-                return this.GetPropertyValue(Metadata.NotePropName);
+                return this.realtyObjectEF.Note;
             }
 
             set
             {
-                this.SetPropertyValue(Metadata.NotePropName, value);
+                this.realtyObjectEF.Note = value;
             }
         }
 
@@ -223,18 +217,15 @@
         /// <summary>
         /// Стоимость.
         /// </summary>
-        public string Cost
+        public int Cost
         {
             get
             {
-                return this.GetPropertyValue(
-                    Metadata.GetCostPropertyName(this.TypeName));
+                return this.realtyObjectEF.Cost ?? 0;
             }
             set
             {
-                this.SetPropertyValue(
-                    Metadata.GetCostPropertyName(this.TypeName), 
-                    value);
+                this.realtyObjectEF.Cost = value;
             }
         }
 

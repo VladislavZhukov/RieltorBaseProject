@@ -23,6 +23,8 @@
         <AssociationConnector Association="RealtyBaseModel.FK_Apartament_PropertiesApartment_Apartament1" ManuallyRouted="false" />
         <AssociationConnector Association="RealtyBaseModel.FK_Apartament_TypeApartament" ManuallyRouted="false" />
         <AssociationConnector Association="RealtyBaseModel.RealtyObjectType_PropertyType" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RealtyBaseModel.Password" Width="1.5" PointX="5.25" PointY="0.75" />
+        <AssociationConnector Association="RealtyBaseModel.FK_Passwords_Agent" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

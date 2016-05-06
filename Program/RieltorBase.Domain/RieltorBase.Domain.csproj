@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="EntityFrameworkImpl\AgentRepository.cs" />
     <Compile Include="EntityFrameworkImpl\AgentWrap.cs" />
+    <Compile Include="EntityFrameworkImpl\EFAuthorization.cs" />
     <Compile Include="EntityFrameworkImpl\EFRepository.cs" />
     <Compile Include="EntityFrameworkImpl\IWrapBase.cs" />
     <Compile Include="EntityFrameworkImpl\FirmWrap.cs" />
@@ -85,6 +86,8 @@
     </Compile>
     <Compile Include="Interfaces\IAgent.cs" />
     <Compile Include="Interfaces\IAgentRepository.cs" />
+    <Compile Include="Interfaces\IAuthenticationMechanism.cs" />
+    <Compile Include="Interfaces\IAuthorizationMechanism.cs" />
     <Compile Include="Interfaces\IFirm.cs" />
     <Compile Include="Interfaces\IFirmsRepository.cs" />
     <Compile Include="Interfaces\IPhoto.cs" />
@@ -94,6 +97,10 @@
     <Compile Include="Interfaces\IRealtyObject.cs" />
     <Compile Include="Interfaces\IRealtyObjectsRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\UserInfo.cs" />
+    <Compile Include="Password.cs">
+      <DependentUpon>RealtyBaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Photo.cs">
       <DependentUpon>RealtyBaseModel.tt</DependentUpon>
     </Compile>
@@ -153,6 +160,7 @@
       <DependentUpon>RealtyBaseModel.edmx</DependentUpon>
       <LastGenOutput>RealtyBaseModel.cs</LastGenOutput>
     </Content>
+    <Content Include="ScriptsForDB\database_Version_02.sql" />
     <Content Include="ScriptsForDB\InsertDataTestVI.sql" />
     <Content Include="ScriptsForDB\script.sql" />
     <Content Include="ScriptsForDB\scriptRenamed.sql" />

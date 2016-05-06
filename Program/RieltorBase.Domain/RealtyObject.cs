@@ -24,6 +24,10 @@ namespace RieltorBase.Domain
         public int RealtyObjectId { get; set; }
         public int RealtyObjectTypeId { get; set; }
         public int AgentId { get; set; }
+        public System.DateTime Date { get; set; }
+        public Nullable<int> Cost { get; set; }
+        public string Note { get; set; }
+        public string AdditionalInfo { get; set; }
     
         public virtual Agent Agent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

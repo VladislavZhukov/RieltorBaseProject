@@ -51,7 +51,7 @@
         /// <summary>
         /// Цена.
         /// </summary>
-        string Cost { get; set; }
+        int Cost { get; set; }
 
         /// <summary>
         /// Все остальные свойства.

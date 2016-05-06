@@ -18,6 +18,7 @@ namespace RieltorBase.Domain
         public Agent()
         {
             this.RealtyObjects = new HashSet<RealtyObject>();
+            this.Passwords = new HashSet<Password>();
         }
     
         public int Id_agent { get; set; }
@@ -31,5 +32,7 @@ namespace RieltorBase.Domain
         public virtual Firm Firm { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RealtyObject> RealtyObjects { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Password> Passwords { get; set; }
     }
 }
