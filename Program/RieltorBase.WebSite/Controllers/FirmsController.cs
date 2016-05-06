@@ -65,6 +65,7 @@ namespace RieltorBase.WebSite.Controllers
         /// (в теле запроса - JSON-объект фирмы).</remarks>
         public void Post([FromBody]JsonFirm newFirm)
         {
+
             this.AuthorizeAdmin();
             this.firmsRepo.Add(newFirm);
             this.firmsRepo.SaveChanges();
