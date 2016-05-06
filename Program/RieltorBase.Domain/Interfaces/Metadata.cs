@@ -61,35 +61,6 @@
 
         #endregion
 
-        #region Имена общих свойств для всех типов объектов
-
-        /// <summary>
-        /// Имя свойства даты.
-        /// </summary>
-        internal const string DatePropName = "Дата";
-
-        /// <summary>
-        /// Имя свойства дополнительной информации.
-        /// </summary>
-        internal const string AdditionalInfoPropName = "Дополнительная информация";
-
-        /// <summary>
-        /// Имя свойства примечаний.
-        /// </summary>
-        internal const string NotePropName = "Примечания";
-
-        /// <summary>
-        /// Имя свойства цены для всех типов объектов, кроме аренды.
-        /// </summary>
-        internal const string CostPropName = "Цена тыс.руб.";
-
-        /// <summary>
-        /// Имя свойства цены для аренды жилья.
-        /// </summary>
-        internal const string CostPropNameForRent = "Цена";
-
-        #endregion
-
         /// <summary>
         /// Экземпляр класса метаданных.
         /// </summary>
@@ -284,22 +255,6 @@
                 default:
                     throw new ArgumentOutOfRangeException("realtyObjTypeName");
             }
-        }
-
-        /// <summary>
-        /// Получить имя свойства цены (имя свойства цены может 
-        /// быть разным для разных типов объектов недвижимости).
-        /// </summary>
-        /// <param name="typeName">Имя типа объекта недвижимости.</param>
-        /// <returns>Имя свойства цены.</returns>
-        internal static string GetCostPropertyName(string typeName)
-        {
-            if (typeName == Metadata.ArendaTypeName)
-            {
-                return Metadata.CostPropNameForRent;
-            }
-
-            return Metadata.CostPropName;
         }
 
         /// <summary>

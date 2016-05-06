@@ -1,5 +1,6 @@
 ﻿namespace RieltorBase.Domain.EntityFrameworkImpl
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -80,6 +81,14 @@
                 PhoneNumber = "33 - 33-3(0)"
             });
 
+            Password vasyaPassword = new Password()
+            {
+                Login = "vasya",
+                Password1 = "12345v"
+            };
+
+            vasya.Passwords.Add(vasyaPassword);
+
             Agent petya = this.context.Agents.Add(new Agent()
             {
                 Firm = newFirm,
@@ -90,21 +99,27 @@
                 PhoneNumber = "2222-22"
             });
 
+            Password petyaPassword = new Password()
+            {
+                Login = "petya",
+                Password1 = "12345p"
+            };
+
+            petya.Passwords.Add(petyaPassword);
+
             // квартиры
             RealtyObject vasyasAppartment1 = this.context.RealtyObjects.Add(new RealtyObject()
             {
                 RealtyObjectType = this.context.RealtyObjectTypes
                     .First(type => type.TypeName == "Квартиры"),
-                Agent = vasya
+                Agent = vasya,
+                Cost = 1000,
+                Date = new DateTime(2016, 5, 6, 0, 0, 0, DateTimeKind.Local).ToUniversalTime(),
+                AdditionalInfo = "Хорошая квартира"
             });
 
             new List<PropertyValue>(new[]
             {
-                new PropertyValue()
-                {
-                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дата"),
-                    StringValue = "11/05/2016"
-                }, 
                 new PropertyValue()
                 {
                     PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Улица"),
@@ -115,16 +130,6 @@
                     PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дом"),
                     StringValue = "11"
                 }, 
-                new PropertyValue()
-                {
-                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Цена тыс.руб."),
-                    StringValue = "1100"
-                }, 
-                new PropertyValue()
-                {
-                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дополнительная информация"),
-                    StringValue = "Вся мебель остается"
-                }
             })
             .ForEach(value => vasyasAppartment1.PropertyValues.Add(value));
 
@@ -132,16 +137,14 @@
             {
                 RealtyObjectType = this.context.RealtyObjectTypes
                     .FirstOrDefault(type => type.TypeName == "Квартиры"),
-                Agent = vasya
+                Agent = vasya,
+                Cost = 1100,
+                Date = new DateTime(2016, 5, 16, 0, 0, 0, DateTimeKind.Local).ToUniversalTime(),
+                AdditionalInfo = "Хорошая еще одна квартира"
             });
 
             new List<PropertyValue>(new[]
             {
-                new PropertyValue()
-                {
-                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дата"),
-                    StringValue = "11/05/2016"
-                }, 
                 new PropertyValue()
                 {
                     PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Улица"),
@@ -151,16 +154,6 @@
                 {
                     PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дом"),
                     StringValue = "11"
-                }, 
-                new PropertyValue()
-                {
-                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Цена тыс.руб."),
-                    StringValue = "1100"
-                }, 
-                new PropertyValue()
-                {
-                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дополнительная информация"),
-                    StringValue = "Вся мебель остается"
                 }
             })
             .ForEach(value => vasyasAppartment2.PropertyValues.Add(value));
@@ -169,16 +162,15 @@
             {
                 RealtyObjectType = this.context.RealtyObjectTypes
                     .FirstOrDefault(type => type.TypeName == "Квартиры"),
-                Agent = petya
+                Agent = petya,
+                Cost = 2000,
+                Date = new DateTime(2015, 5, 6, 0, 0, 0, DateTimeKind.Local).ToUniversalTime(),
+                AdditionalInfo = "Так себе квартира",
+                Note = "Кот остается"
             });
 
             new List<PropertyValue>(new[]
             {
-                new PropertyValue()
-                {
-                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дата"),
-                    StringValue = "10/07/2015"
-                }, 
                 new PropertyValue()
                 {
                     PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Улица"),
@@ -188,16 +180,6 @@
                 {
                     PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дом"),
                     StringValue = "111"
-                }, 
-                new PropertyValue()
-                {
-                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Цена тыс.руб."),
-                    StringValue = "2000"
-                }, 
-                new PropertyValue()
-                {
-                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дополнительная информация"),
-                    StringValue = "No info"
                 }
             })
             .ForEach(value => petyasAppartment1.PropertyValues.Add(value));
@@ -206,16 +188,15 @@
             {
                 RealtyObjectType = this.context.RealtyObjectTypes
                     .FirstOrDefault(type => type.TypeName == "Квартиры"),
-                Agent = petya
+                Agent = petya,
+                Cost = 3000,
+                Date = new DateTime(2017, 5, 6, 0, 0, 0, DateTimeKind.Local).ToUniversalTime(),
+                AdditionalInfo = "Уже лучше квартира",
+                Note = "Мебель остается, балкон, ж/д"
             });
 
             new List<PropertyValue>(new[]
             {
-                new PropertyValue()
-                {
-                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дата"),
-                    StringValue = "10/07/2016"
-                }, 
                 new PropertyValue()
                 {
                     PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Улица"),
@@ -225,16 +206,6 @@
                 {
                     PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дом"),
                     StringValue = "99"
-                }, 
-                new PropertyValue()
-                {
-                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Цена тыс.руб."),
-                    StringValue = "1500"
-                }, 
-                new PropertyValue()
-                {
-                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дополнительная информация"),
-                    StringValue = "Че-то типа того"
                 }
             })
             .ForEach(value => petyasAppartment2.PropertyValues.Add(value));
@@ -243,16 +214,15 @@
             {
                 RealtyObjectType = this.context.RealtyObjectTypes
                     .FirstOrDefault(type => type.TypeName == "Квартиры"),
-                Agent = petya
+                Agent = petya,
+                Cost = 3500,
+                Date = new DateTime(2015, 5, 6, 0, 0, 0, DateTimeKind.Local).ToUniversalTime(),
+                AdditionalInfo = "Балкон, ж/д, пласт.окна",
+                Note = "Вообще всё норм"
             });
 
             new List<PropertyValue>(new[]
             {
-                new PropertyValue()
-                {
-                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дата"),
-                    StringValue = "10/07/2016"
-                }, 
                 new PropertyValue()
                 {
                     PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Улица"),
@@ -262,21 +232,6 @@
                 {
                     PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дом"),
                     StringValue = "99"
-                }, 
-                new PropertyValue()
-                {
-                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Цена тыс.руб."),
-                    StringValue = "3500"
-                }, 
-                new PropertyValue()
-                {
-                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Дополнительная информация"),
-                    StringValue = "Балкон, железная дверь"
-                },
-                new PropertyValue()
-                {
-                    PropertyType = this.context.PropertyTypes.First(prType => prType.PropertyName == "Примечания"),
-                    StringValue = "Большая дорогая квартира"
                 }
             })
             .ForEach(value => petyasAppartment3.PropertyValues.Add(value));
@@ -297,6 +252,7 @@
         /// </summary>
         private void DeleteMainData()
         {
+            this.context.Passwords.RemoveRange(this.context.Passwords);
             this.context.Photos.RemoveRange(this.context.Photos);
             this.context.PropertyValues.RemoveRange(this.context.PropertyValues);
             this.context.RealtyObjects.RemoveRange(this.context.RealtyObjects);

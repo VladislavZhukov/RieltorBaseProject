@@ -60,7 +60,7 @@
         /// <summary>
         /// Стоимость.
         /// </summary>
-        public string Cost { get; set; }
+        public int Cost { get; set; }
 
         /// <summary>
         /// Остальные свойства.
