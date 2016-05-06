@@ -153,6 +153,7 @@
       <DependentUpon>RealtyBaseModel.edmx</DependentUpon>
       <LastGenOutput>RealtyBaseModel.cs</LastGenOutput>
     </Content>
+    <Content Include="ScriptsForDB\database_Version_02.sql" />
     <Content Include="ScriptsForDB\InsertDataTestVI.sql" />
     <Content Include="ScriptsForDB\script.sql" />
     <Content Include="ScriptsForDB\scriptRenamed.sql" />
