@@ -19,6 +19,18 @@
             = RBDependencyResolver.Current.Resolve<IRealtyObjectsRepository>();
 
         /// <summary>
+        /// Механизм аутентификации.
+        /// </summary>
+        private readonly IAuthenticationMechanism authentication
+            = RBDependencyResolver.Current.Resolve<IAuthenticationMechanism>();
+
+        /// <summary>
+        /// Механизм авторизации.
+        /// </summary>
+        private readonly IAuthorizationMechanism authorization
+            = RBDependencyResolver.Current.Resolve<IAuthorizationMechanism>();
+
+        /// <summary>
         /// Метод обработки запроса GET без параметров.
         /// </summary>
         /// <returns>Все объекты недвижимости.</returns>
