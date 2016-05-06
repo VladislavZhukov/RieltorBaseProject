@@ -57,7 +57,7 @@
           <Key>
             <PropertyRef Name="PasswordId" />
           </Key>
-          <Property Name="PasswordId" Type="int" Nullable="false" />
+          <Property Name="PasswordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AgentId" Type="int" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />

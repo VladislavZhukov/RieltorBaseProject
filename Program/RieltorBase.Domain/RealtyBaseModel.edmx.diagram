@@ -25,7 +25,6 @@
         <AssociationConnector Association="RealtyBaseModel.RealtyObjectType_PropertyType" ManuallyRouted="false" />
         <EntityTypeShape EntityType="RealtyBaseModel.Password" Width="1.5" PointX="5.25" PointY="0.75" />
         <AssociationConnector Association="RealtyBaseModel.FK_Passwords_Agent" />
-        <AssociationConnector Association="RealtyBaseModel.FK_Passwords_Agent" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
