@@ -14,7 +14,7 @@ namespace ParserVolgInfo.Core
     class ParserVI_All
     {
         #region Массиы     
-        
+
         #region malosemeyki
 
         //нужен для парсинга страниц малосимеек
@@ -39,8 +39,6 @@ namespace ParserVolgInfo.Core
 
         #endregion
 
-
-
         #endregion
 
         #region Данные для парсинга
@@ -60,11 +58,11 @@ namespace ParserVolgInfo.Core
 
             try
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(DataApartment));
+                var serializer = new XmlSerializer(typeof(DataApartment));
 
-                DataApartment dataApart = new DataApartment();
+                var dataApart = new DataApartment();
 
-                string pathDataApartmentXML = "DataApartment.xml";
+                string pathDataApartmentXML = "Core\\DataApartment.xml";
 
                 if (File.Exists(pathDataApartmentXML))
                 {
@@ -81,7 +79,7 @@ namespace ParserVolgInfo.Core
 
                 for (int i = 0; i < dataApart.UrlTypeapArtement.Count; i++)
                 {
-                    string typeApartament = dataApart.UrlTypeapArtement[i].Substring("/search/", "/", 0).ToString();
+                    string typeApartament = dataApart.UrlTypeapArtement[i].Substring("/search/", "/", 0).ToString();//;
                     string pathCurrentApartment = "apartment/" + typeApartament;
                     string pathCurrentApartmentPhoto = pathCurrentApartment + "/photo";
 
@@ -137,7 +135,7 @@ namespace ParserVolgInfo.Core
                                     logger.Info("не удалось загрузить квартиру" + " " + urlApartment);
                                     continue;
                                 }
-                               
+
                                 Console.WriteLine("Данные полученны за: " + (DateTime.Now - startTime).TotalMilliseconds + "\nНачат процесс парсинга данных и загрузки их на диск...");
 
                                 switch (typeApartament)
@@ -146,10 +144,10 @@ namespace ParserVolgInfo.Core
                                         //парсим и одновременно пишем в файл
                                         WriteToXmlFile(dataApart.ParsKvartiryiList, dataApart.XmlKvartiryiList, xmlWriter, idApart, sourcePage);
                                         break;
-                                    case "dolevoe":                                        
+                                    case "dolevoe":
                                         WriteToXmlFile(dataApart.ParsDolevoeList, dataApart.XmlDolevoeList, xmlWriter, idApart, sourcePage);
                                         break;
-                                    case "doma_kottedzhi":                                        
+                                    case "doma_kottedzhi":
                                         WriteToXmlFile(dataApart.ParsDomaKottedzhiList, dataApart.XmlDomaKottedzhiList, xmlWriter, idApart, sourcePage);
                                         break;
                                     case "arenda_zhilyih":
@@ -366,7 +364,7 @@ namespace ParserVolgInfo.Core
 
                         if (parsData.Length != 0)
                         {
-                            xmlWriter.WriteString(parsData[0].Replace("<br>", " ").Trim());
+                            xmlWriter.WriteString(parsData[0].Replace("<br>", "").Replace("->", "").Trim());
                         }
 
                         xmlWriter.WriteEndElement();

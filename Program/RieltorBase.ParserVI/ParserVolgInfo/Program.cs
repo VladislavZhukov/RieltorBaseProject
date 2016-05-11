@@ -7,10 +7,7 @@ namespace ParserVolgInfo
     {
         static void Main(string[] args)
         {
-            
-            ParserVI_All.StartParser();        
-               
-            
+            ParserVI_All.StartParser();
         }
     }
 }
