@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Security.Authentication;
     using System.Web.Http;
 
     using RieltorBase.Domain.Interfaces;
@@ -10,25 +11,19 @@
     /// <summary>
     /// Web API Контроллер для работы с объектами недвижимости.
     /// </summary>
-    public class RealtyObjectsController : ApiController
+    public class RealtyObjectsController : RealtyBaseCommonController
     {
         /// <summary>
         /// Репозиторий объектов недвижимости.
         /// </summary>
-        private readonly IRealtyObjectsRepository realtyObjects 
-            = RBDependencyResolver.Current.Resolve<IRealtyObjectsRepository>();
+        private readonly IRealtyObjectsRepository realtyObjects
+            = RBDependencyResolver.Current.CreateInstance<IRealtyObjectsRepository>();
 
         /// <summary>
-        /// Механизм аутентификации.
+        /// Сообщение об отсутствии прав на чтение.
         /// </summary>
-        private readonly IAuthenticationMechanism authentication
-            = RBDependencyResolver.Current.Resolve<IAuthenticationMechanism>();
-
-        /// <summary>
-        /// Механизм авторизации.
-        /// </summary>
-        private readonly IAuthorizationMechanism authorization
-            = RBDependencyResolver.Current.Resolve<IAuthorizationMechanism>();
+        private const string DontHaveRightsToRead
+            = "Пользователь не имеет прав на просмотр объектов недвижимости.";
 
         /// <summary>
         /// Метод обработки запроса GET без параметров.
@@ -38,6 +33,9 @@
         /// GET api/realtyobjects/api/v1/RealtyObjects.</remarks>
         public IEnumerable<IRealtyObject> Get()
         {
+            this.AuthorizeUserToReadData(
+                RealtyObjectsController.DontHaveRightsToRead);
+
             return this.realtyObjects.GetAll();
         }
 
@@ -63,6 +61,9 @@
             DateTime minDate, 
             DateTime maxDate)
         {
+            this.AuthorizeUserToReadData(
+                RealtyObjectsController.DontHaveRightsToRead);
+
             RealtyObjectSearchOptions options = 
                 new RealtyObjectSearchOptions()
                 {
@@ -85,6 +86,9 @@
         /// <remarks>Пример запроса: GET api/realtyobjects/5.</remarks>
         public IRealtyObject Get(int id)
         {
+            this.AuthorizeUserToReadData(
+                RealtyObjectsController.DontHaveRightsToRead);
+
             return this.realtyObjects.Find(id);
         }
 
@@ -98,6 +102,15 @@
         /// (в теле запроса - JSON-объект недвижимости).</remarks>
         public IRealtyObject Post([FromBody]JsonRealtyObject value)
         {
+            bool canAddRealtyObject = this.AuthorizationMechanism
+                .CanUserAddRealtyObject(this.CurrentUserInfo, value);
+
+            if (!canAddRealtyObject)
+            {
+                throw new AuthenticationException(
+                    "Данному пользователю не разрешено добавлять данный объект недвижимости.");
+            }
+
             IRealtyObject newObj = this.realtyObjects.Add(value);
             this.realtyObjects.SaveChanges();
             return newObj;
@@ -114,6 +127,15 @@
         /// (в теле запроса - JSON-объект недвижимости).</remarks>
         public IRealtyObject Put(int id, [FromBody]JsonRealtyObject value)
         {
+            bool canUpdateRealtyObject = this.AuthorizationMechanism
+                .CanUserUpdateRealtyObject(this.CurrentUserInfo, value);
+
+            if (!canUpdateRealtyObject)
+            {
+                throw new AuthenticationException(
+                    "Данному пользователю не разрешено изменять данный объект недвижимости.");
+            }
+
             IRealtyObject updatedObj = this.realtyObjects.Update(value);
             this.realtyObjects.SaveChanges();
             return updatedObj;
@@ -126,6 +148,17 @@
         /// <remarks>Пример запроса: DELETE api/realtyobjects/5.</remarks>
         public void Delete(int id)
         {
+            IRealtyObject obj = this.realtyObjects.Find(id);
+
+            bool canDelete = this.AuthorizationMechanism
+                .CanUserDeleteRealtyObject(this.CurrentUserInfo, obj);
+
+            if (!canDelete)
+            {
+                throw new AuthenticationException(
+                    "Данному пользователю не разрешено удалять данный объект недвижимости.");
+            }
+
             this.realtyObjects.Delete(id);
             this.realtyObjects.SaveChanges();
         }

@@ -71,7 +71,8 @@
     </Compile>
     <Compile Include="EntityFrameworkImpl\AgentRepository.cs" />
     <Compile Include="EntityFrameworkImpl\AgentWrap.cs" />
-    <Compile Include="EntityFrameworkImpl\EFAuthorization.cs" />
+    <Compile Include="EntityFrameworkImpl\EFAuthentication.cs" />
+    <Compile Include="CommonImpl\Authorization.cs" />
     <Compile Include="EntityFrameworkImpl\EFRepository.cs" />
     <Compile Include="EntityFrameworkImpl\IWrapBase.cs" />
     <Compile Include="EntityFrameworkImpl\FirmWrap.cs" />

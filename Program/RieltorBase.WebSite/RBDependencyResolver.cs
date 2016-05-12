@@ -2,6 +2,7 @@
 {
     using Ninject;
 
+    using RieltorBase.Domain.CommonImpl;
     using RieltorBase.Domain.EntityFrameworkImpl;
     using RieltorBase.Domain.Interfaces;
 
@@ -43,13 +44,15 @@
         }
 
         /// <summary>
-        /// Получить реализацию, назначенную для определенного интерфейса.
+        /// Создать экземпляр класса, реализующего определенный интерфейс.
         /// </summary>
-        /// <typeparam name="T">Интерфейс, для которого требуется получить реализацию.</typeparam>
-        /// <returns>Назначенная (установленная) реализация требуемого интерфейса.</returns>
-        public T Resolve<T>()
+        /// <typeparam name="TInterface">Интерфейс, для которого 
+        /// требуется получить реализацию.</typeparam>
+        /// <returns>Назначенная (установленная) реализация требуемого 
+        /// интерфейса.</returns>
+        public TInterface CreateInstance<TInterface>()
         {
-            return this.kernel.Get<T>();
+            return this.kernel.Get<TInterface>();
         }
 
         /// <summary>
@@ -59,11 +62,13 @@
         {
             this.kernel.Bind<IRealtyBaseContext>().To<RealtyBaseContext>();
             this.kernel.Bind<IFirmsRepository>().To<FirmsRepository>();
+            this.kernel.Bind<IRepository<IFirm>>().To<FirmsRepository>();
             this.kernel.Bind<IRealtyObjectsRepository>().To<RealtyObjectsRepository>();
+            this.kernel.Bind<IRepository<IRealtyObject>>().To<RealtyObjectsRepository>();
             this.kernel.Bind<IRepository<IPhoto>>().To<PhotosRepository>();
 
-            this.kernel.Bind<IAuthenticationMechanism>().To<EFAuthorization>();
-            this.kernel.Bind<IAuthorizationMechanism>().To<EFAuthorization>();
+            this.kernel.Bind<IAuthenticationMechanism>().To<EFAuthentication>();
+            this.kernel.Bind<IAuthorizationMechanism>().To<Authorization>();
         }
     }
 }
