@@ -7,6 +7,16 @@
     public interface IAuthorizationMechanism
     {
         /// <summary>
+        /// Может ли пользователь смотреть общедоступную информацию.
+        /// </summary>
+        /// <param name="user">Информация о пользователе.</param>
+        /// <returns>True - есть права на чтение, false - нет.</returns>
+        /// <remarks>Относится ко всей общедоступной информации
+        /// (фирмы, объекты недвижимости, фотографии и т.д.).</remarks>
+        bool CanUserReadData(
+            UserInfo user);
+
+        /// <summary>
         /// Может ли пользователь добавить объект недвижимости.
         /// </summary>
         /// <param name="user">Информация о пользователе.</param>
@@ -42,8 +52,37 @@
         /// <param name="user">Информация о пользователе.</param>
         /// <param name="firm">Фирма.</param>
         /// <returns>True - права есть, false - нет.</returns>
-        bool IsUserFirmAdmin(
+        bool CanUserEditFirm(
             UserInfo user,
             IFirm firm);
+
+        /// <summary>
+        /// Может ли пользователь редактировать фотографии фирмы.
+        /// </summary>
+        /// <param name="user">Информация о пользователе.</param>
+        /// <param name="firm">Фирма.</param>
+        /// <returns>True - права есть, false - нет.</returns>
+        bool UserHasAccessToPhotos(
+            UserInfo user,
+            IFirm firm);
+
+        /// <summary>
+        /// Может ли пользователь редактировать фотографии объекта недвижимости.
+        /// </summary>
+        /// <param name="user">Информация о пользователе.</param>
+        /// <param name="realtyObject">Объект недвижимости.</param>
+        /// <returns>True - права есть, false - нет.</returns>
+        bool UserHasAccessToPhotos(
+            UserInfo user,
+            IRealtyObject realtyObject);
+
+        /// <summary>
+        /// Пользователь является глобальным администратором
+        /// и может выполнять любые действия.
+        /// </summary>
+        /// <param name="user">Информация о пользователе.</param>
+        /// <returns>True - пользователь может выполнять любые действия.</returns>
+        bool IsUserGlobalAdmin(
+            UserInfo user);
     }
 }

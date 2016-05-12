@@ -1,12 +1,8 @@
-﻿using System;
-using System.Net.Http.Headers;
-using System.Security.Authentication;
-using System.Text;
-
-namespace RieltorBase.WebSite.Controllers
+﻿namespace RieltorBase.WebSite.Controllers
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Security.Authentication;
     using System.Web.Http;
 
     using RieltorBase.Domain.Interfaces;
@@ -16,13 +12,19 @@ namespace RieltorBase.WebSite.Controllers
     /// <summary>
     /// Web API Контроллер для работы с фирмами.
     /// </summary>
-    public class FirmsController : ApiController
+    public class FirmsController : RealtyBaseCommonController
     {
         /// <summary>
         /// Репозиторий фирм.
         /// </summary>
         private readonly IFirmsRepository firmsRepo =
-            RBDependencyResolver.Current.Resolve<IFirmsRepository>();
+            RBDependencyResolver.Current.CreateInstance<IFirmsRepository>();
+
+        /// <summary>
+        /// Сообщение об отсутствии прав на чтение.
+        /// </summary>
+        private const string DontHaveAccessToRead = 
+            "Пользователь не имеет доступа к информации о фирмах.";
 
         /// <summary>
         /// Метод обработки запроса GET без параметров.
@@ -31,6 +33,7 @@ namespace RieltorBase.WebSite.Controllers
         /// <remarks>Пример запроса: GET api/v1/firms.</remarks>
         public IEnumerable<IFirm> Get()
         {
+            this.AuthorizeUserToReadData(FirmsController.DontHaveAccessToRead);
             return this.firmsRepo.GetAll().ToList();
         }
 
@@ -43,6 +46,7 @@ namespace RieltorBase.WebSite.Controllers
         public IEnumerable<IFirm> Get(
             string nameFirm)
         {
+            this.AuthorizeUserToReadData(FirmsController.DontHaveAccessToRead);
             return this.firmsRepo.FindByName(nameFirm);
         }
 
@@ -54,6 +58,7 @@ namespace RieltorBase.WebSite.Controllers
         /// <remarks>Пример запроса: GET api/v1/firms/5</remarks>
         public IFirm Get(int id)
         {
+            this.AuthorizeUserToReadData(FirmsController.DontHaveAccessToRead);
             return this.firmsRepo.Find(id);
         }
 
@@ -65,7 +70,9 @@ namespace RieltorBase.WebSite.Controllers
         /// (в теле запроса - JSON-объект фирмы).</remarks>
         public void Post([FromBody]JsonFirm newFirm)
         {
-            this.AuthorizeAdmin();
+            this.AuthorizeGlobalAdmin(
+                "Только глобальный администратор может добавлять фирмы.");
+
             this.firmsRepo.Add(newFirm);
             this.firmsRepo.SaveChanges();
         }
@@ -74,14 +81,30 @@ namespace RieltorBase.WebSite.Controllers
         /// Метод обработки запроса на обновление фирмы.
         /// </summary>
         /// <param name="id">Id обновляемой фирмы.</param>
-        /// <param name="firm">Объект обновляемой фирмы 
+        /// <param name="updatedFirm">Объект обновляемой фирмы 
         /// (из тела запроса).</param>
         /// <remarks>Пример запроса: PUT api/v1/firms/5 
         /// (в теле запроса - JSON-объект фирмы).</remarks>
-        public void Put(int id, [FromBody]JsonFirm firm)
+        public void Put(int id, [FromBody]JsonFirm updatedFirm)
         {
-            this.AuthorizeAdmin();
-            this.firmsRepo.Update(firm);
+            IFirm existingFirm = this.firmsRepo.Find(updatedFirm.FirmId);
+
+            if (updatedFirm.Name != existingFirm.Name)
+            {
+                this.AuthorizeGlobalAdmin(
+                    "Только глобальный администратор может изменять название фирмы.");
+            }
+            else
+            {
+                if (!this.AuthorizationMechanism.CanUserEditFirm(
+                    this.CurrentUserInfo, existingFirm))
+                {
+                    throw new AuthenticationException(
+                        "Данный пользователь не может изменять данные этой фирмы.");
+                }
+            }
+
+            this.firmsRepo.Update(updatedFirm);
             this.firmsRepo.SaveChanges();
         }
 
@@ -92,41 +115,11 @@ namespace RieltorBase.WebSite.Controllers
         /// <remarks>Пример запроса: DELETE api/v1/firms/5.</remarks>
         public void Delete(int id)
         {
-            this.AuthorizeAdmin();
+            this.AuthorizeGlobalAdmin(
+                "Только глобальный администратор может удалять фирмы.");
+
             this.firmsRepo.Delete(id);
             this.firmsRepo.SaveChanges();
-        }
-
-        /// <summary>
-        /// Провести аутентификацию (убедиться, что это администратор) 
-        /// и авторизацию (не вызывать исключение, что позволит выполнить дальнейшие операции)
-        /// пользователя.
-        /// </summary>
-        private void AuthorizeAdmin()
-        {
-            AuthenticationHeaderValue auth = this.Request.Headers.Authorization;
-
-            if (auth == null || auth.Scheme != "Basic")
-            {
-                throw new AuthenticationException(
-                    "Нет прав на добавление, изменение или удаление фирм.");
-            }
-
-            string encodedCredentials = auth.Parameter; 
-            byte[] credentialBytes = Convert.FromBase64String(encodedCredentials); 
-            string[] credentials = Encoding.ASCII.GetString(credentialBytes).Split(':');
-
-            if (credentials[0] != "Admin")
-            {
-                throw new AuthenticationException(
-                    "Неправильный логин. Должно быть: \"Admin\".");
-            }
-
-            if (credentials[1] != "123")
-            {
-                throw new AuthenticationException(
-                    "Неправильный пароль. Должно быть \"123\"");
-            }
         }
     }
 }

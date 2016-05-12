@@ -11,6 +11,16 @@
         public int AgentId;
 
         /// <summary>
+        /// Имя агента.
+        /// </summary>
+        public string AgentName;
+
+        /// <summary>
+        /// Телефон агента.
+        /// </summary>
+        public string AgentPhone;
+
+        /// <summary>
         /// Id фирмы, в которой работает пользователь.
         /// </summary>
         public int FirmId;
@@ -24,5 +34,10 @@
         /// Пользователь - директор фирмы.
         /// </summary>
         public bool IsFirmAdmin;
+
+        /// <summary>
+        /// Пользователь - администратор, имеющий все возможные права.
+        /// </summary>
+        public bool IsGlobalAdmin;
     }
 }

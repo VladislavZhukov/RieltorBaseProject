@@ -204,7 +204,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainPageController.cs" />
     <Compile Include="Controllers\PhotosController.cs" />
+    <Compile Include="Controllers\RealtyBaseCommonController.cs" />
     <Compile Include="Controllers\RealtyObjectsController.cs" />
+    <Compile Include="JsonCompatibleClasses\JsonPhoto.cs" />
     <Compile Include="JsonCompatibleClasses\JsonRealtyObject.cs" />
     <Compile Include="JsonCompatibleClasses\JsonFirm.cs" />
     <Compile Include="RBDependencyResolver.cs" />
@@ -212,7 +214,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

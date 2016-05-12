@@ -7,7 +7,7 @@
     public class HomeController : Controller
     {
         private IRealtyBaseContext context
-            = RBDependencyResolver.Current.Resolve<IRealtyBaseContext>();
+            = RBDependencyResolver.Current.CreateInstance<IRealtyBaseContext>();
 
         //
         // GET: /Home/
