@@ -1,0 +1,269 @@
+<div>
+    <div class="page-header">
+        <h1>Поиск квартир в Тольятти</h1>
+    </div>
+
+    <!-- Панель инструментов, версия 2 -->
+    <div class="panel-toolbar-2 well">
+        <div class="row">
+            <div class="col-md-2 col-sm-4 col-xs-6">
+                <button title="Своя база">
+                    <i class="fa fa-list-ul fa-3x" aria-hidden="true"></i>
+                </button>
+                <span>Своя база</span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6">
+                <button title="Вся база">
+                    <i class="fa fa-newspaper-o fa-3x" aria-hidden="true"></i>
+                </button>
+                <span>Вся база</span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6">
+                <button title="Карточка объекта">
+                    <i class="fa fa-file-text-o fa-3x" aria-hidden="true"></i>
+                </button>
+                <span>Карточка объекта</span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6">
+                <button title="Редактировать свои объекты">
+                    <i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i>
+                </button>
+                <span>Редактировать объекты</span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6">
+                <button title="Доп. информация">
+                    <i class="fa fa-info fa-3x" aria-hidden="true"></i>
+                </button>
+                <span>Доп. информация</span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6">
+                <button title="Версия для печати">
+                    <i class="fa fa-print fa-3x" aria-hidden="true"></i>
+                </button>
+                <span>Версия для печати</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Панель поиска -->
+    <div class="well">
+        <form class="form-horizontal" role="form">
+            <legend>Поиск по параметрам</legend>
+
+            <div class="row">
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                    <label class="control-label" for="searchType">Тип:</label>
+                </div>
+                <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 hidden-xs">
+                    <label class="control-label" for="searchPriceMin">Цена:</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                    <!-- Если надо отсылать индекс элемента - то оставить с value="0"; если нужен текст на русском - то удалить параметр "value" -->
+                    <select id="searchType" class="form-control">
+                        <option>Квартиры</option>
+                        <option>Малосемейки</option>
+                        <option>Новостройки</option>
+                        <option>Дома/Коттеджи</option>
+                        <option>Аренда жилья</option>
+                        <option>Коммерческая Недвижимость</option>
+                        <option>Участки</option>
+                        <option>Дачи</option>
+                        <option>Разное</option>
+                    </select>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">от</span>
+                        <input type="text" class="form-control" id="searchPriceMin" placeholder="тыс. руб.">
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">до</span>
+                        <input type="text" class="form-control" id="searchPriceMax" placeholder="тыс. руб.">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Панель поиска: Дата -->
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="control-label">За последний:</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                    <div class="btn-group btn-group-xs btn-group-justified">
+                        <span class="searchSpecificDate btn btn-info" data-item="day">день</span>
+                        <span class="searchSpecificDate btn btn-default" data-item="week">неделю</span>
+                        <span class="searchSpecificDate btn btn-default" data-item="month">месяц</span>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">с</span>
+                        <input type="text" id="searchDateMin" class="form-control" placeholder="дд.мм.гггг" />
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">по</span>
+                        <input type="text" id="searchDateMax" class="form-control" placeholder="дд.мм.гггг" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Панель поиска: Адрес -->
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="control-label" for="searchAddress">Адрес:</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <input id="searchAddress" type="text" class="form-control" placeholder="Адрес" />
+                </div>
+                <div class="col-xs-1">
+                    <input id="searchSubmit" type="button" value="Поиск" class="btn btn-primary" ng-click="searchSubmit()" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- Блок найденных квартир -->
+    <div class="well" id="appartments">
+        <legend>Найденные квартиры</legend>
+
+        <!-- "Десктопная" версия блока найденных квартир (для большого и среднего экрана) -->
+        <div class="hidden-xs">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+                <!-- Заголовки столбцов -->
+                <tr>
+                    <th ng-repeat="col in apptsColumns" ng-click="sort(col['column'])">
+                        <a href="">
+                            {{ col.readableName }}
+                            <i class="glyphicon" ng-class="{'glyphicon-chevron-up' : isSortUp(col['column']),
+                                        'glyphicon-chevron-down' : isSortDown(col['column'])}"></i>
+                        </a>
+                    </th>
+                    <th></th>
+                </tr>
+
+                <!-- Основные свойства квартиры. Выводим динамически ячейки строк -->
+                <tr ng-repeat-start="app in appts | orderBy:sortField:reverse">
+                    <td ng-repeat="col in apptsColumns">
+                        <a href="#/app/{{ app.id }}" target="_blank">
+                            {{ app[col.column] }}
+                        </a>
+                    </td>
+                    <td class="toggle-appartment-additional" data-toggle-id="{{ app.id }}">Развернуть</td>
+                </tr>
+                <tr></tr>
+
+                <!-- Развернутые свойства квартиры -->
+                <tr class="appartment-additional appartment-additional-{{ app.id }}" ng-repeat-end>
+                    <td colspan="{{ apptsColumns.length + 1 }}">
+                        <div class="panel panel-primary">
+                            <div class="panel-body">
+                                <span>Раскрывающаяся панель для id = {{ app.id }}</span>
+                                <div ng-repeat="col in apptsColumns">
+                                    {{ col.readableName }}: {{ app[col.column] }}
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Мобильная версия блока найденных квартир -->
+        <div class="visible-xs-block appartments-mobile">
+            <!-- Отдельный блок для каждой квартиры -->
+            <div ng-repeat="app in appts">
+                
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <a href="#/app/{{ app.id }}" target="_blank">
+                                id = {{ app.id }} (Открыть)
+                            </a>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <!-- Основные свойства квартиры -->
+                        <div class="toggle-appartment-additional" data-toggle-id="{{ app.id }}">
+                            <div class="" ng-repeat="col in apptsColumns">
+                                {{ col.readableName }}: {{ app[col.column] }}
+                            </div>
+                        </div>
+
+                        <!-- Развернутые свойства квартиры -->
+                        <div class="panel panel-primary appartment-additional appartment-additional-{{ app.id }}">
+                            <div class="panel-body">
+                                <div>Раскрывающаяся панель для id = {{ app.id }}</div>
+                                <div ng-repeat="col in apptsColumns">
+                                    {{ col.readableName }}: {{ app[col.column] }}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Панель инструментов -->
+    <div class="panel-toolbar-33 well  ">
+        <div class="row">
+            <div class="col-md-2 col-sm-4 col-xs-12">
+                <button title="Своя база">
+                    <i class="fa fa-list-ul fa-3x" aria-hidden="true"></i>
+                    <div class="visible-sm-block visible-xs-block"></div>
+                    <span>&nbsp;Своя база</span>
+                </button>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-12">
+                <button title="Вся база">
+                    <i class="fa fa-list fa-3x" aria-hidden="true"></i>
+                    <div class="visible-sm-block visible-xs-block"></div>
+                    &nbsp;Вся база
+                </button>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-12">
+                <button title="Карточка объекта">
+                    <i class="fa fa-file-text-o fa-3x" aria-hidden="true"></i>
+                    <div class="visible-sm-block visible-xs-block"></div>
+                    Карточка объекта
+                </button>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-12">
+                <button title="Редактировать свои объекты">
+                    <i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i>
+                    <div class="visible-sm-block visible-xs-block"></div>
+                    &nbsp;Редактировать
+                </button>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-12">
+                <button title="Доп. информация">
+                    <i class="fa fa-info fa-3x" aria-hidden="true"></i>
+                    <div class="visible-sm-block visible-xs-block"></div>
+                    &nbsp;Доп. информация
+                </button>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-12">
+                <button title="Версия для печати">
+                    <i class="fa fa-print fa-3x" aria-hidden="true"></i>
+                    <div class="visible-sm-block visible-xs-block"></div>
+                    &nbsp;Печать
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

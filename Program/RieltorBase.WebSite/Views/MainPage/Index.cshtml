@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
 }
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" ng-app="testApp" lang="ru">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="appRealtor" lang="ru">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,68 +45,152 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Rieltor Base</a>
+                <a class="navbar-brand" href="#/">Realtor Base</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <!-- Angular-ссылки
                     <li class="active"><a href="#/">Файл</a></li>
                     <li><a href="#/about">Вид</a></li>
                     <li><a href="#/contact">Связь</a></li>
+                    -->
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Файл <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="fa fa-print" aria-hidden="true"></i> Печать</a></li>
+                            <li><a href="#">Экспорт данных</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Выход</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Вид <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Вся база</a></li>
+                            <li class="dropdown-header">Своя база</li>
+                            <li><a href="#">Карточка</a></li>
+                            <li><a href="#">Дополнительные параметры</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Свой прайс лист - с филиалами</a></li>
+                            <li><a href="#">Только свои объекты</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Показывать фирму в статус строке</a></li>
+                            <li><a href="#">Показать бегущую строку</a></li>
+                            <li><a href="#">Марка</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Рубль 1</a></li>
+                            <li><a href="#">Доллар 64</a></li>
+                            <li><a href="#">Евро 73,15</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Связь <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Обновить базу</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Почта</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Сообщение администратору</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Баланс</a></li>
+                        </ul>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Прайс-листы <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">Nav header</li>
-                            <li><a href="#">Separated link</a></li>
-                            <li><a href="#">One more separated link</a></li>
+                            <li><a href="#">Квартиры</a></li>
+                            <li><a href="#">Малосемейки</a></li>
+                            <li><a href="#">Стройка</a></li>
+                            <li><a href="#">Дома/Коттеджи</a></li>
+                            <li><a href="#">Аренда Жилых 03.02.2014</a></li>
+
+                            <li><a href="#">Комм. Недв. 26.05.2014</a></li>
+                            <li><a href="#">Участки</a></li>
+                            <li><a href="#">:.Дачи</a></li>
+                            <li><a href="#">:.Разное</a></li>
                         </ul>
                     </li>
-                    <li><a href="#more">Доп. инфо</a></li>
-                    <li><a href="#">Реклама</a></li>
-                    <li><a href="#">Настройки</a></li>
-                    <li><a href="#">Справка</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Доп. инфо <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Справочник фирм</a></li>
+                            <li><a href="#">Договор Оферта</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Реклама <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Журнал...</a></li>
+                            <li><a href="#">Газета...</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Настройки <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Вид прайс-листа</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Агенты</a></li>
+                            <li><a href="#">Настройки доступа в сеть</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Справка <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Содержание</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <br />
-    <br />
 
-    <div class="container theme-showcase" role="main">
+    <div class="container theme-showcase menu-margin" role="main">
         <!-- Angular приложение -->
-        <div class="panel-body" ng-controller="test1Ctrl">
+        <div class="panel-body">
              <ng-view></ng-view>
         </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <a href="#/">Main</a>
+        <a href="#/about">About</a>
+        <a href="#/contact">Contact</a>
+        <a href="#/app/13"> App</a>
+
     </div>
 
+    
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 
+    
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script> -->
 
-    <!-- JS-скрипты: -->
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-
-    <!-- Angular-приложение -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-    <script src="~/Scripts/inner/controllers.js"></script>
 
     <!-- календарь bootstrap-datepicker -->
     <script src="~/Scripts/vendors/bootstrap-datepicker.js"></script>
     <script src="~/Scripts/vendors/bootstrap-datepicker.ru.js"></script>
 
-    <script src="~/Scripts/inner/index.js"></script>    <!-- js-файл для главной страницы -->
+    <script src="~/Scripts/inner/constants.js"></script>
+    <script src="~/Scripts/inner/route-config.js"></script>
+    <script src="~/Scripts/inner/apartment-controller.js"></script>
+    <script src="~/Scripts/inner/search-controller.js"></script>
 
 </body>
 </html>
