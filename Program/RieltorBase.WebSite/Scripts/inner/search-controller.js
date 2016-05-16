@@ -40,15 +40,11 @@ Angular Internet Explorer Compatibility: https://docs.angularjs.org/guide/ie
             searchRequest.searchDateMax = $('#searchDateMax').val();
             searchRequest.searchAddress = $('#searchAddress').val();
 
-            // Печатаем запрос в консоль
-            console.log('Сформирован запрос:');
-            console.log(searchRequest);
-
             // Отправляем запрос на сервер
-            $.get(
-                GET_REALTY_OBJECTS,
-                searchRequest,
-                function (data, textStatus) {
+            $.ajax({
+                url: GET_REALTY_OBJECTS,
+                data: searchRequest,
+                success: function (data, textStatus) {
                     console.log('С сервера пришёл ответ:');
                     console.log(data);
 
@@ -58,8 +54,8 @@ Angular Internet Explorer Compatibility: https://docs.angularjs.org/guide/ie
                     });
                     $('#searchSubmit').prop('disabled', false);
                 },
-                "json"
-            );
+                dataType: "json"
+            });
         };
 
         // Вызов разных методов при инициилизации
