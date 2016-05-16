@@ -179,6 +179,7 @@
     <Content Include="Scripts\i18n\angular-locale_ru.js" />
     <Content Include="Scripts\inner\apartment-controller.js" />
     <Content Include="Scripts\inner\constants.js" />
+    <Content Include="Scripts\inner\general-controller.js" />
     <Content Include="Scripts\inner\route-config.js" />
     <Content Include="Scripts\inner\search-controller.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

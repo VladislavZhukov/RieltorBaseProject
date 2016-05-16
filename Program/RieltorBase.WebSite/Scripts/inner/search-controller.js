@@ -52,7 +52,9 @@ Angular Internet Explorer Compatibility: https://docs.angularjs.org/guide/ie
                     $scope.$apply(function () {
                         $scope.appts = processAppartments(data);
                     });
-                    $('#searchSubmit').prop('disabled', false);
+                },
+                complete: function () {
+                    $('#searchSubmit').prop('disabled', false);     // Разблокируем кнопку
                 },
                 dataType: "json"
             });

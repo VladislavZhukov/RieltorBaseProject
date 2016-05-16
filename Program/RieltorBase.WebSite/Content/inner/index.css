@@ -2,6 +2,13 @@
     margin-top:50px;
 }
 
+.login-block{
+    display:none;
+}
+.login-label{
+    color:indianred;
+}
+
 /* Панель инструментов */
 .panel-toolbar{
     text-align:center;
