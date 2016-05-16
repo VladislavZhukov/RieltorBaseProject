@@ -11,6 +11,7 @@
 }
 .panel-toolbar button{
     width:100%;
+    min-height:48px;
 }
 .panel-toolbar i{
     vertical-align:middle;
