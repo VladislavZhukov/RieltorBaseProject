@@ -7,7 +7,9 @@
 
     using RieltorBase.Domain.Interfaces;
     using RieltorBase.WebSite.JsonCompatibleClasses;
-
+    using System.Net.Http;
+    using System.Net;
+    
     /// <summary>
     /// Web API Контроллер для работы с объектами недвижимости.
     /// </summary>
@@ -33,10 +35,34 @@
         /// GET api/realtyobjects/api/v1/RealtyObjects.</remarks>
         public IEnumerable<IRealtyObject> Get()
         {
-            this.AuthorizeUserToReadData(
-                RealtyObjectsController.DontHaveRightsToRead);
+            /*
+                Exception Handling in ASP.NET Web API:
+                http://www.asp.net/web-api/overview/error-handling/exception-handling
 
-            return this.realtyObjects.GetAll();
+                Необязательно читать:
+                ASP.NET Web API: Correct way to return a 401 / unauthorised response:
+                http://stackoverflow.com/questions/31205599/asp-net-web-api-correct-way-to-return-a-401-unauthorised-response
+                How do you return status 401 from WebAPI to AngularJS and also include a custom message?:
+                http://stackoverflow.com/questions/23025884/how-do-you-return-status-401-from-webapi-to-angularjs-and-also-include-a-custom
+            */
+
+
+            try
+            {
+                this.AuthorizeUserToReadData(
+                    RealtyObjectsController.DontHaveRightsToRead);
+
+                return this.realtyObjects.GetAll();
+            }
+            catch (AuthenticationException e)
+            {
+                var resp = new HttpResponseMessage(HttpStatusCode.Unauthorized)
+                {
+                    Content = new StringContent(e.Message)//,
+                    //ReasonPhrase = "Product ID Not Found"
+                };
+                throw new HttpResponseException(resp);
+            }
         }
 
         /// <summary>
