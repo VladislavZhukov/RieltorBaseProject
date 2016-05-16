@@ -24,7 +24,9 @@
         /// <summary>
         /// Механизм авторизации.
         /// </summary>
-        private IAuthorizationMechanism authorization;
+        /// !!! Не понятно почему у меня ленивая загрузка не работала - вылетал NullPointerException !!!
+        private IAuthorizationMechanism authorization = RBDependencyResolver.Current
+                        .CreateInstance<IAuthorizationMechanism>();
 
         /// <summary>
         /// Механизм авторизации.
@@ -111,6 +113,17 @@
 
             if (auth == null || auth.Scheme != "Basic")
             {
+                /*
+                ASP.NET Web API: Correct way to return a 401 / unauthorised response:
+                http://stackoverflow.com/questions/31205599/asp-net-web-api-correct-way-to-return-a-401-unauthorised-response
+
+                How do you return status 401 from WebAPI to AngularJS and also include a custom message?:
+                http://stackoverflow.com/questions/23025884/how-do-you-return-status-401-from-webapi-to-angularjs-and-also-include-a-custom
+
+                */
+
+
+
                 throw new AuthenticationException(
                     "В запросе не передан заголовок авторизации (или заголовок не корректен - не соответствует схеме Basic).");
             }
