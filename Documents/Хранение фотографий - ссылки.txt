@@ -1,0 +1,12 @@
+https://developers.google.com/picasa-web/docs/2.0/developers_guide_protocol#OAuth2Authorizing
+http://dert.livejournal.com/30509.html - выбор хостинга
+https://www.flickr.com/services/api/
+http://uploads.im/apidocs
+http://www.foto.mail.ru/
+https://tech.yandex.ru/fotki/
+https://www.dropbox.com/
+https://github.com/dropbox/dropbox-sdk-dotnet/tree/master/Examples/SimpleBlogDemo
+http://old.ibusiness.ru/blog/tyekhnologii_dlya_zhizni/27649
+
+NET API Google Drive:
+https://developers.google.com/drive/v3/web/quickstart/dotnet#prerequisites
