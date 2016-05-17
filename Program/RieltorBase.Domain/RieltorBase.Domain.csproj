@@ -69,7 +69,7 @@
     <Compile Include="ChangelogAgent.cs">
       <DependentUpon>RealtyBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityFrameworkImpl\AgentRepository.cs" />
+    <Compile Include="EntityFrameworkImpl\AgentsRepository.cs" />
     <Compile Include="EntityFrameworkImpl\AgentWrap.cs" />
     <Compile Include="EntityFrameworkImpl\EFAuthentication.cs" />
     <Compile Include="CommonImpl\Authorization.cs" />

@@ -80,6 +80,49 @@
         }
 
         /// <summary>
+        /// Может ли пользователь добавить агента.
+        /// </summary>
+        /// <param name="user">Информация о пользователе.</param>
+        /// <param name="agent">Агент недвижимости.</param>
+        /// <returns>True - права есть, false - нет.</returns>
+        public bool CanUserAddAgent(
+            UserInfo user,
+            IAgent agent)
+        {
+            return user.IsGlobalAdmin
+                || this.IsUserFirmAdmin(user, agent);
+        }
+
+        /// <summary>
+        /// Может ли пользователь изменить агента.
+        /// </summary>
+        /// <param name="user">Информация о пользователе.</param>
+        /// <param name="agent">Агент недвижимости.</param>
+        /// <returns>True - права есть, false - нет.</returns>
+        public bool CanUserChangeAgent(
+            UserInfo user,
+            IAgent agent)
+        {
+            return user.IsGlobalAdmin
+                || this.IsUserFirmAdmin(user, agent)
+                || user.AgentId == agent.Id_agent;
+        }
+
+        /// <summary>
+        /// Может ли пользователь удалить агента.
+        /// </summary>
+        /// <param name="user">Информация о пользователе.</param>
+        /// <param name="agent">Агент недвижимости.</param>
+        /// <returns>True - права есть, false - нет.</returns>
+        public bool CanUserRemoveAgent(
+            UserInfo user,
+            IAgent agent)
+        {
+            return user.IsGlobalAdmin
+                || this.IsUserFirmAdmin(user, agent);
+        }
+
+        /// <summary>
         /// Может ли пользователь редактировать фотографии фирмы.
         /// </summary>
         /// <param name="user">Информация о пользователе.</param>
@@ -128,6 +171,17 @@
         private bool IsUserFirmAdmin(UserInfo user, IFirm firm)
         {
             return user.FirmId == firm.FirmId;
+        }
+
+        /// <summary>
+        /// Пользователь является директором фирмы, в которой работает агент.
+        /// </summary>
+        /// <param name="user">Информация о пользователе.</param>
+        /// <param name="agent">Агент.</param>
+        /// <returns>True - пользователь - директор фирмы, false - нет.</returns>
+        private bool IsUserFirmAdmin(UserInfo user, IAgent agent)
+        {
+            return user.FirmId == agent.Id_firm && user.IsFirmAdmin;
         }
 
         /// <summary>

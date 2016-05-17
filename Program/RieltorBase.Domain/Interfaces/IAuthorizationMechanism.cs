@@ -47,7 +47,7 @@
             IRealtyObject @object);
 
         /// <summary>
-        /// Может ли пользователь совершать все операции с фирмой.
+        /// Может ли пользователь совершать ВСЕ операции с фирмой.
         /// </summary>
         /// <param name="user">Информация о пользователе.</param>
         /// <param name="firm">Фирма.</param>
@@ -55,6 +55,36 @@
         bool CanUserEditFirm(
             UserInfo user,
             IFirm firm);
+
+        /// <summary>
+        /// Может ли пользователь добавить агента.
+        /// </summary>
+        /// <param name="user">Информация о пользователе.</param>
+        /// <param name="agent">Агент недвижимости.</param>
+        /// <returns>True - права есть, false - нет.</returns>
+        bool CanUserAddAgent(
+            UserInfo user,
+            IAgent agent);
+
+        /// <summary>
+        /// Может ли пользователь изменить агента.
+        /// </summary>
+        /// <param name="user">Информация о пользователе.</param>
+        /// <param name="agent">Агент недвижимости.</param>
+        /// <returns>True - права есть, false - нет.</returns>
+        bool CanUserChangeAgent(
+            UserInfo user,
+            IAgent agent);
+
+        /// <summary>
+        /// Может ли пользователь удалить агента.
+        /// </summary>
+        /// <param name="user">Информация о пользователе.</param>
+        /// <param name="agent">Агент недвижимости.</param>
+        /// <returns>True - права есть, false - нет.</returns>
+        bool CanUserRemoveAgent(
+            UserInfo user,
+            IAgent agent);
 
         /// <summary>
         /// Может ли пользователь редактировать фотографии фирмы.
