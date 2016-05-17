@@ -24,9 +24,7 @@
         /// <summary>
         /// Механизм авторизации.
         /// </summary>
-        /// !!! Не понятно почему у меня ленивая загрузка не работала - вылетал NullPointerException !!!
-        private IAuthorizationMechanism authorization = RBDependencyResolver.Current
-                        .CreateInstance<IAuthorizationMechanism>();
+        private IAuthorizationMechanism authorization;
 
         /// <summary>
         /// Механизм авторизации.
@@ -81,7 +79,7 @@
         protected void AuthorizeGlobalAdmin(
             string exceptionMessage)
         {
-            if (!authorization.IsUserGlobalAdmin(this.CurrentUserInfo))
+            if (!AuthorizationMechanism.IsUserGlobalAdmin(this.CurrentUserInfo))
             {
                 throw new AuthenticationException(exceptionMessage);
             }
@@ -97,7 +95,7 @@
         protected void AuthorizeUserToReadData(
             string exceptionMessage)
         {
-            if (!authorization.CanUserReadData(this.CurrentUserInfo))
+            if (!AuthorizationMechanism.CanUserReadData(this.CurrentUserInfo))
             {
                 throw new AuthenticationException(exceptionMessage);
             }
