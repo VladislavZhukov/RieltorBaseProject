@@ -11,7 +11,7 @@
     /// Реализация интерфейса <see cref="IAgentRepository"/> для работы
     /// с контекстом Entity Framework.
     /// </summary>
-    public class AgentRepository : EFRepository<IAgent>, IAgentRepository
+    public class AgentsRepository : EFRepository<IAgent>, IAgentRepository
     {
         /// <summary>
         /// Получить всех агентов недвижимости.
@@ -19,8 +19,8 @@
         /// <returns>Все имеющиеся агенты (риэлторы).</returns>
         public override IEnumerable<IAgent> GetAll()
         {
-            return Context.Agents.ToList().Select(
-                agent => new AgentWrap(agent, this.Context));
+            return this.Context.Agents.ToList().Select(
+                agent => new AgentWrap(agent));
         }
 
         /// <summary>
@@ -30,12 +30,10 @@
         /// <returns>Найденный агент.</returns>
         public override IAgent Find(int id)
         {
-            Agent obj = Context.Agents
-                .FirstOrDefault(fod => fod.Id_agent == id);
+            Agent obj = Context.Agents.FirstOrDefault(fod => 
+                fod.Id_agent == id);
 
-            return obj != null
-                ? new AgentWrap(obj, this.Context)
-                : null;
+            return obj != null ? new AgentWrap(obj) : null;
         }
 
         /// <summary>
@@ -45,10 +43,9 @@
         /// <returns>Добавленный агент недвижимости.</returns>
         public override IAgent Add(IAgent newEntity)
         {
-            AgentWrap wrap =
-                new AgentWrap(newEntity, this.Context);
+            AgentWrap wrap = new AgentWrap(newEntity);
 
-            Context.Agents.Add(wrap.GetRealObject());
+            this.Context.Agents.Add(wrap.GetRealObject());
             return wrap;
         }
 
@@ -68,9 +65,7 @@
                     + " (id = " + changedEntity.Id_agent + "). ");
             }
 
-            AgentWrap wrap = new AgentWrap(
-                changedEntity,
-                this.Context);
+            AgentWrap wrap = new AgentWrap(changedEntity);
 
             Agent agent = wrap.GetRealObject();
 
@@ -85,7 +80,7 @@
         /// <param name="id">Id удаляемого риэлтора.</param>
         public override void Delete(int id)
         {
-            Context.Agents.Remove(
+            this.Context.Agents.Remove(
                 this.Context.Agents.First(f =>
                     f.Id_agent == id));
         }
@@ -97,7 +92,25 @@
         /// <returns>Найденные агенты.</returns>
         public IEnumerable<IAgent> FindByName(string partOfName)
         {
-            throw new NotImplementedException();
+            string[] parts = partOfName.Split(
+                new []{' '}, 
+                StringSplitOptions.RemoveEmptyEntries);
+
+            if (parts.Length == 2)
+            {
+                // могли написать "Сидоров Иван" и "Иван Сидоров"
+                var result1 = this.FindByFIO(parts[0], parts[1]);
+                var result2 = this.FindByFIO(parts[1], parts[0]);
+                return result1.Union(result2, new AgentsComparer());
+            }
+            else
+            {
+                // просто любое совпадение (в имени или фамилии)
+                return this.Context.Agents.Where(a =>
+                    a.LastName.Contains(partOfName) || a.Name.Contains(partOfName))
+                    .ToList()
+                    .Select(ag => new AgentWrap(ag));
+            }
         }
         
         /// <summary>
@@ -107,8 +120,53 @@
         /// <returns>Все агенты, работающие в этой фирме.</returns>
         public IEnumerable<IAgent> FindByFirmId(int firmId)
         {
-            return Context.Agents.Where(ag => ag.Id_firm == firmId)
-                .ToList().Select(agent => new AgentWrap(agent, Context));
+            return this.Context.Agents.Where(ag => ag.Id_firm == firmId)
+                .ToList().Select(agent => new AgentWrap(agent));
+        }
+
+        /// <summary>
+        /// Найти агентов по имени и фамилии.
+        /// </summary>
+        /// <param name="firstNamePart">Часть имени.</param>
+        /// <param name="lastNamePart">Часть фамилии.</param>
+        /// <returns>Агенты, имя и фамилия которых похожи 
+        /// на заданные параметры.</returns>
+        private IEnumerable<IAgent> FindByFIO(
+            string firstNamePart,
+            string lastNamePart)
+        {
+            return this.Context.Agents.Where(ag =>
+                ag.Name.Contains(firstNamePart)
+                && ag.LastName.Contains(lastNamePart))
+                .ToList()
+                .Select(a => new AgentWrap(a));
+        }
+
+        /// <summary>
+        /// Класс определения эквивалентности агентов.
+        /// </summary>
+        private class AgentsComparer : IEqualityComparer<IAgent>
+        {
+            /// <summary>
+            /// Агенты эквивалентны.
+            /// </summary>
+            /// <param name="x">Агент X.</param>
+            /// <param name="y">Агент Y.</param>
+            /// <returns>Агенты эквивалентны.</returns>
+            public bool Equals(IAgent x, IAgent y)
+            {
+                return x.Id_agent == y.Id_agent;
+            }
+
+            /// <summary>
+            /// Получить хэш-код.
+            /// </summary>
+            /// <param name="obj">Агент.</param>
+            /// <returns>Хэш-код агента.</returns>
+            public int GetHashCode(IAgent obj)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

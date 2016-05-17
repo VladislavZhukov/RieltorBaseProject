@@ -66,6 +66,7 @@
             this.kernel.Bind<IRealtyObjectsRepository>().To<RealtyObjectsRepository>();
             this.kernel.Bind<IRepository<IRealtyObject>>().To<RealtyObjectsRepository>();
             this.kernel.Bind<IRepository<IPhoto>>().To<PhotosRepository>();
+            this.kernel.Bind<IAgentRepository>().To<AgentsRepository>();
 
             this.kernel.Bind<IAuthenticationMechanism>().To<EFAuthentication>();
             this.kernel.Bind<IAuthorizationMechanism>().To<Authorization>();

@@ -1,7 +1,5 @@
 ﻿namespace RieltorBase.Domain.EntityFrameworkImpl
 {
-    using System;
-
     using RieltorBase.Domain.Interfaces;
 
     /// <summary>
@@ -13,53 +11,33 @@
         /// <summary>
         /// Реальный объект EF.
         /// </summary>
-        private readonly Agent _agentEF;
-
-        /// <summary>
-        /// Контекст базы данных (EF).
-        /// </summary>
-        private readonly VolgaInfoDBEntities _context;
-
-        /// <summary>
-        /// Общая часть конструктора.
-        /// </summary>
-        /// <param name="context">Контекст базы данных (EF).</param>
-        private AgentWrap(VolgaInfoDBEntities context)
-        {
-            if (context == null)
-            {
-                throw new ArgumentNullException("context");
-            }
-            this._context = context;
-        }
+        private readonly Agent agentEF;
 
         /// <summary>
         /// Создать экземпляр класса на основе объекта EF.
         /// </summary>
         /// <param name="agent">Объект EF.</param>
-        /// <param name="context">Контекст базы данных EF.</param>
-        internal AgentWrap(Agent agent, VolgaInfoDBEntities context) 
-            : this(context)
+        internal AgentWrap(Agent agent)
         {
-            this._agentEF = agent;
+            this.agentEF = agent;
         }
 
         /// <summary>
         /// Создать экземпляр класса на основе интерфейса агента.
         /// </summary>
         /// <param name="iAgent">Интерфейс агента.</param>
-        /// <param name="context">Контекст базы данных EF.</param>
-        internal AgentWrap(IAgent iAgent, VolgaInfoDBEntities context) 
-            : this(context)
+        internal AgentWrap(IAgent iAgent)
         {
-            this._agentEF = new Agent();
-            this._agentEF.Id_agent = iAgent.Id_agent;
-            this._agentEF.Name = iAgent.Name;
-            this._agentEF.LastName = iAgent.LastName;
-            this._agentEF.Addres = iAgent.Addres;
-            this._agentEF.PhoneNumber = iAgent.PhoneNumber;
-            this._agentEF.Id_firm = iAgent.Id_firm;
-            this._agentEF.IsFirmAdmin = iAgent.IsFirmAdmin;
+            this.agentEF = new Agent
+            {
+                Id_agent = iAgent.Id_agent,
+                Name = iAgent.Name,
+                LastName = iAgent.LastName,
+                Addres = iAgent.Addres,
+                PhoneNumber = iAgent.PhoneNumber,
+                Id_firm = iAgent.Id_firm,
+                IsFirmAdmin = iAgent.IsFirmAdmin
+            };
         }
 
         /// <summary>
@@ -69,11 +47,12 @@
         {
             get
             {
-                return this._agentEF.Id_agent;
+                return this.agentEF.Id_agent;
             }
+
             set
             {
-                this.Id_agent = value;
+                this.agentEF.Id_agent = value;
             }
         }
 
@@ -84,11 +63,12 @@
         {
             get
             {
-                return this._agentEF.Name;
+                return this.agentEF.Name;
             }
+
             set
             {
-                this.Name = value;
+                this.agentEF.Name = value;
             }
         }
 
@@ -99,11 +79,11 @@
         {
             get
             {
-                return this._agentEF.LastName;
+                return this.agentEF.LastName;
             }
             set
             {
-                this.LastName = value;
+                this.agentEF.LastName = value;
             }
         }
 
@@ -114,11 +94,12 @@
         {
             get
             {
-                return this._agentEF.Addres;
+                return this.agentEF.Addres;
             }
+
             set
             {
-                this.Addres = value;
+                this.agentEF.Addres = value;
             }
         }
 
@@ -129,11 +110,12 @@
         {
             get
             {
-                return this._agentEF.PhoneNumber;
+                return this.agentEF.PhoneNumber;
             }
+
             set
             {
-                this.PhoneNumber = value;
+                this.agentEF.PhoneNumber = value;
             }
         }
 
@@ -144,11 +126,12 @@
         {
             get
             {
-                return this._agentEF.Id_firm;
+                return this.agentEF.Id_firm;
             }
+
             set
             {
-                this.Id_firm = value;
+                this.agentEF.Id_firm = value;
             }
         }
 
@@ -159,11 +142,11 @@
         {
             get
             {
-                return this._agentEF.IsFirmAdmin;
+                return this.agentEF.IsFirmAdmin;
             }
             set
             {
-                this.IsFirmAdmin = value;
+                this.agentEF.IsFirmAdmin = value;
             }
         }
 
@@ -173,7 +156,7 @@
         /// <returns>Объект EF.</returns>
         public Agent GetRealObject()
         {
-            return _agentEF;
+            return agentEF;
         }
     }
 }
