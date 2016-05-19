@@ -1,11 +1,8 @@
 ﻿(function () {
     'use strict';
 
-    var LOCAL_STORAGE_LOGIN = "u";
-    var LOCAL_STORAGE_PASSWORD = "p";
-
-    var username = "";
-    var password = "";
+    var LOCAL_STORAGE_H = "h";
+    var h = btoa(":");
 
     init();
     initHandlers();
@@ -14,8 +11,7 @@
     function init() {
         // Загрузка данных из local storage
         if (isThereLogin()) {
-            username = localStorage.getItem(LOCAL_STORAGE_LOGIN);
-            password = localStorage.getItem(LOCAL_STORAGE_PASSWORD);
+            h = localStorage.getItem(LOCAL_STORAGE_H);
         } else {
             $('#login-block').show();
         }
@@ -23,7 +19,7 @@
         // Общие настройки ajax-запросов
         $.ajaxSetup({
             beforeSend: function (xhr) {
-                xhr.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + password));
+                xhr.setRequestHeader("Authorization", "Basic " + h);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 if (jqXHR.status === 401) {
@@ -36,7 +32,7 @@
                     var reason = "";
                     try {
                         reason = JSON.parse(jqXHR.responseText).ExceptionMessage;
-                    } catch (e) { }
+                    } catch (e) {}
                     alert('Ошибка запроса: ' + reason);
                 }
             }
@@ -50,7 +46,7 @@
 
     // Возвращает true, если сохранен логин и пароль
     function isThereLogin() {
-        if (localStorage.getItem(LOCAL_STORAGE_LOGIN) && localStorage.getItem(LOCAL_STORAGE_PASSWORD)) {
+        if (localStorage.getItem(LOCAL_STORAGE_H)) {
             return true;
         }
         return false;
@@ -59,11 +55,11 @@
     // Клик по кнопке "Логин"
     function login() {
         $('#login-block').hide();
-        username = $('#login').val();
-        password = $('#password').val();
 
-        localStorage.setItem(LOCAL_STORAGE_LOGIN, username);
-        localStorage.setItem(LOCAL_STORAGE_PASSWORD, password);
+        var username = $('#login').val();
+        var password = $('#password').val();
+        h = btoa(username + ":" + password);
+        localStorage.setItem(LOCAL_STORAGE_H, h);
     }
 
 })();
