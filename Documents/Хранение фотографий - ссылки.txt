@@ -10,3 +10,7 @@ http://old.ibusiness.ru/blog/tyekhnologii_dlya_zhizni/27649
 
 NET API Google Drive:
 https://developers.google.com/drive/v3/web/quickstart/dotnet#prerequisites
+
+upload files:
+http://www.codeproject.com/Articles/806075/File-Upload-using-jQuery-AJAX-in-ASP-NET-Web-API
+http://www.c-sharpcorner.com/UploadFile/2b481f/uploading-a-file-in-Asp-Net-web-api/
