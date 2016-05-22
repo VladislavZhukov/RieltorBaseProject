@@ -33,7 +33,7 @@
                     try {
                         reason = JSON.parse(jqXHR.responseText).ExceptionMessage;
                     } catch (e) {}
-                    alert('Ошибка запроса: ' + reason);
+                    alert('Ошибка при обращении к серверу: ' + reason);
                 }
             }
         });
