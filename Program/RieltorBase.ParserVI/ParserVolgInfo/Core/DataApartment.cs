@@ -63,6 +63,43 @@ namespace ParserVolgInfo.Core
 
         #endregion
 
+        #region Malosimeyki
+
+        private List<string> parsMalosimeykiList = new List<string>();
+        private List<string> xmlMalosimeykiList = new List<string>();
+
+        [XmlArray("ParsMalosimeykiList")]
+        [XmlArrayItem("Properties")]
+        public List<string> ParsMalosimeykiList
+        {
+            get
+            {
+                return parsMalosimeykiList;
+            }
+
+            set
+            {
+                parsMalosimeykiList = value;
+            }
+        }
+
+        [XmlArray("XmlMalosimeykiList")]
+        [XmlArrayItem("Properties")]
+        public List<string> XmlMalosimeykiList
+        {
+            get
+            {
+                return xmlMalosimeykiList;
+            }
+
+            set
+            {
+                xmlMalosimeykiList = value;
+            }
+        }
+
+        #endregion
+
         #region Dolevoe
 
         private List<string> parsDolevoeList = new List<string>();

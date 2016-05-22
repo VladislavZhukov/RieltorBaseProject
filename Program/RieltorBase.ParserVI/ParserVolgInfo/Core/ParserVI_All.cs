@@ -15,30 +15,6 @@ namespace ParserVolgInfo.Core
     {
         #region Массиы     
 
-        #region malosemeyki
-
-        //нужен для парсинга страниц малосимеек
-        private static string[] ArrPropMalosemeykiPars = new string[] { "Вариант:",
-            "Планировка:",
-            "Материал стен:",
-            "Балкон:",
-            "Остекление:",
-            "Примечания:",
-            "Фирма:",
-            "Агент:" };
-
-        //нужен для создания структуры xml файла
-        private static string[] ArrPropMalosemeykiXml = new string[] { "Variant",
-            "Disposition",
-            "WallMaterial",
-            "Balcony",
-            "Glazing",
-            "Comments",
-            "Company",
-            "Agent" };
-
-        #endregion
-
         #endregion
 
         #region Данные для парсинга
@@ -143,6 +119,10 @@ namespace ParserVolgInfo.Core
                                     case "kvartiryi":
                                         //парсим и одновременно пишем в файл
                                         WriteToXmlFile(dataApart.ParsKvartiryiList, dataApart.XmlKvartiryiList, xmlWriter, idApart, sourcePage);
+                                        break;
+                                    case "malosemeyki":
+                                        //парсим и одновременно пишем в файл
+                                        WriteToXmlFile(dataApart.ParsMalosimeykiList, dataApart.XmlMalosimeykiList, xmlWriter, idApart, sourcePage);
                                         break;
                                     case "dolevoe":
                                         WriteToXmlFile(dataApart.ParsDolevoeList, dataApart.XmlDolevoeList, xmlWriter, idApart, sourcePage);
@@ -416,49 +396,5 @@ namespace ParserVolgInfo.Core
                 logger.Error(ex);
             }
         }
-
-        #region допилить
-        ///переделать
-        //private static void NewFillingXmlFileDataApartment(string[] ArrPropPars, string[] ArrPropXml, XmlTextWriter xmlWriter, string contentPage, int counterIdApartment)
-        //{
-        //    if (ArrPropPars.Length == ArrPropXml.Length)
-        //    {
-        //        for (int i = 0; i < ArrPropPars.Length; i++)
-        //        {
-        //            xmlWriter.WriteStartElement(ArrPropXml[i]);
-
-        //            var parsData = contentPage.Substrings("<b>" + ArrPropPars[i] + "</b></td><td>", "</td></tr>", 0);
-
-        //            if (parsData.Length != 0)
-        //            {
-        //                xmlWriter.WriteString(parsData[counterIdApartment].Replace("<br>", " ").Trim());
-        //            }
-
-        //            xmlWriter.WriteEndElement();
-        //        }
-        //    }
-        //}
-
-        ////для малосемеек
-        //private static void FillingXmlFileDataApartment(string[] ArrPropPars, string[] ArrPropXml, XmlTextWriter xmlWriter, string contentPage, int counterIdApartment)
-        //{
-        //    if (ArrPropPars.Length == ArrPropXml.Length)
-        //    {
-        //        for (int i = 0; i < ArrPropPars.Length; i++)
-        //        {
-        //            xmlWriter.WriteStartElement(ArrPropXml[i]);
-
-        //            var parsData = contentPage.Substrings("<li><strong>" + ArrPropPars[i] + "</strong>", "<", 0);
-
-        //            if (parsData.Length != 0)
-        //            {
-        //                xmlWriter.WriteString(parsData[counterIdApartment].Replace("<br>", " ").Trim());
-        //            }
-
-        //            xmlWriter.WriteEndElement();
-        //        }
-        //    }
-        //}
-        #endregion
     }
 }

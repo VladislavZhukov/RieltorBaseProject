@@ -2,6 +2,7 @@
 <DataApartment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<UrlTypeapArtement>
 		<References>http://www.volga-info.ru/togliatti/search/kvartiryi/x</References>
+    <References>http://www.volga-info.ru/togliatti/search/malosemeyki/x</References>
 		<References>http://www.volga-info.ru/togliatti/search/dolevoe/x</References>
 		<References>http://www.volga-info.ru/togliatti/search/doma_kottedzhi/x</References>
 		<References>http://www.volga-info.ru/togliatti/search/arenda_zhilyih/x</References>
@@ -50,6 +51,46 @@
 		<Properties>Agent</Properties>
 		<Properties>PhoneContact</Properties>
 	</XmlKvartiryiList>
+  <ParsMalosimeykiList>
+    <Properties>Дата</Properties>
+    <Properties>Район</Properties>
+    <Properties>Квартал</Properties>
+    <Properties>Комнат</Properties>
+    <Properties>Улица</Properties>
+    <Properties>Дом</Properties>
+    <Properties>Этажи</Properties>
+    <Properties>Планировка</Properties>
+    <Properties>Материал Стен</Properties>
+    <Properties>Площадь [общ/жил/кух]</Properties>
+    <Properties>Вариант</Properties>
+    <Properties>Цена тыс.руб.</Properties>
+    <Properties>Балкон</Properties>
+    <Properties>Дополнительная информация</Properties>
+    <Properties>Примечания</Properties>
+    <Properties>Фирма</Properties>
+    <Properties>Агент</Properties>
+    <Properties>Телефон контакта</Properties>
+  </ParsMalosimeykiList>
+  <XmlMalosimeykiList>
+    <Properties>Date</Properties>
+    <Properties>District</Properties>
+    <Properties>Quarter</Properties>
+    <Properties>QuantityRoom</Properties>
+    <Properties>Street</Properties>
+    <Properties>Home</Properties>
+    <Properties>Flor</Properties>
+    <Properties>Disposition</Properties>
+    <Properties>WallMaterial</Properties>
+    <Properties>Area</Properties>
+    <Properties>Variant</Properties>
+    <Properties>Price</Properties>
+    <Properties>Balcony</Properties>
+    <Properties>AdditionalInfo</Properties>
+    <Properties>Comments</Properties>
+    <Properties>Company</Properties>
+    <Properties>Agent</Properties>
+    <Properties>PhoneContact</Properties>
+  </XmlMalosimeykiList>
 	<ParsDolevoeList>
 		<Properties>Дата</Properties>
 		<Properties>Район</Properties>
