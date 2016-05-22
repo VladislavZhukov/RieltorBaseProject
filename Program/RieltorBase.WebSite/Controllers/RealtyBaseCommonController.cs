@@ -79,7 +79,7 @@
         protected void AuthorizeGlobalAdmin(
             string exceptionMessage)
         {
-            if (!this.AuthorizationMechanism.IsUserGlobalAdmin(this.CurrentUserInfo))
+            if (!AuthorizationMechanism.IsUserGlobalAdmin(this.CurrentUserInfo))
             {
                 throw new AuthenticationException(exceptionMessage);
             }

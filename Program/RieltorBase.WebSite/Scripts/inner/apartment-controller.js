@@ -12,9 +12,15 @@
         $scope.appId = $routeParams.appId;
 
         // Запрашиваем данные об объекте
-        $http.get(GET_REALTY_OBJECT + $scope.appId).success(function (data) {
-            $scope.app = data;
-            console.log(data);
+        $.ajax({
+            url: GET_REALTY_OBJECT + $scope.appId,
+            success: function (data, textStatus) {
+                // Здесь мы получаем данные, отправленные сервером и выводим их на экран.
+                $scope.$apply(function () {
+                    $scope.app = data;
+                });
+            },
+            dataType: "json"
         });
 
         // Колонки
