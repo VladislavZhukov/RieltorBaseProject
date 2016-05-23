@@ -7,8 +7,6 @@
 
     using RieltorBase.Domain.Interfaces;
     using RieltorBase.WebSite.JsonCompatibleClasses;
-    using System.Net.Http;
-    using System.Net;
     
     /// <summary>
     /// Web API Контроллер для работы с объектами недвижимости.
@@ -85,13 +83,43 @@
         /// </summary>
         /// <param name="id">Id объекта недвижимости.</param>
         /// <returns>Объект недвижимости с заданным Id.</returns>
-        /// <remarks>Пример запроса: GET api/realtyobjects/5.</remarks>
+        /// <remarks>Пример запроса: GET api/v1/realtyobjects/5.</remarks>
         public IRealtyObject Get(int id)
         {
             this.AuthorizeUserToReadData(
                 RealtyObjectsController.DontHaveRightsToRead);
 
             return this.realtyObjects.Find(id);
+        }
+
+        /// <summary>
+        /// Метод обработки запроса на поиск объектов недвижимости
+        /// определенного агента.
+        /// </summary>
+        /// <param name="agentId">Id агента.</param>
+        /// <returns>Объекты недвижимости определенного агента.</returns>
+        /// <remarks>Пример запроса: GET api/v1/realtyobjects/getbyagent?agentId=3.</remarks>
+        public IEnumerable<IRealtyObject> GetByAgent(int agentId)
+        {
+            this.AuthorizeUserToReadData(
+                RealtyObjectsController.DontHaveRightsToRead);
+
+            return this.realtyObjects.FindByAgent(agentId);
+        }
+
+        /// <summary>
+        /// Метод обработки запроса на поиск объектов недвижимости
+        /// всех агентов определенной фирмы.
+        /// </summary>
+        /// <param name="firmId">Id фирмы.</param>
+        /// <returns>Объекты недвижимости определенной фирмы.</returns>
+        /// <remarks>Пример запроса: GET api/v1/realtyobjects/getbyfirm?firmId=3.</remarks>
+        public IEnumerable<IRealtyObject> GetByFirm(int firmId)
+        {
+            this.AuthorizeUserToReadData(
+                RealtyObjectsController.DontHaveRightsToRead);
+
+            return this.realtyObjects.FindByFirm(firmId);
         }
 
         /// <summary>

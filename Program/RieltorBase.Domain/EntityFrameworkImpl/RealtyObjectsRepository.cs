@@ -110,6 +110,32 @@
         }
 
         /// <summary>
+        /// Найти объекты недвижимости определенного агента.
+        /// </summary>
+        /// <param name="agentId">Id агента.</param>
+        /// <returns>Объекты недвижимости определенного агента.</returns>
+        public IEnumerable<IRealtyObject> FindByAgent(int agentId)
+        {
+            return this.Context.RealtyObjects.Where(ro =>
+                ro.AgentId == agentId)
+                .ToList()
+                .Select(obj => new RealtyObjectWrap(obj, this.Context));
+        }
+
+        /// <summary>
+        /// Найти объекты недвижимости всех агентов определенной фирмы.
+        /// </summary>
+        /// <param name="firmId">Id фирмы.</param>
+        /// <returns>Объекты недвижимости всех агентов фирмы.</returns>
+        public IEnumerable<IRealtyObject> FindByFirm(int firmId)
+        {
+            return this.Context.RealtyObjects.Where(ro =>
+                ro.Agent.Id_firm == firmId)
+                .ToList()
+                .Select(obj => new RealtyObjectWrap(obj, this.Context));
+        }
+
+        /// <summary>
         /// Прикрепить к контексту обновленный объект недвижимости.
         /// </summary>
         /// <param name="changedEntity">Интерфейс обновленного объекта 
