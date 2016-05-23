@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
-
-namespace RieltorBase.WebSite
+﻿namespace RieltorBase.WebSite
 {
+    using System.Web.Http;
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
         {
+            // общий фильтр исключений
+            config.Filters.Add(new CommonExceptionFilter());
+
 			config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
