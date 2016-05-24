@@ -9,6 +9,10 @@
     color:indianred;
 }
 
+.user-summary{
+    display:none;
+}
+
 /* Панель инструментов */
 .panel-toolbar{
     text-align:center;

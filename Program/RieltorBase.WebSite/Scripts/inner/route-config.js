@@ -3,8 +3,7 @@
 
     angular
         .module('appRealtor', ['ngRoute'])
-        .config(config)
-        .controller('AboutCtrl', function ($scope, $http, $location) { });
+        .config(config);
 
     config.$inject = ['$routeProvider'];
 
@@ -20,14 +19,14 @@
                 controller: 'appCntrl',
                 controllerAs: 'vm'
             })
-		    .when('/about', {
-		        templateUrl: '/Template/about.html',
-		        controller: 'AboutCtrl',
+		    .when('/cabinet', {
+		        templateUrl: '/Template/cabinet.html',
+		        controller: 'cabinetCntrl',
 		        controllerAs: 'vm'
 		    })
-		    .when('/contact', {
-		        templateUrl: '/Template/contact.html',
-		        controller: 'AboutCtrl',
+		    .when('/app-add', {
+		        templateUrl: '/Template/app-add.html',
+		        controller: 'appAddCntrl',
 		        controllerAs: 'vm'
 		    })
 		    .otherwise({

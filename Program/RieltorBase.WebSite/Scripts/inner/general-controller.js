@@ -2,7 +2,12 @@
     'use strict';
 
     var LOCAL_STORAGE_H = "h";
+    var LOCAL_STORAGE_U = "u";
     var h = btoa(":");
+    var u = "";
+
+    var $userInfoPanel = $('#user-summary');
+    var $userInfoName = $('#user-name');
 
     init();
     initHandlers();
@@ -12,6 +17,8 @@
         // Загрузка данных из local storage
         if (isThereLogin()) {
             h = localStorage.getItem(LOCAL_STORAGE_H);
+            u = localStorage.getItem(LOCAL_STORAGE_U);
+            showUserSummary();
         } else {
             $('#login-block').show();
         }
@@ -24,9 +31,8 @@
             error: function (jqXHR, textStatus, errorThrown) {
                 if (jqXHR.status === 401) {
                     // Если ошибка авторизации
+                    logout();
                     $('#login-label').text(jqXHR.responseText);
-                    $('#login-block').show();
-                    window.localStorage.clear();
                 } else {
                     // В остальных случаях - показываем ошибку
                     var reason = "";
@@ -42,6 +48,7 @@
     // Инициилизация обработчиков событий
     function initHandlers() {
         $('#btnLogin').on('click', login);
+        $('#user-logout').on('click', logout);
     }
 
     // Возвращает true, если сохранен логин и пароль
@@ -60,6 +67,29 @@
         var password = $('#password').val();
         h = btoa(username + ":" + password);
         localStorage.setItem(LOCAL_STORAGE_H, h);
+
+        // Формируем строку с именем пользователя
+        u = "Вы вошли как " + username;
+        localStorage.setItem(LOCAL_STORAGE_U, u);
+
+        showUserSummary();
+    }
+
+    // Клик по кнопке "Выйти"
+    function logout() {
+        $userInfoPanel.hide();
+        $('#login-label').text("");
+        $('#login-block').show();
+        window.localStorage.clear();
+
+        h = btoa(":");
+        u = "";
+    }
+
+    // Показывает панель с краткой информацией о пользователе
+    function showUserSummary() {
+        $userInfoPanel.show();
+        $userInfoName.text(u);
     }
 
 })();
