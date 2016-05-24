@@ -63,7 +63,7 @@ namespace ParserVolgInfo.Core
                     using (var xmlWriter = new XmlTextWriter(pathCurrentApartment + "/info_" + typeApartament + ".xml", Encoding.UTF8))
                     {
                         //получаем общее кол-во квартир        
-                        var quantityApartment = 0;//GetCountPages();                       
+                        var quantityApartment = GetCountPages(dataApart.UrlTypeapArtement[i]);//GetCountPages(dataApart.UrlTypeapArtement[i]);                       
 
                         //получаем ID квартир.
                         var idApartment = GetAllIdApartment(quantityApartment, dataApart.UrlTypeapArtement[i]);
