@@ -80,7 +80,7 @@
                 localStorage.setItem(LOCAL_STORAGE_H, h);
 
                 // Формируем строку с именем пользователя
-                u = "Вы вошли как " + user.AgentName + ", " + user.FirmName + ", IsFirmAdmin=" + user.IsFirmAdmin + ", IsGlobalAdmin=" + user.IsGlobalAdmin;
+                u = "Вы вошли как " + user.AgentName + " (" + user.FirmName + ", IsFirmAdmin=" + user.IsFirmAdmin + ", IsGlobalAdmin=" + user.IsGlobalAdmin + ")";
                 localStorage.setItem(LOCAL_STORAGE_U, u);
 
                 showUserSummary();
