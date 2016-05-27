@@ -61,18 +61,36 @@
 
     // Клик по кнопке "Логин"
     function login() {
-        $('#login-block').hide();
+        $('#btnLogin').prop('disabled', true);
 
         var username = $('#login').val();
         var password = $('#password').val();
+
         h = btoa(username + ":" + password);
-        localStorage.setItem(LOCAL_STORAGE_H, h);
 
-        // Формируем строку с именем пользователя
-        u = "Вы вошли как " + username;
-        localStorage.setItem(LOCAL_STORAGE_U, u);
+        // Посылаем запрос на аутентификацию
+        $.ajax({
+            url: CHECK_AUTH,
+            success: function (data, textStatus) {
+                window.user = data;
+                console.log(data);
 
-        showUserSummary();
+                localStorage.setItem("ff", data);
+                
+                localStorage.setItem(LOCAL_STORAGE_H, h);
+
+                // Формируем строку с именем пользователя
+                u = "Вы вошли как " + user.AgentName + ", " + user.FirmName + ", IsFirmAdmin=" + user.IsFirmAdmin + ", IsGlobalAdmin=" + user.IsGlobalAdmin;
+                localStorage.setItem(LOCAL_STORAGE_U, u);
+
+                showUserSummary();
+                $('#login-block').hide();
+            },
+            complete: function () {
+                $('#btnLogin').prop('disabled', false);     // Разблокируем кнопку
+            },
+            dataType: "json"
+        });
     }
 
     // Клик по кнопке "Выйти"
