@@ -13,7 +13,8 @@
 
         // Запрашиваем данные об объекте
         $.ajax({
-            url: GET_REALTY_OBJECT + $scope.appId,
+            url: GET_REALTY_OBJECT,
+            data: { id: $scope.appId },
             success: function (data, textStatus) {
                 // Здесь мы получаем данные, отправленные сервером и выводим их на экран.
                 $scope.$apply(function () {
