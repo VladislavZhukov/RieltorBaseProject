@@ -72,15 +72,17 @@
         $.ajax({
             url: CHECK_AUTH,
             success: function (data, textStatus) {
-                window.user = data;
                 console.log(data);
-
-                localStorage.setItem("ff", data);
+                var user = data;
                 
+                localStorage.setItem(LOCAL_STORAGE_USER, JSON.stringify(user));
                 localStorage.setItem(LOCAL_STORAGE_H, h);
 
                 // Формируем строку с именем пользователя
-                u = "Вы вошли как " + user.AgentName + " (" + user.FirmName + ", IsFirmAdmin=" + user.IsFirmAdmin + ", IsGlobalAdmin=" + user.IsGlobalAdmin + ")";
+                u = "Вы вошли как " + user.AgentName + " (" + user.FirmName
+                    + (user.IsFirmAdmin ? ", FirmAdmin" : "") +
+                    + (user.IsGlobalAdmin ? ", GlobalAdmin" : "") +
+                    ")";
                 localStorage.setItem(LOCAL_STORAGE_U, u);
 
                 showUserSummary();
