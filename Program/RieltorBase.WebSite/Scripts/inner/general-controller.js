@@ -80,8 +80,7 @@
 
                 // Формируем строку с именем пользователя
                 u = "Вы вошли как " + user.AgentName + " (" + user.FirmName
-                    + (user.IsFirmAdmin ? ", FirmAdmin" : "") +
-                    + (user.IsGlobalAdmin ? ", GlobalAdmin" : "") +
+                    + (user.IsFirmAdmin ? ", FirmAdmin" : "") + (user.IsGlobalAdmin ? ", GlobalAdmin" : "") +
                     ")";
                 localStorage.setItem(LOCAL_STORAGE_U, u);
 
