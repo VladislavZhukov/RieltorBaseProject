@@ -147,42 +147,45 @@
         <!-- "Десктопная" версия блока найденных квартир (для большого и среднего экрана) -->
         <div class="hidden-xs">
             <table class="table table-striped table-bordered table-hover table-condensed">
-                <!-- Заголовки столбцов -->
-                <tr>
-                    <th ng-repeat="col in apptsColumns" ng-click="sort(col['column'])">
-                        <a href="">
-                            {{ col.readableName }}
-                            <i class="glyphicon" ng-class="{'glyphicon-chevron-up' : isSortUp(col['column']),
+                <thead>
+                    <!-- Заголовки столбцов -->
+                    <tr>
+                        <th ng-repeat="col in apptsColumns" ng-click="sort(col['column'])">
+                            <a href="">
+                                {{ col.readableName }}
+                                <i class="glyphicon" ng-class="{'glyphicon-chevron-up' : isSortUp(col['column']),
                                         'glyphicon-chevron-down' : isSortDown(col['column'])}"></i>
-                        </a>
-                    </th>
-                    <th></th>
-                </tr>
+                            </a>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Основные свойства квартиры. Выводим динамически ячейки строк -->
+                    <tr ng-repeat-start="app in appts | orderBy:sortField:reverse">
+                        <td ng-repeat="col in apptsColumns">
+                            <a href="#/app/{{ app.id }}" target="_blank">
+                                {{ app[col.column] }}
+                            </a>
+                        </td>
+                        <td class="toggle-appartment-additional" data-toggle-id="{{ app.id }}">Развернуть</td>
+                    </tr>
+                    <tr></tr>
 
-                <!-- Основные свойства квартиры. Выводим динамически ячейки строк -->
-                <tr ng-repeat-start="app in appts | orderBy:sortField:reverse">
-                    <td ng-repeat="col in apptsColumns">
-                        <a href="#/app/{{ app.id }}" target="_blank">
-                            {{ app[col.column] }}
-                        </a>
-                    </td>
-                    <td class="toggle-appartment-additional" data-toggle-id="{{ app.id }}">Развернуть</td>
-                </tr>
-                <tr></tr>
-
-                <!-- Развернутые свойства квартиры -->
-                <tr class="appartment-additional appartment-additional-{{ app.id }}" ng-repeat-end>
-                    <td colspan="{{ apptsColumns.length + 1 }}">
-                        <div class="panel panel-primary">
-                            <div class="panel-body">
-                                <span>Раскрывающаяся панель для id = {{ app.id }}</span>
-                                <div ng-repeat="col in apptsColumns">
-                                    {{ col.readableName }}: {{ app[col.column] }}
+                    <!-- Развернутые свойства квартиры -->
+                    <tr class="appartment-additional appartment-additional-{{ app.id }}" ng-repeat-end>
+                        <td colspan="{{ apptsColumns.length + 1 }}">
+                            <div class="panel panel-primary">
+                                <div class="panel-body">
+                                    <span>Раскрывающаяся панель для id = {{ app.id }}</span>
+                                    <div ng-repeat="col in apptsColumns">
+                                        {{ col.readableName }}: {{ app[col.column] }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
 
