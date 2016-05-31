@@ -127,7 +127,7 @@
                 DateTime maxDate = this.options.MaxDate ?? DateTime.MaxValue;
 
                 this.currentQuery = this.currentQuery.Where(ro =>
-                    ro.Date <= minDate && ro.Date >= maxDate);
+                    ro.Date >= minDate && ro.Date <= maxDate);
             }
         }
 
