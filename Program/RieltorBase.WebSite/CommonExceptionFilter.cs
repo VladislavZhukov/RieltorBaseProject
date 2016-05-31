@@ -1,4 +1,6 @@
-﻿namespace RieltorBase.WebSite
+﻿using System.Web.Http;
+
+namespace RieltorBase.WebSite
 {
     using System.Net;
     using System.Net.Http;
@@ -24,21 +26,31 @@
         public override void OnException(
             HttpActionExecutedContext context)
         {
-            if (context.Exception != null)
+            if (context.Exception == null)
             {
-                if (context.Exception is AuthenticationException)
-                {
-                    context.Response = new HttpResponseMessage(
-                        HttpStatusCode.Unauthorized);
-                }
-                else
-                {
-                    context.Response = new HttpResponseMessage(
-                        HttpStatusCode.OK);
-                }
+                return;
+            }
 
-                context.Response.Content = new StringContent(
-                    context.Exception.Message);
+            if (context.Exception is AuthenticationException)
+            {
+                context.Response = new HttpResponseMessage(
+                    HttpStatusCode.Unauthorized)
+                {
+                    Content = new StringContent(context.Exception.Message)
+                };
+            }
+            else if (context.Exception is HttpResponseException)
+            {
+                context.Response = ((HttpResponseException)context.Exception)
+                    .Response;
+            }
+            else
+            {
+                context.Response = new HttpResponseMessage(
+                    HttpStatusCode.OK)
+                {
+                    Content = new StringContent(context.Exception.Message)
+                };
             }
         }
     }
