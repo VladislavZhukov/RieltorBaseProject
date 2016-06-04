@@ -135,6 +135,10 @@
             bool canAddRealtyObject = this.AuthorizationMechanism
                 .CanUserAddRealtyObject(this.CurrentUserInfo, value);
 
+            /* Тут, пожалуй, стоит кидать другую ошибку, а на клиент, наверно, отправлять 403.
+                Чтобы клиент мог отличать ошибку логина и пароля от нехватки прав. Так удобнее на клиенте. 
+                Сейчас при возврате 401 он автоматом показывает форму залогиниться.
+            */
             if (!canAddRealtyObject)
             {
                 throw new AuthenticationException(
