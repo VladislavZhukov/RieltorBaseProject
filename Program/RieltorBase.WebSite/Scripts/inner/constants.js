@@ -7,6 +7,7 @@ var CHECK_AUTH = API_V1 + 'authentication/';
 var GET_REALTY_OBJECTS = API_V1 + 'realtyobjects/';
 var GET_REALTY_OBJECT = API_V1 + 'realtyobjects/';
 var GET_REALTY_OBJECTS_BY_AGENT = API_V1 + 'realtyobjects/getbyagent/';
+var ADD_REALTY_OBJECTS = API_V1 + 'realtyobjects/';
 
 // Redirects to angular pages
 var ADD_APP_REDIRECT = "/app-add";

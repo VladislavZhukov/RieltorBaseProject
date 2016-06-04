@@ -3,6 +3,19 @@
         <h1>Добавить объект недвижимости</h1>
     </div>
 
-    
+    <div class="well">
+        <form id="addingForm">
+            <label>ID</label>
+            <input class="form-control" type="text" name="RealtyObjectId" value="" />
+            
+            <label>Цена</label>
+            <input class="form-control" type="text" name="Cost" value="" />
+
+            <label>Доп. инфо</label>
+            <input class="form-control" type="text" name="AdditionalInfo" value="" />
+            
+            <button type="submit" class="btn btn-success" id="btnAddObject" ng-click="submitForm()">Добавить</button>
+        </form>
+    </div>
 
 </div>
