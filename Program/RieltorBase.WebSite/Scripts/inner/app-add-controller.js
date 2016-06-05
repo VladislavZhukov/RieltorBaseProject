@@ -7,8 +7,13 @@
 
     // Контроллер для главной страницы поиска
     function appAddCntrl($scope, $http, $location) {
-
         var btnAddObject = $('#btnAddObject');
+
+        // загружаем объект user из local Storage
+        var user = JSON.parse(localStorage.getItem(LOCAL_STORAGE_USER));
+        $scope.user = user;
+
+
 
         // Событие вызывается при нажатии кнопки "Поиск".
         $scope.submitForm = function () {

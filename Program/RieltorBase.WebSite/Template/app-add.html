@@ -5,14 +5,37 @@
 
     <div class="well">
         <form id="addingForm">
-            <label>ID</label>
-            <input class="form-control" type="text" name="RealtyObjectId" value="" />
+            <label>Тип недвижимости</label>
+            <select name="TypeName" class="form-control">
+                <option>Квартиры</option>
+                <option>Малосемейки</option>
+                <option>Новостройки</option>
+                <option>Дома/Коттеджи</option>
+                <option>Аренда жилья</option>
+                <option>Коммерческая Недвижимость</option>
+                <option>Участки</option>
+                <option>Дачи</option>
+                <option>Разное</option>
+            </select>
             
-            <label>Цена</label>
+            <label>Цена, тыс. руб.</label>
             <input class="form-control" type="text" name="Cost" value="" />
 
             <label>Доп. инфо</label>
             <input class="form-control" type="text" name="AdditionalInfo" value="" />
+
+            <label>Note</label>
+            <input class="form-control" type="text" name="Note" value="" />
+
+            <label>Дату лучше бы выставлять на сервере</label>
+            <input class="form-control" type="text" name="Date" value="2016-05-05T20:00:00" />
+
+            <label>AgentName</label>
+            <input class="form-control" type="text" name="AgentName" value="{{ user.AgentName }}" />
+            <label>FirmName</label>
+            <input class="form-control" type="text" name="FirmName" value="{{ user.FirmName }}" />
+            <label>Phone</label>
+            <input class="form-control" type="text" name="Phone" value="{{ user.AgentPhone }}" />
             
             <button type="submit" class="btn btn-success" id="btnAddObject" ng-click="submitForm()">Добавить</button>
         </form>
