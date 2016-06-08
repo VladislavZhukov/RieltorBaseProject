@@ -14,7 +14,6 @@ namespace RieltorBase.Domain
     
     public partial class Agent
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Agent()
         {
             this.RealtyObjects = new HashSet<RealtyObject>();
@@ -30,9 +29,7 @@ namespace RieltorBase.Domain
         public bool IsFirmAdmin { get; set; }
     
         public virtual Firm Firm { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RealtyObject> RealtyObjects { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Password> Passwords { get; set; }
     }
 }

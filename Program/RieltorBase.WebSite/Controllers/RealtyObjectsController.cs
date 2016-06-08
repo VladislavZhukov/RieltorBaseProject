@@ -132,6 +132,8 @@
         /// (в теле запроса - JSON-объект недвижимости).</remarks>
         public IRealtyObject Post([FromBody]JsonRealtyObject value)
         {
+            value.Date = DateTime.Now;
+
             bool canAddRealtyObject = this.AuthorizationMechanism
                 .CanUserAddRealtyObject(this.CurrentUserInfo, value);
 
@@ -141,7 +143,7 @@
             */
             if (!canAddRealtyObject)
             {
-                throw new AuthenticationException(
+                this.ThrowUnauthorizedResponseException(
                     "Данному пользователю не разрешено добавлять данный объект недвижимости.");
             }
 
@@ -161,12 +163,14 @@
         /// (в теле запроса - JSON-объект недвижимости).</remarks>
         public IRealtyObject Put(int id, [FromBody]JsonRealtyObject value)
         {
+            value.Date = DateTime.Now;
+
             bool canUpdateRealtyObject = this.AuthorizationMechanism
                 .CanUserUpdateRealtyObject(this.CurrentUserInfo, value);
 
             if (!canUpdateRealtyObject)
             {
-                throw new AuthenticationException(
+                this.ThrowUnauthorizedResponseException(
                     "Данному пользователю не разрешено изменять данный объект недвижимости.");
             }
 
@@ -189,7 +193,7 @@
 
             if (!canDelete)
             {
-                throw new AuthenticationException(
+                this.ThrowUnauthorizedResponseException(
                     "Данному пользователю не разрешено удалять данный объект недвижимости.");
             }
 

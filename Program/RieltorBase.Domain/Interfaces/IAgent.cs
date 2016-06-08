@@ -8,7 +8,7 @@
         /// <summary>
         /// Id агента (риэлтора).
         /// </summary>
-        int Id_agent { get; set; }
+        int IdAgent { get; set; }
 
         /// <summary>
         /// Имя.
@@ -33,7 +33,7 @@
         /// <summary>
         /// Id фирмы, в которой работает агент.
         /// </summary>
-        int Id_firm { get; set; }
+        int IdFirm { get; set; }
 
         /// <summary>
         /// Агент (риэлтор, сотрудник фирмы) является директором фирмы.

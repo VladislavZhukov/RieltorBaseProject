@@ -11,7 +11,7 @@
         /// <summary>
         /// Id агента (риэлтора).
         /// </summary>
-        public int Id_agent { get; set; }
+        public int IdAgent { get; set; }
 
         /// <summary>
         /// Имя.
@@ -36,7 +36,7 @@
         /// <summary>
         /// Id фирмы, в которой работает агент.
         /// </summary>
-        public int Id_firm { get; set; }
+        public int IdFirm { get; set; }
 
         /// <summary>
         /// Агент (риэлтор, сотрудник фирмы) является директором фирмы.

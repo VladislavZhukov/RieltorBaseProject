@@ -30,12 +30,12 @@
         {
             this.agentEF = new Agent
             {
-                Id_agent = iAgent.Id_agent,
+                Id_agent = iAgent.IdAgent,
                 Name = iAgent.Name,
                 LastName = iAgent.LastName,
                 Addres = iAgent.Addres,
                 PhoneNumber = iAgent.PhoneNumber,
-                Id_firm = iAgent.Id_firm,
+                Id_firm = iAgent.IdFirm,
                 IsFirmAdmin = iAgent.IsFirmAdmin
             };
         }
@@ -43,7 +43,7 @@
         /// <summary>
         /// Id агента.
         /// </summary>
-        public int Id_agent
+        public int IdAgent
         {
             get
             {
@@ -122,7 +122,7 @@
         /// <summary>
         /// Id фирмы, в которой работает агент.
         /// </summary>
-        public int Id_firm
+        public int IdFirm
         {
             get
             {

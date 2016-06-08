@@ -1,4 +1,6 @@
-﻿namespace RieltorBase.WebSite.Controllers
+﻿using System.Net;
+
+namespace RieltorBase.WebSite.Controllers
 {
     using System.Collections.Generic;
     using System.Security.Authentication;
@@ -21,8 +23,8 @@
         /// <summary>
         /// Репозиторий (хранилище) агентов.
         /// </summary>
-        private IAgentRepository agentsRepository = RBDependencyResolver.Current
-            .CreateInstance<IAgentRepository>();
+        private readonly IAgentRepository agentsRepository 
+            = RBDependencyResolver.Current.CreateInstance<IAgentRepository>();
 
         /// <summary>
         /// Получить всех агентов недвижимости.
@@ -77,7 +79,7 @@
 
             if (!canAdd)
             {
-                throw new AuthenticationException(
+                this.ThrowUnauthorizedResponseException(
                     "Текущий пользователь не может добавить данного агента.");
             }
 
@@ -102,7 +104,7 @@
 
             if (!canChange)
             {
-                throw new AuthenticationException(
+                this.ThrowUnauthorizedResponseException(
                     "Текущий пользователь не может изменить информацию о данном агенте.");
             }
 
@@ -124,7 +126,7 @@
 
             if (!canDelete)
             {
-                throw new AuthenticationException(
+                this.ThrowUnauthorizedResponseException(
                     "Текущий пользователь не может удалить данного агента.");
             }
 

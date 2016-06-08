@@ -19,7 +19,7 @@ namespace ParserVolgInfo.Core
         #region Массиы
         //оба массива должны быть одного разсера
         //нужен для парсинга страниц квартир
-        private static string[] ArrPropAparPars = new string[] { "Дата",
+        private static string[] arrPropAparPars = new string[] { "Дата",
             "Район",
             "Квартал",
             "Комнат",
@@ -39,7 +39,7 @@ namespace ParserVolgInfo.Core
             "Телефон контакта" };
 
         //нужен для создания структуры xml файла
-        private static string[] ArrPropAparXml = new string[] { "Date",
+        private static string[] arrPropAparXml = new string[] { "Date",
             "District",
             "Quarter",
             "QuantityRoom",
@@ -73,8 +73,6 @@ namespace ParserVolgInfo.Core
         /// Записывает полученные данные в xml файл.
         /// Создает папку photo, в ней создает папки с id квартир и сохраняет в них фото.
         /// </summary>
-        /// <param name="idApartment"></param>
-        /// <returns></returns>
         static public void StartParser()
         {
             Directory.CreateDirectory("image");
@@ -218,10 +216,7 @@ namespace ParserVolgInfo.Core
                         //парсим страницу и записываем данные в массив
                         apartmentId = contentPage.Substrings("/togliatti/object/kvartiryi/", "/\">", 0).Distinct().ToArray();
 
-                        foreach (var item in apartmentId)
-                        {
-                            listIdApartment.Add(item);
-                        }
+                        listIdApartment.AddRange(apartmentId);
                     }
                 }
             }
@@ -250,13 +245,13 @@ namespace ParserVolgInfo.Core
                 xmlWriter.WriteString(idApart);
                 xmlWriter.WriteEndElement();
 
-                if (ArrPropAparXml.Length == ArrPropAparPars.Length)
+                if (arrPropAparXml.Length == arrPropAparPars.Length)
                 {
-                    for (int i = 0; i < ArrPropAparXml.Length; i++)
+                    for (int i = 0; i < arrPropAparXml.Length; i++)
                     {
-                        xmlWriter.WriteStartElement(ArrPropAparXml[i]);
+                        xmlWriter.WriteStartElement(arrPropAparXml[i]);
 
-                        var parsData = sourcePage.Substrings("<b>" + ArrPropAparPars[i] + "</b></td><td>", "</td></tr>", 0);
+                        var parsData = sourcePage.Substrings("<b>" + arrPropAparPars[i] + "</b></td><td>", "</td></tr>", 0);
 
                         if (parsData.Length != 0)
                         {
@@ -281,6 +276,7 @@ namespace ParserVolgInfo.Core
         /// </summary>
         /// <param name="idApart">ID квартир</param>
         /// <param name="sourcePage">страница</param>
+        /// <param name="imagesUrl">Url картинки.</param>
         private static void CreateDirAndPfoto(string idApart, string sourcePage, string[] imagesUrl)
         {
             try

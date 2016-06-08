@@ -17,47 +17,47 @@
         /// <summary>
         /// Имя типа квартир.
         /// </summary>
-        internal const string AppartmentTypeName = "Квартиры";
+        private const string AppartmentTypeName = "Квартиры";
 
         /// <summary>
         /// Имя типа малосемеек.
         /// </summary>
-        internal const string MalosemeykiTypeName = "Малосемейки";
+        private const string MalosemeykiTypeName = "Малосемейки";
 
         /// <summary>
         /// Имя типа новостроек.
         /// </summary>
-        internal const string NovostroykiTypeName = "Новостройки";
+        private const string NovostroykiTypeName = "Новостройки";
 
         /// <summary>
         /// Имя типа домов и коттеджей.
         /// </summary>
-        internal const string DomaKottedgiTypeName = "Дома/Коттеджи";
+        private const string DomaKottedgiTypeName = "Дома/Коттеджи";
 
         /// <summary>
         /// Имя типа арендной недвижимости.
         /// </summary>
-        internal const string ArendaTypeName = "Аренда жилья";
+        private const string ArendaTypeName = "Аренда жилья";
 
         /// <summary>
         /// Имя типа коммерческой недвижимости.
         /// </summary>
-        internal const string KommercheskayaTypeName = "Коммерческая Недвижимость";
+        private const string KommercheskayaTypeName = "Коммерческая Недвижимость";
 
         /// <summary>
         /// Имя типа земельных участков.
         /// </summary>
-        internal const string UchastkiTypeName = "Участки";
+        private const string UchastkiTypeName = "Участки";
 
         /// <summary>
         /// Имя типа дач.
         /// </summary>
-        internal const string DachiTypeName = "Дачи";
+        private const string DachiTypeName = "Дачи";
 
         /// <summary>
         /// Имя типа прочих объектов недвижимости.
         /// </summary>
-        internal const string RaznoeTypeName = "Разное";
+        private const string RaznoeTypeName = "Разное";
 
         #endregion
 
@@ -81,7 +81,7 @@
         /// Имена элементов xml, содержащих информацию 
         /// об отдельных типах недвижимости.
         /// </summary>
-        private static string[] elementNames =
+        private static readonly string[] elementNames =
         {
             "ParsKvartiryiList",
             "ParsMalosemeykiList",

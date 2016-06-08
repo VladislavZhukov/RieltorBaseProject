@@ -92,6 +92,7 @@
     <Compile Include="Interfaces\IFirm.cs" />
     <Compile Include="Interfaces\IFirmsRepository.cs" />
     <Compile Include="Interfaces\IPhoto.cs" />
+    <Compile Include="Interfaces\IPhotosRepository.cs" />
     <Compile Include="Interfaces\IRealtyBaseContext.cs" />
     <Compile Include="Interfaces\Metadata.cs" />
     <Compile Include="Interfaces\TypeMetadataDescription.cs" />
@@ -99,12 +100,15 @@
     <Compile Include="Interfaces\IRealtyObjectsRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\UserInfo.cs" />
+    <Compile Include="Interfaces\RealtyObjectSearchOptions.cs" />
+    <Compile Include="EntityFrameworkImpl\RealtyObjectWrap.cs" />
     <Compile Include="Password.cs">
       <DependentUpon>RealtyBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Photo.cs">
       <DependentUpon>RealtyBaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyType.cs">
       <DependentUpon>RealtyBaseModel.tt</DependentUpon>
     </Compile>
@@ -129,9 +133,6 @@
     <Compile Include="RealtyObject.cs">
       <DependentUpon>RealtyBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\RealtyObjectSearchOptions.cs" />
-    <Compile Include="EntityFrameworkImpl\RealtyObjectWrap.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealtyObjectType.cs">
       <DependentUpon>RealtyBaseModel.tt</DependentUpon>
     </Compile>
@@ -143,25 +144,26 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RealtyBaseModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="RealtyBaseModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RealtyBaseModel.edmx</DependentUpon>
+      <LastGenOutput>RealtyBaseModel.Context.cs</LastGenOutput>
+    </None>
     <None Include="RealtyBaseModel.edmx.diagram">
       <DependentUpon>RealtyBaseModel.edmx</DependentUpon>
+    </None>
+    <None Include="RealtyBaseModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RealtyBaseModel.edmx</DependentUpon>
+      <LastGenOutput>RealtyBaseModel.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Interfaces\DataApartment.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Content Include="RealtyBaseModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RealtyBaseModel.edmx</DependentUpon>
-      <LastGenOutput>RealtyBaseModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="RealtyBaseModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RealtyBaseModel.edmx</DependentUpon>
-      <LastGenOutput>RealtyBaseModel.cs</LastGenOutput>
-    </Content>
     <Content Include="ScriptsForDB\database_Version_02.sql" />
+    <Content Include="ScriptsForDB\database_Version_03.sql" />
     <Content Include="ScriptsForDB\InsertDataTestVI.sql" />
     <Content Include="ScriptsForDB\script.sql" />
     <Content Include="ScriptsForDB\scriptRenamed.sql" />

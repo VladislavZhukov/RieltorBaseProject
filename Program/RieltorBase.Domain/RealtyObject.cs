@@ -14,7 +14,6 @@ namespace RieltorBase.Domain
     
     public partial class RealtyObject
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public RealtyObject()
         {
             this.Photos = new HashSet<Photo>();
@@ -30,9 +29,7 @@ namespace RieltorBase.Domain
         public string AdditionalInfo { get; set; }
     
         public virtual Agent Agent { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Photo> Photos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PropertyValue> PropertyValues { get; set; }
         public virtual RealtyObjectType RealtyObjectType { get; set; }
     }
