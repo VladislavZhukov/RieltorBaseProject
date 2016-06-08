@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RieltorBase.Domain", "Rielt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserVolgInfo", "RieltorBase.ParserVI\ParserVolgInfo\ParserVolgInfo.csproj", "{6E78DB00-D8A3-4C68-90B8-72348100E63E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicData", "DynamicData\DynamicData.csproj", "{528E2EAC-DF5C-4ED8-B642-C4734D695712}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{6E78DB00-D8A3-4C68-90B8-72348100E63E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E78DB00-D8A3-4C68-90B8-72348100E63E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E78DB00-D8A3-4C68-90B8-72348100E63E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{528E2EAC-DF5C-4ED8-B642-C4734D695712}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{528E2EAC-DF5C-4ED8-B642-C4734D695712}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{528E2EAC-DF5C-4ED8-B642-C4734D695712}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{528E2EAC-DF5C-4ED8-B642-C4734D695712}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,5 +42,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5272E49A-C7FA-49C9-9BEE-C1BACFD4BC6C} = {A0065545-AAF9-4028-9EC1-8FA43484B0B1}
 		{6E78DB00-D8A3-4C68-90B8-72348100E63E} = {A0065545-AAF9-4028-9EC1-8FA43484B0B1}
+		{528E2EAC-DF5C-4ED8-B642-C4734D695712} = {A0065545-AAF9-4028-9EC1-8FA43484B0B1}
 	EndGlobalSection
 EndGlobal
