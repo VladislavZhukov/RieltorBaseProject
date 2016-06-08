@@ -6,7 +6,7 @@
 
     public class HomeController : Controller
     {
-        private IRealtyBaseContext context
+        private readonly IRealtyBaseContext context
             = RBDependencyResolver.Current.CreateInstance<IRealtyBaseContext>();
 
         //

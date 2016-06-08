@@ -43,10 +43,10 @@
             foreach (TypeMetadataDescription typeDescription
                 in Metadata.GetInstance().TypeDescriptions)
             {
-                RealtyObjectType newType =
-                    new RealtyObjectType();
-
-                newType.TypeName = typeDescription.Name;
+                RealtyObjectType newType = new RealtyObjectType
+                {
+                    TypeName = typeDescription.Name
+                };
 
                 foreach (string propName
                     in typeDescription.PropertyNames)

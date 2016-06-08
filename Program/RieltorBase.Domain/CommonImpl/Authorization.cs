@@ -105,7 +105,7 @@
         {
             return user.IsGlobalAdmin
                 || this.IsUserFirmAdmin(user, agent)
-                || user.AgentId == agent.Id_agent;
+                || user.AgentId == agent.IdAgent;
         }
 
         /// <summary>
@@ -181,7 +181,7 @@
         /// <returns>True - пользователь - директор фирмы, false - нет.</returns>
         private bool IsUserFirmAdmin(UserInfo user, IAgent agent)
         {
-            return user.FirmId == agent.Id_firm && user.IsFirmAdmin;
+            return user.FirmId == agent.IdFirm && user.IsFirmAdmin;
         }
 
         /// <summary>

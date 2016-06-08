@@ -1,8 +1,7 @@
-﻿using System;
-using ParserVolgInfo.Core;
-
-namespace ParserVolgInfo
+﻿namespace ParserVolgInfo
 {
+    using ParserVolgInfo.Core;
+
     class Program
     {
         static void Main(string[] args)

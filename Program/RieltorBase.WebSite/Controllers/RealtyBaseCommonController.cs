@@ -33,13 +33,8 @@
         {
             get
             {
-                if (this.authorization == null)
-                {
-                    this.authorization = RBDependencyResolver.Current
-                        .CreateInstance<IAuthorizationMechanism>();
-                }
-
-                return this.authorization;
+                return this.authorization ?? 
+                    (this.authorization = RBDependencyResolver.Current.CreateInstance<IAuthorizationMechanism>());
             }
         }
 

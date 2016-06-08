@@ -46,9 +46,10 @@
             {
                 return this.firmEF.FirmId;
             }
+
             set
             {
-                this.FirmId = value;
+                this.firmEF.FirmId = value;
             }
         }
 

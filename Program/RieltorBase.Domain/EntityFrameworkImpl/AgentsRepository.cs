@@ -11,6 +11,7 @@
     /// Реализация интерфейса <see cref="IAgentRepository"/> для работы
     /// с контекстом Entity Framework.
     /// </summary>
+    // ReSharper disable once ClassNeverInstantiated.Global Инстанцируется контейнеро
     public class AgentsRepository : EFRepository<IAgent>, IAgentRepository
     {
         /// <summary>
@@ -67,11 +68,11 @@
         public override IAgent Update(IAgent changedEntity)
         {
             if (!this.Context.Agents.Any(f =>
-                f.Id_agent == changedEntity.Id_agent))
+                f.Id_agent == changedEntity.IdAgent))
             {
                 throw new InvalidOperationException(
                     "Попытка обновления данных несуществующего агента"
-                    + " (id = " + changedEntity.Id_agent + "). ");
+                    + " (id = " + changedEntity.IdAgent + "). ");
             }
 
             AgentWrap wrap = new AgentWrap(changedEntity);
@@ -164,7 +165,7 @@
             /// <returns>Агенты эквивалентны.</returns>
             public bool Equals(IAgent x, IAgent y)
             {
-                return x.Id_agent == y.Id_agent;
+                return x.IdAgent == y.IdAgent;
             }
 
             /// <summary>

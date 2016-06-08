@@ -21,8 +21,8 @@
         /// <summary>
         /// Репозиторий (хранилище) агентов.
         /// </summary>
-        private IAgentRepository agentsRepository = RBDependencyResolver.Current
-            .CreateInstance<IAgentRepository>();
+        private readonly IAgentRepository agentsRepository 
+            = RBDependencyResolver.Current.CreateInstance<IAgentRepository>();
 
         /// <summary>
         /// Получить всех агентов недвижимости.
