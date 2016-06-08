@@ -143,7 +143,7 @@
             */
             if (!canAddRealtyObject)
             {
-                throw new AuthenticationException(
+                this.ThrowUnauthorizedResponseException(
                     "Данному пользователю не разрешено добавлять данный объект недвижимости.");
             }
 
@@ -170,7 +170,7 @@
 
             if (!canUpdateRealtyObject)
             {
-                throw new AuthenticationException(
+                this.ThrowUnauthorizedResponseException(
                     "Данному пользователю не разрешено изменять данный объект недвижимости.");
             }
 
@@ -193,7 +193,7 @@
 
             if (!canDelete)
             {
-                throw new AuthenticationException(
+                this.ThrowUnauthorizedResponseException(
                     "Данному пользователю не разрешено удалять данный объект недвижимости.");
             }
 

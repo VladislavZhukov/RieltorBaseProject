@@ -1,4 +1,7 @@
-﻿namespace RieltorBase.WebSite.Controllers
+﻿using System.Net;
+using System.Net.Http;
+
+namespace RieltorBase.WebSite.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -57,7 +60,7 @@
                 if (user == null)
                 {
                     throw new AuthenticationException(
-                        "Недостаточно прав для совершения данной операции.");
+                        "Информация о пользователе " + loginAndPassword.Key + " не найдена.");
                 }
 
                 return user;
@@ -69,14 +72,12 @@
         /// (включает процедуру аутентификации и авторизации).
         /// </summary>
         /// <param name="exceptionMessage">Сообщение в случае отсутствия прав.</param>
-        /// <exception cref="AuthenticationException">Если пользователь
-        /// не является глобальным администратором.</exception>
         protected void AuthorizeGlobalAdmin(
             string exceptionMessage)
         {
             if (!AuthorizationMechanism.IsUserGlobalAdmin(this.CurrentUserInfo))
             {
-                throw new AuthenticationException(exceptionMessage);
+                this.ThrowUnauthorizedResponseException(exceptionMessage);
             }
         }
 
@@ -85,15 +86,27 @@
         /// (включает процедуру аутентификации и авторизации).
         /// </summary>
         /// <param name="exceptionMessage">Сообщение в случае отсутствия прав.</param>
-        /// <exception cref="AuthenticationException">Если пользователь
-        /// не имеет прав на чтение данных.</exception>
         protected void AuthorizeUserToReadData(
             string exceptionMessage)
         {
             if (!AuthorizationMechanism.CanUserReadData(this.CurrentUserInfo))
             {
-                throw new AuthenticationException(exceptionMessage);
+                this.ThrowUnauthorizedResponseException(exceptionMessage);
             }
+        }
+
+        /// <summary>
+        /// Вернуть ответ о недостаточности прав.
+        /// </summary>
+        /// <param name="message">Сообщение пользователю.</param>
+        protected void ThrowUnauthorizedResponseException(string message)
+        {
+            HttpResponseException exc = new HttpResponseException(
+                HttpStatusCode.Forbidden);
+
+            exc.Response.Content = new StringContent(message);
+
+            throw exc;
         }
 
         /// <summary>

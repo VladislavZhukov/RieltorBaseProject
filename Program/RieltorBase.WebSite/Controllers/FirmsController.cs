@@ -99,7 +99,7 @@
                 if (!this.AuthorizationMechanism.CanUserEditFirm(
                     this.CurrentUserInfo, existingFirm))
                 {
-                    throw new AuthenticationException(
+                    this.ThrowUnauthorizedResponseException(
                         "Данный пользователь не может изменять данные этой фирмы.");
                 }
             }

@@ -148,7 +148,7 @@
                 if (!this.AuthorizationMechanism.UserHasAccessToPhotos(
                     this.CurrentUserInfo, this.firms.Find(photo.FirmId ?? 0)))
                 {
-                    throw new AuthenticationException(
+                    this.ThrowUnauthorizedResponseException(
                         "Данный пользователь не может редактировать фотографии данной фирмы.");
                 }
             }
@@ -157,7 +157,7 @@
                 if (!this.AuthorizationMechanism.UserHasAccessToPhotos(
                     this.CurrentUserInfo, this.realtyObjects.Find(photo.RealtyObjectId ?? 0)))
                 {
-                    throw new AuthenticationException(
+                    this.ThrowUnauthorizedResponseException(
                         "Данный пользователь не может редактировать фотографии данного объекта недвижимости.");
                 }
             }
