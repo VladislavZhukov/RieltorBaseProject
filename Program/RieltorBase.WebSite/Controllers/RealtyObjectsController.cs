@@ -132,6 +132,8 @@
         /// (в теле запроса - JSON-объект недвижимости).</remarks>
         public IRealtyObject Post([FromBody]JsonRealtyObject value)
         {
+            value.Date = DateTime.Now;
+
             bool canAddRealtyObject = this.AuthorizationMechanism
                 .CanUserAddRealtyObject(this.CurrentUserInfo, value);
 
@@ -161,6 +163,8 @@
         /// (в теле запроса - JSON-объект недвижимости).</remarks>
         public IRealtyObject Put(int id, [FromBody]JsonRealtyObject value)
         {
+            value.Date = DateTime.Now;
+
             bool canUpdateRealtyObject = this.AuthorizationMechanism
                 .CanUserUpdateRealtyObject(this.CurrentUserInfo, value);
 
