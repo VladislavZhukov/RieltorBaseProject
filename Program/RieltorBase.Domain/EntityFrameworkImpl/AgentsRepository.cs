@@ -45,6 +45,15 @@
         {
             AgentWrap wrap = new AgentWrap(newEntity);
 
+            if (this.Context.Agents.Any(a =>
+                a.Name == newEntity.Name
+                && a.LastName == newEntity.LastName
+                && a.PhoneNumber == newEntity.PhoneNumber))
+            {
+                throw new InvalidOperationException(
+                    "Агент с таким именем, фамилией и телефоном, уже существует.");
+            }
+            
             this.Context.Agents.Add(wrap.GetRealObject());
             return wrap;
         }

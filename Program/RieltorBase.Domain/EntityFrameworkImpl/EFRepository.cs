@@ -19,7 +19,7 @@
         /// <summary>
         /// Получить контекст EF.
         /// </summary>
-        public VolgaInfoDBEntities Context
+        protected VolgaInfoDBEntities Context
         {
             get
             {

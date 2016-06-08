@@ -17,8 +17,8 @@
         /// <summary>
         /// Репозиторий фотографий.
         /// </summary>
-        private readonly IRepository<IPhoto> photos =
-            RBDependencyResolver.Current.CreateInstance<IRepository<IPhoto>>();
+        private readonly IPhotosRepository photos =
+            RBDependencyResolver.Current.CreateInstance<IPhotosRepository>();
 
         /// <summary>
         /// Репозиторий фирм.
@@ -59,6 +59,32 @@
         {
             this.AuthorizeUserToReadData(PhotosController.DontHaveRightToRead);
             return this.photos.Find(id);
+        }
+
+        /// <summary>
+        /// Получить фотографии фирмы.
+        /// </summary>
+        /// <param name="firmId">Id фирмы.</param>
+        /// <returns>Фотографии фирмы.</returns>
+        /// <remarks>Пример запроса: 
+        /// GET api/v1/photos/getfirmphotos?firmId=3.</remarks>
+        public IEnumerable<IPhoto> GetFirmPhotos(int firmId)
+        {
+            this.AuthorizeUserToReadData(PhotosController.DontHaveRightToRead);
+            return this.photos.GetFirmPhotos(firmId);
+        }
+
+        /// <summary>
+        /// Получить фотографии фирмы.
+        /// </summary>
+        /// <param name="realtyObjectId">Id фирмы.</param>
+        /// <returns>Фотографии фирмы.</returns>
+        /// <remarks>Пример запроса: 
+        /// GET api/v1/photos/GetRealtyObjectPhotos?realtyObjectId=3.</remarks>
+        public IEnumerable<IPhoto> GetRealtyObjectPhotos(int realtyObjectId)
+        {
+            this.AuthorizeUserToReadData(PhotosController.DontHaveRightToRead);
+            return this.photos.GetRealtyObjectPhotos(realtyObjectId);
         }
 
         /// <summary>
@@ -111,25 +137,25 @@
         /// <param name="photo">Фотография.</param>
         private void AuthorizeForPhotoOperations(IPhoto photo)
         {
-            if (photo.FirmId != 0 && photo.RealtyObjectId != 0)
+            if (photo.FirmId != null && photo.RealtyObjectId != null)
             {
                 throw new InvalidOperationException(
                     "Фотография не может иметь id фирмы и id объекта недвижимости одновременно.");
             }
 
-            if (photo.FirmId != 0)
+            if (photo.FirmId != null)
             {
                 if (!this.AuthorizationMechanism.UserHasAccessToPhotos(
-                    this.CurrentUserInfo, this.firms.Find(photo.FirmId)))
+                    this.CurrentUserInfo, this.firms.Find(photo.FirmId ?? 0)))
                 {
                     throw new AuthenticationException(
                         "Данный пользователь не может редактировать фотографии данной фирмы.");
                 }
             }
-            else if (photo.RealtyObjectId != 0)
+            else if (photo.RealtyObjectId != null)
             {
                 if (!this.AuthorizationMechanism.UserHasAccessToPhotos(
-                    this.CurrentUserInfo, this.realtyObjects.Find(photo.RealtyObjectId)))
+                    this.CurrentUserInfo, this.realtyObjects.Find(photo.RealtyObjectId ?? 0)))
                 {
                     throw new AuthenticationException(
                         "Данный пользователь не может редактировать фотографии данного объекта недвижимости.");

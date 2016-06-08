@@ -13,7 +13,8 @@
         /// <summary>
         /// Контекст EF.
         /// </summary>
-        private VolgaInfoDBEntities context = new VolgaInfoDBEntities();
+        private readonly VolgaInfoDBEntities context 
+            = new VolgaInfoDBEntities();
 
         /// <summary>
         /// Получить данные пользователя, пройдя процедуру аутентификации.

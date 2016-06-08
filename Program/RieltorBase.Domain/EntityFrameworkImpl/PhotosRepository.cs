@@ -10,7 +10,7 @@
     /// <summary>
     /// EF-реализация хранилища фотографий.
     /// </summary>
-    public class PhotosRepository : EFRepository<IPhoto>
+    public class PhotosRepository : EFRepository<IPhoto>, IPhotosRepository
     {
         /// <summary>
         /// Получить все фотографии.
@@ -31,6 +31,33 @@
         {
             Photo photo = this.Context.Photos.Find(id);
             return photo != null ? new PhotoWrap(photo) : null;
+        }
+
+        /// <summary>
+        /// Получить все фотографии определенной фирмы.
+        /// </summary>
+        /// <param name="firmId">Id фирмы.</param>
+        /// <returns>Фотографии фирмы.</returns>
+        public IEnumerable<IPhoto> GetFirmPhotos(int firmId)
+        {
+            return this.Context.Photos
+                .Where(ph => ph.FirmId == firmId)
+                .ToList()
+                .Select(photo => new PhotoWrap(photo));
+        }
+
+        /// <summary>
+        /// Получить все фотографии объекта недвижимости.
+        /// </summary>
+        /// <param name="realtyObjectId">Id объекта недвижимости.</param>
+        /// <returns>Фотографии объекта недвижимости.</returns>
+        public IEnumerable<IPhoto> GetRealtyObjectPhotos(
+            int realtyObjectId)
+        {
+            return this.Context.Photos
+                .Where(ph => ph.RealtyObjectId == realtyObjectId)
+                .ToList()
+                .Select(photo => new PhotoWrap(photo));
         }
 
         /// <summary>

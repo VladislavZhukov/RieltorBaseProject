@@ -31,7 +31,9 @@
             this.firmEF = new Firm()
             {
                 FirmId = iFirm.FirmId,
-                Name = iFirm.Name
+                Name = iFirm.Name,
+                Address = iFirm.Address,
+                Phone = iFirm.Phone
             };
         }
 
@@ -59,9 +61,42 @@
             {
                 return this.firmEF.Name;
             }
+
             set
             {
                 this.firmEF.Name = value;
+            }
+        }
+
+        /// <summary>
+        /// Адрес фирмы.
+        /// </summary>
+        public string Address
+        {
+            get
+            {
+                return this.firmEF.Address;
+            }
+
+            set
+            {
+                this.firmEF.Address = value;
+            }
+        }
+
+        /// <summary>
+        /// Телефон фирмы.
+        /// </summary>
+        public string Phone
+        {
+            get
+            {
+                return this.firmEF.Phone;
+            }
+
+            set
+            {
+                this.firmEF.Phone = value;
             }
         }
 

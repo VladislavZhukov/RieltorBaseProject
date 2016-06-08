@@ -73,8 +73,6 @@ namespace ParserVolgInfo.Core
         /// Записывает полученные данные в xml файл.
         /// Создает папку photo, в ней создает папки с id квартир и сохраняет в них фото.
         /// </summary>
-        /// <param name="idApartment"></param>
-        /// <returns></returns>
         static public void StartParser()
         {
             Directory.CreateDirectory("image");

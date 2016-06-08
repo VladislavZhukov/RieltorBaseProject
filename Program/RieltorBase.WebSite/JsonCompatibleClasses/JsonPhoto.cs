@@ -16,12 +16,12 @@
         /// <summary>
         /// Id объекта недвижимости.
         /// </summary>
-        public int RealtyObjectId { get; set; }
+        public int? RealtyObjectId { get; set; }
 
         /// <summary>
         /// Id фирмы.
         /// </summary>
-        public int FirmId { get; set; }
+        public int? FirmId { get; set; }
 
         /// <summary>
         /// Ссылка на фотографию.

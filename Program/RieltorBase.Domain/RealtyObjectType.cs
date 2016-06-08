@@ -14,7 +14,6 @@ namespace RieltorBase.Domain
     
     public partial class RealtyObjectType
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public RealtyObjectType()
         {
             this.RealtyObjects = new HashSet<RealtyObject>();
@@ -24,9 +23,7 @@ namespace RieltorBase.Domain
         public int RealtyObjectTypeId { get; set; }
         public string TypeName { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RealtyObject> RealtyObjects { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PropertyType> PropertyTypes { get; set; }
     }
 }

@@ -11,6 +11,8 @@
 
 			config.MapHttpAttributeRoutes();
 
+            WebApiConfig.MapAdditionalRoutes(config);
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/v1/{controller}/{id}",
@@ -19,14 +21,51 @@
                     id = RouteParameter.Optional
                 }
             );
+        }
 
+        /// <summary>
+        /// Настроить специальные маршруты.
+        /// </summary>
+        /// <param name="config">Конфигурация HTTP.</param>
+        private static void MapAdditionalRoutes(HttpConfiguration config)
+        {
             config.Routes.MapHttpRoute(
-                name: "DefaultApiWithAction",
-                routeTemplate: "api/v1/{controller}/{action}/{id}",
+                name: "FindRealtyObjectsByFirm",
+                routeTemplate: "api/v1/realtyobjects/GetByFirm/{firmId}",
                 defaults: new
                 {
-                    action = RouteParameter.Optional,
-                    id = RouteParameter.Optional
+                    controller = "realtyobjects",
+                    firmId = RouteParameter.Optional
+                }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "FindRealtyObjectsByAgent",
+                routeTemplate: "api/v1/realtyobjects/GetByAgent/{agentId}",
+                defaults: new
+                {
+                    controller = "realtyobjects",
+                    agentId = RouteParameter.Optional
+                }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "FindFirmPhotos",
+                routeTemplate: "api/v1/photos/GetFirmPhotos/{firmId}",
+                defaults: new
+                {
+                    controller = "photos",
+                    firmId = RouteParameter.Optional
+                }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "FindRealtyObjectPhotos",
+                routeTemplate: "api/v1/photos/GetRealtyObjectPhotos/{realtyObjectId}",
+                defaults: new
+                {
+                    controller = "photos",
+                    realtyObjectId = RouteParameter.Optional
                 }
             );
         }
