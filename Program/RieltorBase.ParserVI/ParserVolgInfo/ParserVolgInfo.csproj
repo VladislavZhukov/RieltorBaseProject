@@ -61,6 +61,7 @@
   <ItemGroup>
     <Content Include="Core\DataApartment.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\1.jpg" />
     <Content Include="Docs\волга инфо\СКРИНЫ ВОЛГА ИНФО\10.jpg" />
