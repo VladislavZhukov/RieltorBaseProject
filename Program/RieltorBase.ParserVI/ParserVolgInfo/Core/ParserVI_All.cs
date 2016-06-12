@@ -245,9 +245,6 @@ namespace ParserVolgInfo.Core
                 logger.Error(ex);
                 return listIdApartment.Distinct().ToList(); ;
             }
-            
-
-            
         }
 
         /// <summary>

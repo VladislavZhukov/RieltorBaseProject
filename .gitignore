@@ -72,3 +72,5 @@ Program/RieltorBase.Domain/obj/
 Program/RieltorBase.Domain/obj/
 Program/DynamicData/bin/
 Program/DynamicData/obj/
+Program/DatabaseMigration/bin/
+Program/DatabaseMigration/obj/

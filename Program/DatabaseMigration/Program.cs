@@ -35,9 +35,17 @@
                 int i = 1;
                 foreach (Firm firm in firms)
                 {
-                    MigrationContext.DbContext.Firms.Add(firm);
-                    MigrationContext.DbContext.SaveChanges();
-                    Console.WriteLine("Сохранено фирм: " + i);
+                    try
+                    {
+                        MigrationContext.DbContext.Firms.Add(firm);
+                        MigrationContext.DbContext.SaveChanges();
+                        Console.WriteLine("Сохранено фирм: " + i);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                    
                     i++;
                 }
 
