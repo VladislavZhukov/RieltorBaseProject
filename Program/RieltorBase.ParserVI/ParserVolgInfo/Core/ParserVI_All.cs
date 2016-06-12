@@ -197,7 +197,6 @@ namespace ParserVolgInfo.Core
                         countPages = Convert.ToInt32(numOfPages[0]);
                     }
                 }
-
             }
 
             while (countPages % 20 != 0)
@@ -218,29 +217,38 @@ namespace ParserVolgInfo.Core
         {
             var listIdApartment = new List<string>();
 
-            var reqParams = new RequestParams();
-
-            //парсим и вытаскиваем все ID квартир (одна страница 20 квартир)
-            for (var i = 0; i <= numberApartments; i += 20)
+            try
             {
-                using (var request = new HttpRequest())
+                var reqParams = new RequestParams();
+
+                //парсим и вытаскиваем все ID квартир (одна страница 20 квартир)
+                for (var i = 0; i <= numberApartments; i += 20)
                 {
-                    reqParams["SEARCH_BEGINPOS"] = i.ToString();
-
-                    //получпем страницу с квартирами
-                    var contentPage = request.Post(urlTypeShelter, reqParams).ToString();
-
-                    //парсим страницу и записываем данные в массив
-                    var apartmentId = contentPage.Substrings("<tr id=\"", "\"", 0).Distinct().ToArray();
-
-                    foreach (var item in apartmentId)
+                    using (var request = new HttpRequest())
                     {
-                        listIdApartment.Add(item);
+                        reqParams["SEARCH_BEGINPOS"] = i.ToString();
+
+                        //получпем страницу с квартирами
+                        var contentPage = request.Post(urlTypeShelter, reqParams).ToString();
+
+                        //парсим страницу и записываем данные в массив
+                        var apartmentId = contentPage.Substrings("<tr id=\"", "\"", 0).Distinct().ToArray();
+
+                        listIdApartment.AddRange(apartmentId);
                     }
                 }
-            }
 
-            return listIdApartment.Distinct().ToList();
+                return listIdApartment.Distinct().ToList();
+            }
+            catch (Exception ex)
+            {
+                Logger logger = LogManager.GetCurrentClassLogger();
+                logger.Error(ex);
+                return listIdApartment.Distinct().ToList(); ;
+            }
+            
+
+            
         }
 
         /// <summary>
@@ -306,14 +314,22 @@ namespace ParserVolgInfo.Core
 
             foreach (var image in imagesUrl)
             {
-                var url = new Uri(image);
-
-                //сохраняем фото
-                using (var client = new WebClient())
+                try
                 {
-                    nameImage++;
-                    var path = pathImageFile + "\\" + nameImage.ToString() + ".jpg";
-                    client.DownloadFile(url, path);
+                    var url = new Uri(image);
+
+                    //сохраняем фото
+                    using (var client = new WebClient())
+                    {
+                        nameImage++;
+                        var path = pathImageFile + "\\" + nameImage.ToString() + ".jpg";
+                        client.DownloadFile(url, path);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger logger = LogManager.GetCurrentClassLogger();
+                    logger.Error(ex);
                 }
             }
         }
