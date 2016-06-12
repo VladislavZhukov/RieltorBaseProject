@@ -14,7 +14,7 @@
         /// <summary>
         /// EF-контекст.
         /// </summary>
-        VolgaInfoDBEntities context 
+        private readonly VolgaInfoDBEntities context 
             = new VolgaInfoDBEntities();
 
         /// <summary>
@@ -43,10 +43,10 @@
             foreach (TypeMetadataDescription typeDescription
                 in Metadata.GetInstance().TypeDescriptions)
             {
-                RealtyObjectType newType =
-                    new RealtyObjectType();
-
-                newType.TypeName = typeDescription.Name;
+                RealtyObjectType newType = new RealtyObjectType
+                {
+                    TypeName = typeDescription.Name
+                };
 
                 foreach (string propName
                     in typeDescription.PropertyNames)
@@ -68,7 +68,9 @@
             // фирмы и агенты
             Firm newFirm = this.context.Firms.Add(new Firm()
             {
-                Name = "Фирма \"У Васи\""
+                Name = "Фирма \"У Васи\"",
+                Address = "Улица Мира 52",
+                Phone = "11-22-33fdsf"
             });
 
             Agent vasya = this.context.Agents.Add(new Agent()

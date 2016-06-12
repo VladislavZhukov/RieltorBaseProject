@@ -198,14 +198,9 @@
 
                 // если свойство было до этого - оно обновлено, 
                 // если нет - добавлено.
-                if (oldProps.Contains(propValue))
-                {
-                    entry.State = EntityState.Modified;
-                }
-                else
-                {
-                    entry.State = EntityState.Added;
-                }
+                entry.State = oldProps.Contains(propValue) 
+                    ? EntityState.Modified 
+                    : EntityState.Added;
             }
         }
     }

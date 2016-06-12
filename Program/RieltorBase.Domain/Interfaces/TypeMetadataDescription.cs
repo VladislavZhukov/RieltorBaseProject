@@ -19,8 +19,7 @@
         /// на связанные объекты, либо это общие свойства для всех объектов и они хранятся
         /// не в виде свойств, а в виде полей в таблице объектов недвижимости.
         /// </summary>
-        private static string[] notLoadedProperties = new[]
-        {
+        private static readonly string[] notLoadedProperties = {
             "Фирма", 
             "Агент", 
             "Телефон контакта",

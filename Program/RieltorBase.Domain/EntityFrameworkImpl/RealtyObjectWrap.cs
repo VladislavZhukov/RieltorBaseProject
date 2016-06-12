@@ -66,11 +66,13 @@
             VolgaInfoDBEntities context)
             : this(context)
         {
-            this.realtyObjectEF = new RealtyObject();
-            this.realtyObjectEF.RealtyObjectType = 
-                this.FindType(iRealtyObj.TypeName);
-            this.realtyObjectEF.RealtyObjectTypeId = 
-                this.FindType(iRealtyObj.TypeName).RealtyObjectTypeId;
+            this.realtyObjectEF = new RealtyObject
+            {
+                RealtyObjectType = this.FindType(iRealtyObj.TypeName),
+                RealtyObjectTypeId = 
+                    this.FindType(iRealtyObj.TypeName).RealtyObjectTypeId
+            };
+
             Agent agent = this.FindAgent(iRealtyObj.FirmName, iRealtyObj.AgentName, iRealtyObj.Phone);
             this.realtyObjectEF.Agent = agent;
             this.realtyObjectEF.AgentId = agent.Id_agent;

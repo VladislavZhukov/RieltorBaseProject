@@ -30,11 +30,11 @@ namespace RieltorBase.Domain
         public virtual DbSet<Changelog> Changelogs { get; set; }
         public virtual DbSet<ChangelogAgent> ChangelogAgents { get; set; }
         public virtual DbSet<Firm> Firms { get; set; }
+        public virtual DbSet<Password> Passwords { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<PropertyType> PropertyTypes { get; set; }
         public virtual DbSet<PropertyValue> PropertyValues { get; set; }
         public virtual DbSet<RealtyObject> RealtyObjects { get; set; }
         public virtual DbSet<RealtyObjectType> RealtyObjectTypes { get; set; }
-        public virtual DbSet<Password> Passwords { get; set; }
     }
 }

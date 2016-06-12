@@ -15,13 +15,13 @@
         /// (если это фотография объекта недвижимости).
         /// </summary>
         /// <remarks></remarks>
-        int RealtyObjectId { get; set; }
+        int? RealtyObjectId { get; set; }
 
         /// <summary>
         /// Id фирмы, к которой относится фотография 
         /// (если это фотография фирмы).
         /// </summary>
-        int FirmId { get; set; }
+        int? FirmId { get; set; }
 
         /// <summary>
         /// Относительный путь к самой фотографии (например, часть URL).

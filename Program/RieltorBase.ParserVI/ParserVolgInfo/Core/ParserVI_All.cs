@@ -11,11 +11,12 @@ using xNet;
 
 namespace ParserVolgInfo.Core
 {
+    // ReSharper disable once InconsistentNaming
     class ParserVI_All
     {
         #region Данные для парсинга
 
-        private static readonly List<string> ForParsQuantityPage = new List<string>() { " объект,", " объекта,", " объектов," };
+        private static readonly List<string> forParsQuantityPage = new List<string>() { " объект,", " объекта,", " объектов," };
 
         #endregion
 
@@ -51,7 +52,7 @@ namespace ParserVolgInfo.Core
 
                 for (int i = 0; i < dataApart.UrlTypeapArtement.Count; i++)
                 {
-                    var typeApartament = dataApart.UrlTypeapArtement[i].Substring("/search/", "/", 0).ToString();//;
+                    var typeApartament = dataApart.UrlTypeapArtement[i].Substring("/search/", "/", 0);//;
                     var pathCurrentApartment = "apartment/" + typeApartament;
                     var pathCurrentApartmentPhoto = pathCurrentApartment + "/photo";
 
@@ -95,7 +96,7 @@ namespace ParserVolgInfo.Core
                                 Console.WriteLine("Получение данных со страницы: " + urlApartment);
 
                                 //получаем страницу
-                                string sourcePage = null;
+                                string sourcePage;
 
                                 try
                                 {
@@ -143,8 +144,6 @@ namespace ParserVolgInfo.Core
                                     case "raznoe":
                                         WriteToXmlFile(dataApart.ParsRaznoeList, dataApart.XmlRaznoeList, xmlWriter, idApart, sourcePage, imageUrl);
                                         break;
-                                    default:
-                                        break;
                                 }
 
                                 if (imageUrl.Length > 0)
@@ -187,7 +186,7 @@ namespace ParserVolgInfo.Core
                 //получаем страницу
                 var sourcePage = request.Get(urlTypeShelter).ToString();
 
-                foreach (var item in ForParsQuantityPage)
+                foreach (var item in forParsQuantityPage)
                 {
                     var numOfPages = sourcePage.Substrings("Всего найдено ", item, 0);
 

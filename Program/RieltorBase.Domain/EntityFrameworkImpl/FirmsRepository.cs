@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Linq;
 
     using RieltorBase.Domain.Interfaces;
@@ -73,10 +72,16 @@
             }
 
             FirmWrap wrap = new FirmWrap(changedEntity);
-            Firm realFirm = wrap.GetRealObject();
 
-            this.Context.Firms.Attach(realFirm);
-            this.Context.Entry(realFirm).State = EntityState.Modified;
+            Firm updatedFirm = wrap.GetRealObject();
+
+            Firm existingFirm = this.Context.Firms.First(f =>
+                f.FirmId == updatedFirm.FirmId);
+
+            existingFirm.Name = updatedFirm.Name;
+            existingFirm.Address = updatedFirm.Address;
+            existingFirm.Phone = updatedFirm.Phone;
+
             return wrap;
         }
 

@@ -13,7 +13,7 @@ namespace RieltorBase.Domain.EntityFrameworkImpl
         /// <summary>
         /// EF-объект фотографии.
         /// </summary>
-        private Photo photo;
+        private readonly Photo photo;
 
         /// <summary>
         /// Создать обертку фотографии на основе реальной EF-фотографии.
@@ -62,7 +62,7 @@ namespace RieltorBase.Domain.EntityFrameworkImpl
         /// <summary>
         /// Id объекта недвижимости (если это фотография объекта недвижимости).
         /// </summary>
-        public int RealtyObjectId
+        public int? RealtyObjectId
         {
             get
             {
@@ -77,7 +77,7 @@ namespace RieltorBase.Domain.EntityFrameworkImpl
         /// <summary>
         /// Id фирмы (если это фотография фирмы).
         /// </summary>
-        public int FirmId
+        public int? FirmId
         {
             get
             {

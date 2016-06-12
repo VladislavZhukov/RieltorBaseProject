@@ -17,5 +17,15 @@
         /// Имя фирмы.
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Адрес фирмы.
+        /// </summary>
+        public string Address { get; set; }
+
+        /// <summary>
+        /// Телефон фирмы.
+        /// </summary>
+        public string Phone { get; set; }
     }
 }

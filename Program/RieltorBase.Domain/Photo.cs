@@ -15,8 +15,8 @@ namespace RieltorBase.Domain
     public partial class Photo
     {
         public int PhotoId { get; set; }
-        public int RealtyObjectId { get; set; }
-        public int FirmId { get; set; }
+        public Nullable<int> RealtyObjectId { get; set; }
+        public Nullable<int> FirmId { get; set; }
         public string RelativeSource { get; set; }
     
         public virtual Firm Firm { get; set; }

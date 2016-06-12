@@ -132,12 +132,18 @@
         /// (в теле запроса - JSON-объект недвижимости).</remarks>
         public IRealtyObject Post([FromBody]JsonRealtyObject value)
         {
+            value.Date = DateTime.Now;
+
             bool canAddRealtyObject = this.AuthorizationMechanism
                 .CanUserAddRealtyObject(this.CurrentUserInfo, value);
 
+            /* Тут, пожалуй, стоит кидать другую ошибку, а на клиент, наверно, отправлять 403.
+                Чтобы клиент мог отличать ошибку логина и пароля от нехватки прав. Так удобнее на клиенте. 
+                Сейчас при возврате 401 он автоматом показывает форму залогиниться.
+            */
             if (!canAddRealtyObject)
             {
-                throw new AuthenticationException(
+                this.ThrowUnauthorizedResponseException(
                     "Данному пользователю не разрешено добавлять данный объект недвижимости.");
             }
 
@@ -157,12 +163,14 @@
         /// (в теле запроса - JSON-объект недвижимости).</remarks>
         public IRealtyObject Put(int id, [FromBody]JsonRealtyObject value)
         {
+            value.Date = DateTime.Now;
+
             bool canUpdateRealtyObject = this.AuthorizationMechanism
                 .CanUserUpdateRealtyObject(this.CurrentUserInfo, value);
 
             if (!canUpdateRealtyObject)
             {
-                throw new AuthenticationException(
+                this.ThrowUnauthorizedResponseException(
                     "Данному пользователю не разрешено изменять данный объект недвижимости.");
             }
 
@@ -185,7 +193,7 @@
 
             if (!canDelete)
             {
-                throw new AuthenticationException(
+                this.ThrowUnauthorizedResponseException(
                     "Данному пользователю не разрешено удалять данный объект недвижимости.");
             }
 

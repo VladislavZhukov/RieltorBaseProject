@@ -12,8 +12,6 @@
         var user = JSON.parse(localStorage.getItem(LOCAL_STORAGE_USER));
         $scope.user = user;
 
-        console.log(user);
-
         // Событие вызывается при нажатии кнопки "Добавить объект недвижимости".
         $scope.addApp = function () {
             $location.path(ADD_APP_REDIRECT);
