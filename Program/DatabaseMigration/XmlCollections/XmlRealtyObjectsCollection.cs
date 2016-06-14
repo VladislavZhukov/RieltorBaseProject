@@ -76,6 +76,8 @@
             this.realtyObjects.AddRange(this.Deserialize<XmlMalosemeyka>(DatabaseMigration.RealtyObjectType.Malosemeyki).RealtyObjects);
             this.realtyObjects.AddRange(this.Deserialize<XmlRaznoye>(DatabaseMigration.RealtyObjectType.Raznoe).RealtyObjects);
             this.realtyObjects.AddRange(this.Deserialize<XmlUchastok>(DatabaseMigration.RealtyObjectType.Uchastki).RealtyObjects);
+
+            this.RemoveEmptyObjects();
         }
 
         /// <summary>
@@ -102,6 +104,21 @@
         }
 
         /// <summary>
+        /// Удалить пустые квартиры из списка всех квартир.
+        /// </summary>
+        private void RemoveEmptyObjects()
+        {
+            List<XmlBaseRealtyObject> emptyObjects = this.realtyObjects
+                .Where(ro => ro.IsEmpty)
+                .ToList();
+
+            foreach (XmlBaseRealtyObject emptyObject in emptyObjects)
+            {
+                this.realtyObjects.Remove(emptyObject);
+            };
+        }
+
+        /// <summary>
         /// Получить все фирмы (вместе с агентами), используя
         /// информацию из загруженных объектов недвижимости.
         /// </summary>
@@ -113,10 +130,19 @@
                     realtyObject.Company, 
                     realtyObject.PhoneContact);
 
+                string agentNameAndPhone = !string.IsNullOrWhiteSpace(realtyObject.Agent)
+                    ? realtyObject.Agent
+                    : realtyObject.Company + " " + realtyObject.PhoneContact;
+
+                if (agentNameAndPhone.StartsWith("ФЛ"))
+                {
+                    agentNameAndPhone = realtyObject.Company;
+                }
+
                 Agent agent = XmlRealtyObjectsCollection.FindOrCreateAgent(
                     firm,
-                    realtyObject.Agent.GetAgentName(),
-                    realtyObject.Agent.GetAgentPhone());
+                    agentNameAndPhone.GetAgentName(),
+                    agentNameAndPhone.GetAgentPhone());
 
                 agent.RealtyObjects.Add(realtyObject.GetDbCompatibleFullObject());
             }

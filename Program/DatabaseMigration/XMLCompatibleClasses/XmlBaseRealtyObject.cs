@@ -51,6 +51,23 @@
         public string PhoneContact { get; set; }
 
         /// <summary>
+        /// Объект "пустой" - т.е. не содержит основных свойств.
+        /// </summary>
+        internal bool IsEmpty
+        {
+            get
+            {
+                return string.IsNullOrWhiteSpace(this.Date)
+                    && string.IsNullOrWhiteSpace(this.Price)
+                    && string.IsNullOrWhiteSpace(this.AdditionalInfo)
+                    && string.IsNullOrWhiteSpace(this.Comments)
+                    && string.IsNullOrWhiteSpace(this.Company)
+                    && string.IsNullOrWhiteSpace(this.Agent)
+                    && string.IsNullOrWhiteSpace(this.PhoneContact);
+            }
+        }
+
+        /// <summary>
         /// Получить объект недвижимости, включая все свойства
         /// и фотографии, для дальнейшего сохранения в БД.
         /// </summary>

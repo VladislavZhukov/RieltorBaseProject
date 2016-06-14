@@ -1,4 +1,6 @@
-﻿namespace DatabaseMigration
+﻿using System.Linq;
+
+namespace DatabaseMigration
 {
     using System;
     using System.Collections.Generic;
