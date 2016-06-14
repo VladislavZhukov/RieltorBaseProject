@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace DatabaseMigration
+﻿namespace DatabaseMigration
 {
     using System;
     using System.Collections.Generic;
@@ -23,7 +21,7 @@ namespace DatabaseMigration
         {
             try
             {
-                DirectoryInfo dir = GetSourceDir(args);
+                DirectoryInfo dir = Program.GetSourceDir(args);
 
                 Console.WriteLine("Получение объектов недвижимости...");
                 XmlRealtyObjectsCollection collection =
@@ -46,6 +44,7 @@ namespace DatabaseMigration
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex);
+                        File.AppendAllText("log.txt", ex.ToString() + "\n");
                     }
                     
                     i++;
@@ -85,6 +84,7 @@ namespace DatabaseMigration
             }
 
             DirectoryInfo dir = new DirectoryInfo(dirPath);
+
             return dir;
         }
     }

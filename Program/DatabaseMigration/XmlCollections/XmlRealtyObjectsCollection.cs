@@ -156,6 +156,16 @@
         /// <returns>Существующая или новая (созданная) фирма.</returns>
         private Firm FindOrCreateFirm(string firmName, string firmPhone)
         {
+            if (string.IsNullOrWhiteSpace(firmPhone))
+            {
+                firmPhone = "-";
+            }
+
+            if (firmName.Contains("Волга-Инфо (сайт)"))
+            {
+                firmName = "ВИ Сайт";
+            }
+
             Firm firm = this.firms.FirstOrDefault(f =>
                 f.Name == firmName && f.Phone == firmPhone);
 

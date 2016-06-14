@@ -110,7 +110,11 @@
         private void AddPhotos(
             RealtyObject realtyObject)
         {
-            // TODO
+            //string photoPath = Path.Combine(
+            //    MigrationContext.SourceFolder.FullName,
+            //    this.GetFolderName(),
+            //    "photo",
+            //    this.IdApartment);
             // получить папку: this.photoDirectory
 
             // вычислить все относительные пути к фотографиям
@@ -118,6 +122,7 @@
             // добавить фотографии к объекту недвижимости
             
             // throw new NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }
