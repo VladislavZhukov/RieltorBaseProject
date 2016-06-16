@@ -8,7 +8,7 @@
     /// <summary>
     /// Контекст миграции данных.
     /// </summary>
-    public static class MigrationContext
+    internal static class MigrationContext
     {
         /// <summary>
         /// Контекст базы данных недвижимости.
@@ -31,7 +31,7 @@
         /// <summary>
         /// Контекст базы данных недвижимости.
         /// </summary>
-        public static VolgaInfoDBEntities DbContext
+        internal static VolgaInfoDBEntities DbContext
         {
             get
             {
@@ -42,7 +42,7 @@
         /// <summary>
         /// Список типов объектов недвижимости из базы данных.
         /// </summary>
-        public static IEnumerable<RieltorBase.Domain.RealtyObjectType> ExistingDbRealtyObjectTypes 
+        internal static IEnumerable<RieltorBase.Domain.RealtyObjectType> ExistingDbRealtyObjectTypes 
         {
             get
             {
@@ -53,12 +53,21 @@
         /// <summary>
         /// Список типов свойств из базы данных.
         /// </summary>
-        public static IEnumerable<PropertyType> ExistingDbPropTypes
+        internal static IEnumerable<PropertyType> ExistingDbPropTypes
         {
             get
             {
                 return MigrationContext.existingDbPropTypes;
             }
+        }
+
+        /// <summary>
+        /// Информация о папке с исходными данными.
+        /// </summary>
+        internal static InitialFolder SourceFolderInfo
+        {
+            get;
+            set;
         }
     }
 }

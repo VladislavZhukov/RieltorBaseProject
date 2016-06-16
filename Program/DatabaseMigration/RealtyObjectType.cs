@@ -3,7 +3,7 @@
     /// <summary>
     /// Тип объекта недвижимости.
     /// </summary>
-    internal enum RealtyObjectType
+    public enum RealtyObjectType
     {
         /// <summary>
         /// Аренда.

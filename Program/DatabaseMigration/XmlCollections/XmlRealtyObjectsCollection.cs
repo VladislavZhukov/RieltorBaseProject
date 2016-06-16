@@ -14,11 +14,6 @@
     public class XmlRealtyObjectsCollection
     {
         /// <summary>
-        /// Папка с исходными данными.
-        /// </summary>
-        private readonly InitialFolder initialFolder;
-
-        /// <summary>
         /// Объекты недвижимости.
         /// </summary>
         private readonly List<XmlBaseRealtyObject> realtyObjects
@@ -35,10 +30,8 @@
         /// Создать экземпляр колекции всех xml-объектов недвижимости
         /// и загрузить все объекты из файлов xml.
         /// </summary>
-        /// <param name="directory">Папка с исходными данными.</param>
-        internal XmlRealtyObjectsCollection(DirectoryInfo directory)
+        internal XmlRealtyObjectsCollection()
         {
-            this.initialFolder = new InitialFolder(directory);
             this.LoadRealtyObjects();
             this.LoadDBCompatibleData();
         }
@@ -96,7 +89,7 @@
                 new XmlSerializer(typeof(SingleSerializableCollection<TElement>));
 
             using (FileStream fileStream =
-                new FileStream(this.initialFolder.GetXmlDoc(type), FileMode.Open))
+                new FileStream(MigrationContext.SourceFolderInfo.GetXmlDoc(type), FileMode.Open))
             {
                 return (SingleSerializableCollection<TElement>)serializer
                     .Deserialize(fileStream);

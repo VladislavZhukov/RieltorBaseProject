@@ -34,10 +34,19 @@
         /// <summary>
         /// Получить тип объекта недвижимости EF.
         /// </summary>
-        protected override RealtyObjectType GetRealtyObjectType()
+        protected override RealtyObjectType GetRealtyObjectDBType()
         {
             return MigrationContext.ExistingDbRealtyObjectTypes
                 .First(t => t.TypeName == "Разное");
+        }
+
+        /// <summary>
+        /// Получить тип объекта недвижимости.
+        /// </summary>
+        /// <returns>Тип объекта недвижимости.</returns>
+        protected override DatabaseMigration.RealtyObjectType GetRealtyObjectType()
+        {
+            return DatabaseMigration.RealtyObjectType.Raznoe;
         }
 
         /// <summary>
