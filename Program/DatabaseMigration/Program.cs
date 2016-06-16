@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
 
     using DatabaseMigration.XmlCollections;
     using RieltorBase.Domain;
@@ -21,16 +22,17 @@
         {
             try
             {
-                DirectoryInfo dir = GetSourceDir(args);
+                MigrationContext.SourceFolderInfo = 
+                    new InitialFolder(Program.GetSourceDir(args));
 
                 Console.WriteLine("Получение объектов недвижимости...");
-                XmlRealtyObjectsCollection collection =
-                    new XmlRealtyObjectsCollection(dir);
 
-                Console.WriteLine("Получение данных, совместимых с БД...");
-                IEnumerable<Firm> firms = collection.GetFirms();
+                XmlRealtyObjectsCollection collection = 
+                    new XmlRealtyObjectsCollection();
 
                 Console.WriteLine("Сохранение данных...");
+
+                List<Firm> firms = collection.GetFirms().ToList();
 
                 int i = 1;
                 foreach (Firm firm in firms)
@@ -44,12 +46,13 @@
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex);
+                        File.AppendAllText("log.txt", ex + "\n");
                     }
                     
                     i++;
                 }
 
-                Console.WriteLine("Данные успешно сохранены.");
+                Console.WriteLine("Данные сохранены.");
             }
             catch (Exception ex)
             {
@@ -83,6 +86,7 @@
             }
 
             DirectoryInfo dir = new DirectoryInfo(dirPath);
+
             return dir;
         }
     }

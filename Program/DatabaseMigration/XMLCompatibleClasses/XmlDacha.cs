@@ -50,10 +50,19 @@
         /// <summary>
         /// Получить тип объекта недвижимости EF.
         /// </summary>
-        protected override RealtyObjectType GetRealtyObjectType()
+        protected override RealtyObjectType GetRealtyObjectDBType()
         {
             return MigrationContext.ExistingDbRealtyObjectTypes
                 .First(t => t.TypeName == "Дачи");
+        }
+
+        /// <summary>
+        /// Получить тип объекта недвижимости.
+        /// </summary>
+        /// <returns>Тип объекта недвижимости.</returns>
+        protected override DatabaseMigration.RealtyObjectType GetRealtyObjectType()
+        {
+            return DatabaseMigration.RealtyObjectType.Dachi;
         }
 
         /// <summary>

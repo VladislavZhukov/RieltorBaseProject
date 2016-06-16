@@ -14,11 +14,6 @@
     public class XmlRealtyObjectsCollection
     {
         /// <summary>
-        /// Папка с исходными данными.
-        /// </summary>
-        private readonly InitialFolder initialFolder;
-
-        /// <summary>
         /// Объекты недвижимости.
         /// </summary>
         private readonly List<XmlBaseRealtyObject> realtyObjects
@@ -35,10 +30,8 @@
         /// Создать экземпляр колекции всех xml-объектов недвижимости
         /// и загрузить все объекты из файлов xml.
         /// </summary>
-        /// <param name="directory">Папка с исходными данными.</param>
-        internal XmlRealtyObjectsCollection(DirectoryInfo directory)
+        internal XmlRealtyObjectsCollection()
         {
-            this.initialFolder = new InitialFolder(directory);
             this.LoadRealtyObjects();
             this.LoadDBCompatibleData();
         }
@@ -76,6 +69,8 @@
             this.realtyObjects.AddRange(this.Deserialize<XmlMalosemeyka>(DatabaseMigration.RealtyObjectType.Malosemeyki).RealtyObjects);
             this.realtyObjects.AddRange(this.Deserialize<XmlRaznoye>(DatabaseMigration.RealtyObjectType.Raznoe).RealtyObjects);
             this.realtyObjects.AddRange(this.Deserialize<XmlUchastok>(DatabaseMigration.RealtyObjectType.Uchastki).RealtyObjects);
+
+            this.RemoveEmptyObjects();
         }
 
         /// <summary>
@@ -94,11 +89,26 @@
                 new XmlSerializer(typeof(SingleSerializableCollection<TElement>));
 
             using (FileStream fileStream =
-                new FileStream(this.initialFolder.GetXmlDoc(type), FileMode.Open))
+                new FileStream(MigrationContext.SourceFolderInfo.GetXmlDoc(type), FileMode.Open))
             {
                 return (SingleSerializableCollection<TElement>)serializer
                     .Deserialize(fileStream);
             }
+        }
+
+        /// <summary>
+        /// Удалить пустые квартиры из списка всех квартир.
+        /// </summary>
+        private void RemoveEmptyObjects()
+        {
+            List<XmlBaseRealtyObject> emptyObjects = this.realtyObjects
+                .Where(ro => ro.IsEmpty)
+                .ToList();
+
+            foreach (XmlBaseRealtyObject emptyObject in emptyObjects)
+            {
+                this.realtyObjects.Remove(emptyObject);
+            };
         }
 
         /// <summary>
@@ -113,10 +123,19 @@
                     realtyObject.Company, 
                     realtyObject.PhoneContact);
 
+                string agentNameAndPhone = !string.IsNullOrWhiteSpace(realtyObject.Agent)
+                    ? realtyObject.Agent
+                    : realtyObject.Company + " " + realtyObject.PhoneContact;
+
+                if (agentNameAndPhone.StartsWith("ФЛ"))
+                {
+                    agentNameAndPhone = realtyObject.Company;
+                }
+
                 Agent agent = XmlRealtyObjectsCollection.FindOrCreateAgent(
                     firm,
-                    realtyObject.Agent.GetAgentName(),
-                    realtyObject.Agent.GetAgentPhone());
+                    agentNameAndPhone.GetAgentName(),
+                    agentNameAndPhone.GetAgentPhone());
 
                 agent.RealtyObjects.Add(realtyObject.GetDbCompatibleFullObject());
             }
@@ -130,6 +149,16 @@
         /// <returns>Существующая или новая (созданная) фирма.</returns>
         private Firm FindOrCreateFirm(string firmName, string firmPhone)
         {
+            if (string.IsNullOrWhiteSpace(firmPhone))
+            {
+                firmPhone = "-";
+            }
+
+            if (firmName.Contains("Волга-Инфо (сайт)"))
+            {
+                firmName = "ВИ Сайт";
+            }
+
             Firm firm = this.firms.FirstOrDefault(f =>
                 f.Name == firmName && f.Phone == firmPhone);
 

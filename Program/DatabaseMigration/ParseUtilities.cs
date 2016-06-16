@@ -71,24 +71,36 @@
         private static KeyValuePair<string, string> GetNameAndPhone(
             this string agentNameAndPhone)
         {
-            string[] spaceSplitted = agentNameAndPhone.Split(' ');
+            agentNameAndPhone = agentNameAndPhone.Replace("+7", "8");
 
-            string firstDigit = spaceSplitted.FirstOrDefault(
-                str => Regex.IsMatch(str, "\\d.*"));
+            List<string> spaceSplitted = 
+                agentNameAndPhone.Split(
+                    new [] {' ', '.' }, 
+                    StringSplitOptions.RemoveEmptyEntries)
+                .ToList();
 
-            if (string.IsNullOrWhiteSpace(firstDigit))
+            IEnumerable<string> digitStrings = 
+                spaceSplitted.Where(str => 
+                    Regex.IsMatch(str, "^\\d.*\\d?$"));
+
+            IEnumerable<string> noDigitStrings =
+                spaceSplitted.Where(str =>
+                    !Regex.IsMatch(str, "^\\d.*\\d?$"));
+
+            string name = string.Join(" ", noDigitStrings);
+            string phone = string.Join(" ", digitStrings);
+
+            if (string.IsNullOrWhiteSpace(name))
             {
-                return new KeyValuePair<string, string>(
-                    agentNameAndPhone, "-");
+                name = phone;
             }
 
-            int firstDigitPosition = agentNameAndPhone.IndexOf(
-                firstDigit, 
-                StringComparison.Ordinal);
+            if (string.IsNullOrWhiteSpace(phone))
+            {
+                phone = "-";
+            }
 
-            return new KeyValuePair<string, string>(
-                agentNameAndPhone.Substring(0, firstDigitPosition + 1).Trim(),
-                agentNameAndPhone.Substring(firstDigitPosition));
+            return new KeyValuePair<string, string>(name, phone);
         }
 
         /// <summary>

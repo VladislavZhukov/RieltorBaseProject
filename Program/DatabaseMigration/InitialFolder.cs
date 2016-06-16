@@ -67,5 +67,51 @@
 
             return path;
         }
+
+        /// <summary>
+        /// Получить предполагаемый путь к папке с фотографиями
+        /// объекта недвижимости.
+        /// </summary>
+        /// <param name="realtyObjectType">Тип объекта недвижимости.</param>
+        /// <param name="realtyObjectId">Id объекта недвижимости (из xml).</param>
+        /// <returns>Предполагаемый путь к фотографиям 
+        /// объекта недвижимости.</returns>
+        /// <remarks>Существование папки не гарантируется, т.к. 
+        /// у объекта может не быть фотографий.</remarks>
+        internal string GetPhotoPath(
+            RealtyObjectType realtyObjectType,
+            string realtyObjectId)
+        {
+            string xmlPath = this.GetXmlDoc(realtyObjectType);
+            string dirPath = Path.GetDirectoryName(xmlPath);
+
+            if (string.IsNullOrWhiteSpace(dirPath))
+            {
+                throw new DirectoryNotFoundException(
+                    "Не удалось найти папку хранения фотографий объекта " 
+                    + realtyObjectId);
+            }
+            
+            return Path.Combine(dirPath, "photo", realtyObjectId);
+        }
+
+        /// <summary>
+        /// Получить полный путь к родительской папке (папка, в которую
+        /// входит папка с исходными данными).
+        /// </summary>
+        /// <returns>Полный путь к родительской папке.</returns>
+        internal string GetParentFolderPath()
+        {
+            DirectoryInfo parentDir = this.initialDir.Parent;
+
+            if (parentDir == null)
+            {
+                throw new InvalidOperationException(
+                    "Не удалось получить родительскую папку для папки " 
+                    + this.initialDir.FullName);
+            }
+
+            return parentDir.FullName;
+        }
     }
 }

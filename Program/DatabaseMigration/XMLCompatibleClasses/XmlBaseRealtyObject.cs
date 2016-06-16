@@ -1,7 +1,8 @@
 ﻿namespace DatabaseMigration.XMLCompatibleClasses
 {
-    using System;
     using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
 
     using RieltorBase.Domain;
 
@@ -51,6 +52,23 @@
         public string PhoneContact { get; set; }
 
         /// <summary>
+        /// Объект "пустой" - т.е. не содержит основных свойств.
+        /// </summary>
+        internal bool IsEmpty
+        {
+            get
+            {
+                return string.IsNullOrWhiteSpace(this.Date)
+                    && string.IsNullOrWhiteSpace(this.Price)
+                    && string.IsNullOrWhiteSpace(this.AdditionalInfo)
+                    && string.IsNullOrWhiteSpace(this.Comments)
+                    && string.IsNullOrWhiteSpace(this.Company)
+                    && string.IsNullOrWhiteSpace(this.Agent)
+                    && string.IsNullOrWhiteSpace(this.PhoneContact);
+            }
+        }
+
+        /// <summary>
         /// Получить объект недвижимости, включая все свойства
         /// и фотографии, для дальнейшего сохранения в БД.
         /// </summary>
@@ -63,7 +81,7 @@
                 Cost = this.Price.GetIntegerPrice(),
                 Note = this.Comments,
                 AdditionalInfo = this.AdditionalInfo,
-                RealtyObjectType = this.GetRealtyObjectType()
+                RealtyObjectType = this.GetRealtyObjectDBType()
             };
             foreach (PropertyValue value in this.CreateSpecificProperties())
             {
@@ -76,9 +94,16 @@
         }
 
         /// <summary>
+        /// Получить тип объекта недвижимости (существующий тип из БД).
+        /// </summary>
+        /// <returns>Тип объекта недвижимости EF.</returns>
+        protected abstract RealtyObjectType GetRealtyObjectDBType();
+
+        /// <summary>
         /// Получить тип объекта недвижимости.
         /// </summary>
-        protected abstract RealtyObjectType GetRealtyObjectType();
+        /// <returns>Тип объекта недвижимости.</returns>
+        protected abstract DatabaseMigration.RealtyObjectType GetRealtyObjectType();
 
         /// <summary>
         /// Создать свойства, специфичные для конкретного типа 
@@ -93,14 +118,38 @@
         private void AddPhotos(
             RealtyObject realtyObject)
         {
-            // TODO
-            // получить папку: this.photoDirectory
+            foreach (string source in this.GetRelativePhotoPaths())
+            {
+                realtyObject.Photos.Add(new Photo()
+                {
+                    RelativeSource = source
+                });
+            }
+        }
 
-            // вычислить все относительные пути к фотографиям
+        /// <summary>
+        /// Получить набор относительных путей к фотографиям.
+        /// </summary>
+        /// <returns>Набор относительных путей к фотографиям.</returns>
+        private List<string> GetRelativePhotoPaths()
+        {
+            string photoPath = MigrationContext.SourceFolderInfo.GetPhotoPath(
+                this.GetRealtyObjectType(),
+                this.IdApartment);
 
-            // добавить фотографии к объекту недвижимости
-            
-            // throw new NotImplementedException();
+            DirectoryInfo dirInfo = new DirectoryInfo(photoPath);
+
+            if (!dirInfo.Exists)
+            {
+                return new List<string>();
+            }
+
+            return dirInfo.GetFiles()
+                .Select(file =>
+                    file.FullName.Replace(
+                        MigrationContext.SourceFolderInfo.GetParentFolderPath(),
+                        string.Empty))
+                .ToList();
         }
     }
 }
